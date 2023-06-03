@@ -37,6 +37,7 @@ public class UserController extends BaseController{
         session.setAttribute("username",userData.getUsername());
         return new JsonResult<User>(OK,userData);
     }
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping("changePassword")
     public JsonResult<User> changePassword(String oldPassword, String newPassword, HttpSession session){
         Integer uid=getUidFromSession(session);

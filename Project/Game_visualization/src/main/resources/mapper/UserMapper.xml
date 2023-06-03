@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:用于指定当前接口文件与哪个接口映射-->
+<mapper namespace="com.example.game_visualization.Mapper.UserMapper">
+
+    <!--id:映射的接口名字-->
+    <!--useGeneratedKeys:表示开始某个字段的值递增（一般为主键）-->
+    <!--keyProperty:把哪个字段作为主键递增-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+            INSERT INTO t_user(username,password,gender,phone,email,salt)
+            VALUES (#{username},#{password},#{gender},#{phone},#{email},#{salt})
+    </insert>
+    <!--resultType:指定查询返回值的类型-->
+    <select id="findByUsername" resultType="com.example.game_visualization.entity.User">
+        SELECT * FROM t_user WHERE username = #{username}
+    </select>
+    <update id="updatePasswordByUid">
+        UPDATE t_user SET password=#{password} where uid=#{uid}
+    </update>
+    <select id="findByUid" resultType="com.example.game_visualization.entity.User">
+        SELECT * FROM t_user WHERE uid = #{uid}
+    </select>
+
+</mapper>

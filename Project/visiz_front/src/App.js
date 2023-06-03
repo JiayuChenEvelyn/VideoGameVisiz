@@ -8,34 +8,36 @@ import Bar from "./scenes/bar";
 import Pie from "./scenes/pie";
 import Line from "./scenes/line";
 import Geomap from "./scenes/geomap";
-import Login from './scenes/login/index';
+import Login from "./scenes/login/index";
 import Register from "./scenes/register/index";
 import Profile from "./scenes/profile";
 import { useState, useEffect } from "react";
 
 function App() {
+  const [theme, colorMode] = useMode();
+  let pathName = window.location.pathname;
+  let arr = pathName.toString().split("/");
+  let currentPath = arr[arr.length - 1];
   useEffect(() => {
     const dataFetch = async () => {
       const data = await (
-          await fetch(
-              "http://localhost:8080/users/login?username=222&password=123", {method:"post"}
-          )
+        await fetch(
+          "https://run.mocky.io/v3/b3bcb9d2-d8e9-43c5-bfb7-0062c85be6f9"
+        )
       ).json();
       console.log(data);
     };
 
     dataFetch();
   }, []);
-  const [theme, colorMode] = useMode();
-  let pathName = window.location.pathname;
-  let arr = pathName.toString().split("/");
-  let currentPath = arr[arr.length - 1];
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          {(currentPath !== "login" && currentPath !== "register") ? <CusSidebar /> : undefined}
+          {currentPath !== "login" && currentPath !== "register" ? (
+            <CusSidebar />
+          ) : undefined}
           <main className="content">
             {/* <Topbar /> */}
             <Routes>

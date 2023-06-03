@@ -20,6 +20,7 @@ public class UserController extends BaseController{
     SpringBoot会将前端url地址中的参数名和pojo类的属性名进行比较(比如username和password)，
     如果这两个名称相同，则将值注入pojo类对应的属性上.
      */
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping("reg")
     public JsonResult<Void> register(User user){
         userService.register(user);

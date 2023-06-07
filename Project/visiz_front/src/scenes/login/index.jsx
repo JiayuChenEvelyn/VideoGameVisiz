@@ -21,7 +21,16 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
+  const dataFetch = async (username, password) => {
+    const data = await (
+      await fetch(
+        "http://localhost:8080/users/login?username="+username+"&password="+password
+        // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
+      )
+    ).json();
+    console.log(data);
+    return data.state;
+  };
 
   const navigate = useNavigate();
 
@@ -31,7 +40,11 @@ const Login = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    navigate("/");
+    var result = dataFetch(values.username, values.password);
+    if (result === "200"){
+      navigate("/");
+    }
+    // navigate("/");
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -109,13 +122,13 @@ const Login = () => {
                   fullWidth
                   variant="filled"
                   type="text"
-                  label="Email"
+                  label="Username"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.email}
-                  name="email"
-                  error={!!touched.email && !!errors.email}
-                  helperText={touched.email && errors.email}
+                  value={values.username}
+                  name="username"
+                  error={!!touched.username && !!errors.username}
+                  helperText={touched.username && errors.username}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
@@ -168,12 +181,12 @@ const Login = () => {
 
 const checkoutSchema = yup.object().shape({
   //   firstName: yup.string().required("required"),
-  //   lastName: yup.string().required("required"),
+  username: yup.string().required("required"),
   password: yup.string().required("required"),
-  email: yup.string().email("invalid email").required("required"),
+  // email: yup.string().email("invalid email").required("required"),
 });
 const initialValues = {
-  email: "",
+  username: "",
   password: "",
 };
 

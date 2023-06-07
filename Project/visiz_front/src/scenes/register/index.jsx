@@ -28,14 +28,15 @@ import { useState, useEffect } from "react";
 
 const Register = () => {
 
-  const dataFetch = async (email, password) => {
+  const dataFetch = async (username, password) => {
     const data = await (
       await fetch(
-        "http://localhost:8080/users/reg?username="+email+"&password="+password
+        "http://localhost:8080/users/reg?username="+username+"&password="+password
         // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
       )
     ).json();
     console.log(data);
+    return data.state;
   };
 
   // useEffect(() => {
@@ -65,7 +66,10 @@ const Register = () => {
     console.log(values);
     // handleClickOpen();
     // dataFetch();
-    dataFetch(values.email, values.password);
+    var result = dataFetch(values.username, values.password);
+    if (result === "200"){
+      navigate("/login");
+    }
     // navigate("/login");
   };
   const handleMouseDownPassword = (event) => {
@@ -130,39 +134,13 @@ const Register = () => {
                   fullWidth
                   variant="filled"
                   type="text"
-                  label="First Name"
+                  label="Username"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.firstName}
-                  name="firstName"
-                  error={!!touched.firstName && !!errors.firstName}
-                  helperText={touched.firstName && errors.firstName}
-                  sx={{ gridColumn: "span 2" }}
-                />
-                <TextField
-                  fullWidth
-                  variant="filled"
-                  type="text"
-                  label="Last Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
-                  name="lastName"
-                  error={!!touched.lastName && !!errors.lastName}
-                  helperText={touched.lastName && errors.lastName}
-                  sx={{ gridColumn: "span 2" }}
-                />
-                <TextField
-                  fullWidth
-                  variant="filled"
-                  type="text"
-                  label="Email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.email}
-                  name="email"
-                  error={!!touched.email && !!errors.email}
-                  helperText={touched.email && errors.email}
+                  value={values.username}
+                  name="username"
+                  error={!!touched.username && !!errors.username}
+                  helperText={touched.username && errors.username}
                   sx={{ gridColumn: "span 4" }}
                 />
                 <TextField
@@ -264,18 +242,14 @@ const Register = () => {
 };
 
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
+  username: yup.string().required("required"),
   password: yup.string().required("required"),
   confirmPassword: yup.string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("required"),
-  email: yup.string().email("invalid email").required("required"),
 });
 const initialValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
+  username: "",
   password: "",
   confirmPassword: "",
 };

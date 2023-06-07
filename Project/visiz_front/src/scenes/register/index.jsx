@@ -24,8 +24,29 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { useState, useEffect } from "react";
 
 const Register = () => {
+
+  useEffect(() => {
+    const dataFetch = async () => {
+      const data = await (
+        await fetch(
+          "http://localhost:8080/reg"
+        , {
+          method: 'POST',
+          body: JSON.stringify({
+            "username": "admin",
+            "password": "123"
+          })
+        })
+      ).json();
+      console.log(data);
+    };
+
+    dataFetch();
+  }, []);
+
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = React.useState(false);

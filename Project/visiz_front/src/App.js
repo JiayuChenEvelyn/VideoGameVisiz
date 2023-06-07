@@ -18,18 +18,18 @@ function App() {
   let pathName = window.location.pathname;
   let arr = pathName.toString().split("/");
   let currentPath = arr[arr.length - 1];
-  useEffect(() => {
-    const dataFetch = async () => {
-      const data = await (
-        await fetch(
-          "https://run.mocky.io/v3/b3bcb9d2-d8e9-43c5-bfb7-0062c85be6f9"
-        )
-      ).json();
-      console.log(data);
-    };
+  // useEffect(() => {
+  //   const dataFetch = async () => {
+  //     const data = await (
+  //       await fetch(
+  //         "http:localhost"
+  //       )
+  //     ).json();
+  //     console.log(data);
+  //   };
 
-    dataFetch();
-  }, []);
+  //   dataFetch();
+  // }, []);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

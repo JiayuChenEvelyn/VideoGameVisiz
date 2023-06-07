@@ -143,25 +143,25 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
-		<script type="text/javascript">
-			$("#btn-login").click(function() {
-				$.ajax({
-					url: "/users/login",
-					type: "POST",
-					data: $("#form-login").serialize(),
-					dataType: "json",
-						success: function(json) {
-					if (json.state == 200) {
-						alert("Login successful!");
-						//微软浏览器必须加./,谷歌浏览器不用
-						location.href = "./index.html";
-					} else {
-						alert("Login fail! " + json.message);
-					}
-				}
-			});
-			});
-		</script>
+<!--		<script type="text/javascript">-->
+<!--			$("#btn-login").click(function() {-->
+<!--				$.ajax({-->
+<!--					url: "/users/login",-->
+<!--					type: "POST",-->
+<!--					data: $("#form-login").serialize(),-->
+<!--					dataType: "json",-->
+<!--						success: function(json) {-->
+<!--					if (json.state == 200) {-->
+<!--						alert("Login successful!");-->
+<!--						//微软浏览器必须加./,谷歌浏览器不用-->
+<!--						location.href = "./index.html";-->
+<!--					} else {-->
+<!--						alert("Login fail! " + json.message);-->
+<!--					}-->
+<!--				}-->
+<!--			});-->
+<!--			});-->
+<!--		</script>-->
 
 	</body>
 </html>

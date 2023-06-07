@@ -138,25 +138,25 @@
 			</div>
 		</footer>
 		<!--页脚结束-->
-		<script type="text/javascript">
-			$("#btn-reg").click(function() {
-				console.log($("#form-reg").serialize());
-				$.ajax({
-					url: "/users/reg",
-					type: "POST",
-					data: $("#form-reg").serialize(),
-					dataType: "json",
-					success: function(json) {
-						if (json.state == 200) {
-							alert("Registration successful!");
-                        // location.href = "login.html";
-						} else {
-							alert("Registration fail! " + json.message);
-						}
-					}
-				});
-			});
-		</script>
+<!--		<script type="text/javascript">-->
+<!--			$("#btn-reg").click(function() {-->
+<!--				console.log($("#form-reg").serialize());-->
+<!--				$.ajax({-->
+<!--					url: "/users/reg",-->
+<!--					type: "POST",-->
+<!--					data: $("#form-reg").serialize(),-->
+<!--					dataType: "json",-->
+<!--					success: function(json) {-->
+<!--						if (json.state == 200) {-->
+<!--							alert("Registration successful!");-->
+<!--                        // location.href = "login.html";-->
+<!--						} else {-->
+<!--							alert("Registration fail! " + json.message);-->
+<!--						}-->
+<!--					}-->
+<!--				});-->
+<!--			});-->
+<!--		</script>-->
 
 	</body>
 

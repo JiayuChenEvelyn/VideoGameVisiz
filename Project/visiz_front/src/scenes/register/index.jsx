@@ -32,7 +32,7 @@ const Register = () => {
     const dataFetch = async () => {
       const data = await (
         await fetch(
-          "http://localhost:8080/reg"
+          "http://localhost:8080/users/reg"
         , {
           method: 'POST',
           body: JSON.stringify({

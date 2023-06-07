@@ -28,24 +28,28 @@ import { useState, useEffect } from "react";
 
 const Register = () => {
 
-  useEffect(() => {
-    const dataFetch = async () => {
-      const data = await (
-        await fetch(
-          "http://localhost:8080/users/reg?username=Tom005&password=123456"
-        , {
-          method: 'POST',
-          body: JSON.stringify({
-            "username": "admin",
-            "password": "123"
-          })
-        })
-      ).json();
-      console.log(data);
-    };
+  const dataFetch = async (email, password) => {
+    const data = await (
+      await fetch(
+        "http://localhost:8080/users/reg?username="+email+"&password="+password
+        // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
+      )
+    ).json();
+    console.log(data);
+  };
 
-    dataFetch();
-  }, []);
+  // useEffect(() => {
+  //   const dataFetch = async () => {
+  //     const data = await (
+  //       await fetch(
+  //         "http://localhost:8080/users/reg?username="+"admin"+"&password="+"123"
+  //       )
+  //     ).json();
+  //     console.log(data);
+  //   };
+
+  //   dataFetch();
+  // }, []);
 
   const navigate = useNavigate();
 
@@ -59,7 +63,9 @@ const Register = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    handleClickOpen();
+    // handleClickOpen();
+    // dataFetch();
+    dataFetch(values.email, values.password);
     // navigate("/login");
   };
   const handleMouseDownPassword = (event) => {

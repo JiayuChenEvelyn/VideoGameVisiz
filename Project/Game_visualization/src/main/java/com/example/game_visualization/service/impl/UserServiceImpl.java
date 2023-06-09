@@ -13,7 +13,7 @@ import java.util.UUID;
 //@Service:将对象交给Spring来管理，自动完成对象的创建和维护
 @Service
 public class UserServiceImpl implements IUserService {
-    @Autowired
+    @Autowired(required = false)
     private UserMapper userMapper;
     //注册的实现方法
     @Override

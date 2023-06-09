@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace:用于指定当前接口文件与哪个接口映射-->
+<mapper namespace="com.example.game_visualization.Mapper.GameMapper">
+    <!--resultType:指定查询返回值的类型-->
+    <select id="findByGameName" resultType="com.example.game_visualization.entity.Game">
+        SELECT * FROM game WHERE gameName = #{gameName}
+    </select>
+    <select id="findByGameId" resultType="com.example.game_visualization.entity.Game">
+        SELECT * FROM game WHERE id = #{id}
+    </select>
+    <select id="findByGameGenre" resultType="com.example.game_visualization.entity.Game">
+        SELECT * FROM game WHERE genre = #{genre}
+    </select>
+</mapper>

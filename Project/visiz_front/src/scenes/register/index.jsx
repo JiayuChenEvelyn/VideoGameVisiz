@@ -67,6 +67,7 @@ const Register = () => {
     fetch(
       "http://localhost:8080/users/reg?username="+values.username+"&password="+values.password
     ).then((response) => {
+      console.log(response);
       if (response.state === 200){
         localStorage.setItem("auth", "true");
         handleClickOpen();

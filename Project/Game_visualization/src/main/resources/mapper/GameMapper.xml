@@ -14,4 +14,7 @@
     <select id="findByGameGenre" resultType="com.example.game_visualization.entity.Game">
         SELECT * FROM game WHERE genre = #{genre}
     </select>
+    <select id="findByThreeTags" resultType="com.example.game_visualization.entity.Game">
+        SELECT * FROM game WHERE genre=#{genre} AND platform=#{platform} AND year>=#{year};
+    </select>
 </mapper>

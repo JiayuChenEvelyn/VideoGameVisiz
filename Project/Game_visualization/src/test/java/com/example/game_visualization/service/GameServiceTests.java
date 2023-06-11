@@ -1,9 +1,11 @@
-package com.example.game_visualization.mapper;
+package com.example.game_visualization.service;
 
 import com.example.game_visualization.Mapper.GameMapper;
-import com.example.game_visualization.Mapper.UserMapper;
 import com.example.game_visualization.entity.Game;
 import com.example.game_visualization.entity.User;
+import com.example.game_visualization.service.ex.ServiceException;
+import com.example.game_visualization.service.impl.GameServiceImpl;
+import com.example.game_visualization.service.impl.UserServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 
 //SpringBootTest:标注当前是一个测试类，不随项目一起打包
-@RunWith(SpringRunner.class)
 @SpringBootTest
 //RunWith:表示启动这个单元测试类，传入的必须是SpringRunner的实例类型
-public class GameMapperTests {
+@RunWith(SpringRunner.class)
+public class GameServiceTests {
+    @Autowired
+    private GameServiceImpl gameService;
     @Autowired(required = false)
     private GameMapper gameMapper;
     /**
@@ -26,24 +30,12 @@ public class GameMapperTests {
      * 4.必须为public
      */
     @Test
-    public void findByGameName(){
-        Game game =gameMapper.findByGameName("Wii Sports");
-        System.out.println(game);
-    }
-    @Test
-    public void findByGameId() {
-        Integer id = 1;
-        Game result = gameMapper.findByGameId(id);
+    public void getTop10(){
+        ArrayList<Game> data=gameMapper.findByThreeTags("Shooter","X360","0");
+        ArrayList<Game> result=gameService.showTop10(data);
         System.out.println(result);
+        System.out.println(result.size());
     }
-    @Test
-    public void findByGameGenre() {
-        ArrayList<Game> result=gameMapper.findByGameGenre("Sports");
-        System.out.println(result);
-    }
-    @Test
-    public void findByThreeTags() {
-        ArrayList<Game> result=gameMapper.findByThreeTags("Sports","Wii","2007");
-        System.out.println(result);
-    }
+
+
 }

@@ -18,4 +18,5 @@ public interface GameMapper {
      */
     Game findByGameId(Integer id);
     ArrayList<Game> findByGameGenre(String genre);
+    ArrayList<Game> findByThreeTags(String genre,String platform,String year);
 }

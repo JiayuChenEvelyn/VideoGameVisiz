@@ -23,19 +23,42 @@ const Dashboard = ({ isCollapsed }) => {
   const [showInterestPopOver, setShowInterestPopOver] = React.useState(true);
   const [topVgSales, setTopVgSales] = React.useState([]);
 
+  const dataFetch = async () => {
+    var res = await (
+      await fetch(
+        "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
+        // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
+      )
+    ).json();
+    console.log("res",res);
+    return res;
+  };
+
   React.useEffect(() => {
-    fetch("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000")
-      .then((response) => {
-        console.log(response);
-        if (response.status === 200) {
-          setTopVgSales(response.data);
-        } else {
-          return Promise.reject("Invalid topgame attempt, status is not 200");
-        }
-      })
-      .catch((message) => {
-        alert(message);
-      });
+    // fetch("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000")
+    //   .then((response) => response.json())
+    //     .then((response)=>{
+    //       console.log(response)
+    //     if (response.status === 200) {
+    //       setTopVgSales(response.data);
+    //     } else {
+    //       return Promise.reject("Invalid topgame attempt, status is not 200");
+    //     }
+    //   })
+    //   .catch((message) => {
+    //     alert(message);
+    //   });
+
+    fetch(
+        'http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000'
+    )
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+          console.log(data.data);
+          setTopVgSales(data.data);
+        })
+        .catch(e => console.log('错误:', e))
   }, []);
 
   return (

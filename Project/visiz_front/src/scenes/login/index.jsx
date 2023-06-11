@@ -43,7 +43,7 @@ const Login = ({setAuth}) => {
       "http://localhost:8080/users/login?username="+values.username+"&password="+values.password
     ).then((response) => {
       console.log(response);
-      if (response.state === 200){
+      if (response.status === 200){
         localStorage.setItem("auth", "true");
         navigate("/dashboard");
 

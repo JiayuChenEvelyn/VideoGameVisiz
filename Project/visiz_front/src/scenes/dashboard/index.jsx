@@ -11,7 +11,7 @@ import GeoChart from "../../components/GeoChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import * as React from "react";
-import { data as vgsales } from "../../data/vgsales";
+// import { data as vgsales } from "../../data/vgsales";
 import PieChart from "../../components/PieChart";
 import Topbar from "../global/topbar";
 import InterestsPopOver from "../../components/InterestsPopOver";
@@ -21,6 +21,22 @@ const Dashboard = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [showInterestPopOver, setShowInterestPopOver] = React.useState(true);
+  const [topVgSales, setTopVgSales] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000")
+      .then((response) => {
+        console.log(response);
+        if (response.status === 200) {
+          setTopVgSales(response.data);
+        } else {
+          return Promise.reject("Invalid topgame attempt, status is not 200");
+        }
+      })
+      .catch((message) => {
+        alert(message);
+      });
+  }, []);
 
   return (
     <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
@@ -173,9 +189,10 @@ const Dashboard = ({ isCollapsed }) => {
                 Top Rank Games
               </Typography>
             </Box>
-            {vgsales.slice(1, 100).map((game, i) => (
+            {topVgSales.map((game, i) => (
               <Box
-                key={`${game.Name}-${i}`}
+                key={`${game.gameName}-${i}`}
+                // key={`${game.Name}-${i}`}
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
@@ -188,13 +205,16 @@ const Dashboard = ({ isCollapsed }) => {
                     variant="h5"
                     fontWeight="600"
                   >
-                    {game.Name}
+                    {/* {game.Name} */}
+                    {game.gameName}
                   </Typography>
                   <Typography color={colors.grey[100]}>
-                    {game.Publisher}
+                    {/* {game.Publisher} */}
+                    {game.publisher}
                   </Typography>
                   <Typography color={colors.grey[100]}>
-                    {"Year " + game.Year}
+                    {/* {"Year " + game.Year} */}
+                    {"Year " + game.year}
                   </Typography>
                 </Box>
                 <Box
@@ -203,7 +223,8 @@ const Dashboard = ({ isCollapsed }) => {
                   borderRadius="4px"
                 >
                   <Typography color={colors.grey[100]}>
-                    {game.Global_Sales}
+                    {/* {game.Global_Sales} */}
+                    {game.globalSales}
                   </Typography>
                   <Typography
                     variant="h9"

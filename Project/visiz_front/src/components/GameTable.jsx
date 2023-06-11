@@ -22,23 +22,7 @@ import { useNavigate } from "react-router-dom";
 function TablePaginationActions(props) {
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
-  var data;
 
-//   useEffect(() => {
-//     const dataFetch = async () => {
-//         data = await (
-//         await fetch(
-//           "http://localhost:8080/users/reg?username=" +
-//             "admin" +
-//             "&password=" +
-//             "123"
-//         )
-//       ).json();
-//       console.log(data);
-//     };
-
-//     dataFetch();
-//   }, []);
 
   const handleFirstPageButtonClick = (event) => {
     onPageChange(event, 0);

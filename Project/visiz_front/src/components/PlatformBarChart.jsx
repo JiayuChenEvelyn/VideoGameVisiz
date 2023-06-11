@@ -1,9 +1,9 @@
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";
-import { mockData as data } from "../data/data";
 import "../assets/barchart.css";
-const BarChart = ({ isDashboard = false }) => {
+
+const PlatformBarChart = ({data, keys}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -40,26 +40,57 @@ const BarChart = ({ isDashboard = false }) => {
         legends: {
           text: {
             fill: colors.grey[100],
+            fontSize: 8,
           },
         },
       }}
-      keys={[
-        "Action",
-        "Sports",
-        "Misc",
-        "Role-Playing",
-        "Shooter",
-        "Adventure",
-        "Racing",
-        "Platform",
-        "Simulation",
-        "Fighting",
-        "Strategy",
-        "Puzzle",
-      ]}
-      indexBy="Plat"
-      margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
-      padding={0.3}
+    //   keys={[
+    //     "Action",
+    //     "Adventure",
+    //     "Strategy",
+    //     "RPG",
+    //     "Simulation",
+    //     "Horror",
+    //     "Survival",
+    //     "Puzzle",
+    //     "Indie",
+    //     "Rouguelike",
+    //     "Platformer",
+    //     "twoD_Platform",
+    //     "threeD_Platform",
+    //     "Multiplayer",
+    //     "Casual",
+    //     "Visual_Novel",
+    //     "Arcade",
+    //     "Racing",
+    //     "Sports",
+    //     "Early_Access",
+    //     "Free_to_Play",
+    //     "Mature_Content",
+    //     "Atmospheric",
+    //     "Narrative",
+    //     "Sci_Fi___Fantasy",
+    //     "Historical",
+    //     "Supernatural",
+    //     "Post_apocalyptic",
+    //     "Humor",
+    //     "Music___Sound",
+    //     "Art___Design",
+    //     "Role_Playing",
+    //     "Management___Building",
+    //     "Stealth___Strategy",
+    //     "Exploration___Adventure",
+    //     "Puzzle___Logic",
+    //     "Fantasy___Mythology",
+    //     "Sports___Racing",
+    //     "Education___Learning",
+    //     "VR___AR",
+    //     "Other"
+    //   ]}
+      keys={keys}
+      indexBy="year"
+      margin={{ top: 50, right: 150, bottom: 50, left: 60 }}
+      padding={0.5}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
       colors={{ scheme: "nivo" }}
@@ -106,8 +137,8 @@ const BarChart = ({ isDashboard = false }) => {
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
-        legend: !isDashboard ? "Platform" : undefined,
-        tickRotation: isDashboard ? 90 : 0,
+        legend: "Year",
+        tickRotation: 90 ,
         legendPosition: "middle",
         legendOffset: 45,
       }}
@@ -115,9 +146,9 @@ const BarChart = ({ isDashboard = false }) => {
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: !isDashboard ? "Genre" : undefined,
+        legend: "Count",
         legendPosition: "middle",
-        legendOffset: -45,
+        legendOffset: -50,
       }}
       labelSkipWidth={12}
       labelSkipHeight={12}
@@ -131,13 +162,13 @@ const BarChart = ({ isDashboard = false }) => {
           anchor: "bottom-right",
           direction: "column",
           justify: false,
-          translateX: 120,
-          translateY: 0,
-          itemsSpacing: !isDashboard ? 2 : -5,
+          translateX: 110,
+          translateY: 50,
+          itemsSpacing: -4,
           itemWidth: 100,
-          itemHeight: 20,
+          itemHeight: 12,
           itemDirection: "left-to-right",
-          symbolSize: 20,
+          symbolSize: 5,
           //   effects: [
           //     {
           //       on: "hover",
@@ -150,10 +181,10 @@ const BarChart = ({ isDashboard = false }) => {
       ]}
       role="application"
       barAriaLabel={function (e) {
-        return e.id + ": " + e.formattedValue + " in platform: " + e.indexValue;
+        return e.id + ": " + e.formattedValue + " at Steam: " + e.indexValue;
       }}
     />
   );
 };
 
-export default BarChart;
+export default PlatformBarChart;

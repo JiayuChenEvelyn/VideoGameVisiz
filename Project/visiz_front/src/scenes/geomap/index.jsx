@@ -4,10 +4,11 @@ import GeoChart from "../../components/GeoChart";
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 
-const Geomap = () => {
+const Geomap = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
+    <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
     <Box m="20px">
       <Header title="Geomap" subtitle="Simple Geomap" />
       <Box
@@ -18,6 +19,7 @@ const Geomap = () => {
         <GeoChart />
       </Box>
     </Box>
+    </div>
   );
 };
 

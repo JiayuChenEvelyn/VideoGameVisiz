@@ -1,15 +1,17 @@
 import { Box } from "@mui/material";
 import Header from "../../components/Header";
-import LineChart from '../../components/LineChart';
+import LineChart from "../../components/LineChart";
 
-const Line = () => {
+const Line = ({ isCollapsed }) => {
   return (
-    <Box m="20px">
-      <Header title="Line Chart" subtitle="Simple LineChart Chart" />
-      <Box height="75vh">
-        <LineChart />
+    <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
+      <Box m="20px">
+        <Header title="Line Chart" subtitle="Simple LineChart Chart" />
+        <Box height="75vh">
+          <LineChart />
+        </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 

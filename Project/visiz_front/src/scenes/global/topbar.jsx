@@ -10,8 +10,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 
-
-const Topbar = ({title, subtitle}) => {
+const Topbar = ({ title, subtitle }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -21,11 +20,7 @@ const Topbar = ({title, subtitle}) => {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="space-between"
-      p={2}
-    >
+    <Box display="flex" justifyContent="space-between" p={2}>
       <Box display="flex">
         <Header title={title} subtitle={subtitle} />
         {/* <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
@@ -33,7 +28,7 @@ const Topbar = ({title, subtitle}) => {
           <SearchOutlinedIcon />
         </IconButton> */}
       </Box>
-      <Box display="flex">
+      <Box display="flex" alignItems="center">
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
@@ -48,7 +43,7 @@ const Topbar = ({title, subtitle}) => {
           )}
         </IconButton>
         <IconButton>
-          <AccountCircleOutlinedIcon onClick={handleClickProfile}/>
+          <AccountCircleOutlinedIcon onClick={handleClickProfile} />
         </IconButton>
       </Box>
     </Box>

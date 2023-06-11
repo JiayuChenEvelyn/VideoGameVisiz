@@ -27,7 +27,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-const Profile = () => {
+const Profile = ({isCollapsed}) => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = React.useState("firstName");
   const [lastName, setLastName] = React.useState("lastName");
@@ -68,7 +68,7 @@ const Profile = () => {
   };
 
   return (
-    <>
+    <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
       <Topbar title="Profile" subtitle="Edit your profile here" />
       <Box padding="30px">
         <Formik
@@ -204,7 +204,7 @@ const Profile = () => {
           </Button>
         </DialogActions>
       </Dialog>
-    </>
+    </div>
   );
 };
 

@@ -9,15 +9,17 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 import GamesOutlinedIcon from "@mui/icons-material/GamesOutlined";
 import "./index.css";
+import { Outlet } from 'react-router-dom';
 
-const CusSidebar = ({title, subtitle}) => {
+const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
   const theme = useTheme();
   const color = tokens(theme.palette.mode);
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  // const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
 
   return (
-    <Sidebar collapsed={isCollapsed} backgroundColor={color.primary[400]}>
+    <>
+    <Sidebar id="aside" collapsed={isCollapsed} backgroundColor={color.primary[400]}>
       <Menu
         iconShape="square"
         menuItemStyles={{
@@ -34,11 +36,18 @@ const CusSidebar = ({title, subtitle}) => {
         }}
       >
         <MenuItem
-          onClick={() => setIsCollapsed(!isCollapsed)}
+          onClick={() => {
+            if (isCollapsed){
+              document.getElementById("aside").nextSibling.style.marginLeft = "250px";
+            }else{
+              document.getElementById("aside").nextSibling.style.marginLeft = "80px";
+            }
+            setIsCollapsed(!isCollapsed);
+          }}
           icon={isCollapsed ? <MenuIcon /> : <MenuIcon />}
         >
           <Box display="flex" color={color.primary[100]}>
-            <Typography variant="h4">Visiz</Typography>
+            <Typography variant="h4"color={color.primary[100]} >Visiz</Typography>
           </Box>
         </MenuItem>
 
@@ -109,22 +118,22 @@ const CusSidebar = ({title, subtitle}) => {
           icon={<DashboardOutlinedIcon />}
           active={selected === "dashboard"}
           onClick={() => setSelected("dashboard")}
-          component={<Link to="/" />}
+          component={<Link to="/dashboard" />}
         >
           Dashboard
         </MenuItem>
         <SubMenu
-          active={selected === "platform1" || selected === "platform2"}
+          active={selected === "Steam" || selected === "platform2"}
           icon={<SportsEsportsOutlinedIcon />}
           label="Platform"
         >
           <MenuItem
-            onClick={() => setSelected("platform1")}
-            active={selected === "platform1"}
-            component={<Link to="/platform1" />}
+            onClick={() => setSelected("Steam")}
+            active={selected === "Steam"}
+            component={<Link to="/platform?p=Steam" />}
           >
             {" "}
-            platform 1
+            Steam
           </MenuItem>
           <MenuItem
             active={selected === "platform2"}
@@ -159,6 +168,8 @@ const CusSidebar = ({title, subtitle}) => {
         </SubMenu>
       </Menu>
     </Sidebar>
+    <Outlet />
+    </>
   );
 };
 

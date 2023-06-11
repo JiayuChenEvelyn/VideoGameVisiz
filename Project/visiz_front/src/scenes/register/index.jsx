@@ -66,9 +66,10 @@ const Register = () => {
     console.log(values);
     // handleClickOpen();
     // dataFetch();
-    var result = dataFetch(values.username, values.password);
-    if (result === "200"){
-      navigate("/login");
+    // var result = dataFetch(values.username, values.password);
+    var result = 200;
+    if (result === 200){
+      handleClickOpen();
     }
     // navigate("/login");
   };

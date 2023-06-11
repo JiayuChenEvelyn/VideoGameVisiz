@@ -64,13 +64,22 @@ const Register = () => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    // handleClickOpen();
-    // dataFetch();
-    // var result = dataFetch(values.username, values.password);
-    var result = 200;
-    if (result === 200){
-      handleClickOpen();
-    }
+    fetch(
+      "http://localhost:8080/users/reg?username="+values.username+"&password="+values.password
+    ).then((response) => {
+      if (response.state === 200){
+        localStorage.setItem("auth", "true");
+        handleClickOpen();
+      }else{
+        return Promise.reject("Invalid login attempt, state is not 200");
+      }
+    }).catch((message)=>{
+      alert(message);
+    })
+    // var result = 200;
+    // if (result === 200){
+    //   handleClickOpen();
+    // }
     // navigate("/login");
   };
   const handleMouseDownPassword = (event) => {

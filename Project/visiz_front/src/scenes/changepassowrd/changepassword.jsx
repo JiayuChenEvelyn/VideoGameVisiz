@@ -39,7 +39,7 @@ const Changepassword = () => {
 
   const handleFormSubmit = (values) => {
     fetch(
-      "http://localhost:8080/users/changePassword?userName=" +
+      "http://localhost:8080/users/changePassword?username=" +
         values.username +
         "&oldPassword=" +
         values.oldPassword +
@@ -49,7 +49,7 @@ const Changepassword = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           handleClickOpen();
         } else {
           return Promise.reject("Invalid changepassword attempt, state is not 200");

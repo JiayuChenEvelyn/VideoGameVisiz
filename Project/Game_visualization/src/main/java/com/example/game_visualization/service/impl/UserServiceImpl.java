@@ -61,8 +61,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
-        User result=userMapper.findByUid(uid);
+    public void changePassword(String username, String oldPassword, String newPassword) {
+        User result=userMapper.findByUsername(username);
         if(result==null){
             throw  new UserNotFoundException("Username does not exist");
         }
@@ -73,7 +73,7 @@ public class UserServiceImpl implements IUserService {
         }
         //将新密码进行加密再更新到数据库
         String newMd5Password=getMD5Password(newPassword,result.getSalt());
-        Integer rows=userMapper.updatePasswordByUid(uid,newMd5Password);
+        Integer rows=userMapper.updatePasswordByUsername(username,newMd5Password);
         if(rows!=1){
             throw new UpdateException("Update error");
         }

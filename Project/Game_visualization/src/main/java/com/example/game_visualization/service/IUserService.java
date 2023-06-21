@@ -17,6 +17,6 @@ public interface IUserService {
      * @return 当前匹配的用户数据，没有就返回null
      */
     User login(String username,String password);
-    void changePassword(Integer uid,String username,String oldPassword,String newPassword);
+    void changePassword(String username,String oldPassword,String newPassword);
 
 }

@@ -44,11 +44,10 @@ public class UserServiceTests {
     @Test
     public void changePassword() {
         try {
-            Integer uid = 14;
             String username = "Tom00";
-            String oldPassword = "123456";
-            String newPassword = "888888";
-            userService.changePassword(uid, username, oldPassword, newPassword);
+            String oldPassword = "888888";
+            String newPassword = "123";
+            userService.changePassword(username, oldPassword, newPassword);
             System.out.println("Change password successful!");
         } catch (ServiceException e) {
             System.out.println("Change password fail! " + e.getClass().getSimpleName());

@@ -36,9 +36,9 @@ public class UserMapperTests {
     }
     @Test
     public void updatePasswordByUid() {
-        Integer uid = 7;
-        String password = "123456";
-        Integer rows = userMapper.updatePasswordByUid(uid, password);
+        String username="Tom";
+        String password = "123";
+        Integer rows = userMapper.updatePasswordByUsername(username, password);
         System.out.println("rows=" + rows);
     }
     @Test

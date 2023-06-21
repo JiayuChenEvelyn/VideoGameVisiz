@@ -229,9 +229,9 @@ const CustomizedHome = ({ isCollapsed }) => {
     if (preferenceComplete) {
       fetch(
         "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-          { piePlatform } +
+          piePlatform +
           "&year=" +
-          { pieYear }
+          pieYear
       )
         .then((res) => res.json())
         .then((data) => {
@@ -251,11 +251,11 @@ const CustomizedHome = ({ isCollapsed }) => {
   const handlePieChartYearChange = (event) => {
     setPieYear(event.target.value);
     fetch(
-        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-          { piePlatform } +
-          "&year=" +
-          { pieYear }
-      )
+      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+        piePlatform +
+        "&year=" +
+        pieYear
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);
@@ -273,11 +273,11 @@ const CustomizedHome = ({ isCollapsed }) => {
   const handlePieChartPlatformChange = (event) => {
     setPiePlatform(event.target.value);
     fetch(
-        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-          { piePlatform } +
-          "&year=" +
-          { pieYear }
-      )
+      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+        piePlatform +
+        "&year=" +
+        pieYear
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);

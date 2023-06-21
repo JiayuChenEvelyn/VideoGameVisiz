@@ -24,6 +24,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import HomePieChart from "../../components/HomePieChart";
+import Platform from "../platform/platform";
 
 const CustomizedHome = ({ isCollapsed }) => {
   const theme = useTheme();
@@ -44,7 +46,9 @@ const CustomizedHome = ({ isCollapsed }) => {
   const [topVgSales, setTopVgSales] = React.useState([]);
   const [genreCount, setGenreCount] = React.useState([]);
   const [barData, setBarData] = React.useState([]);
-  const [slideValue, setSlideValue] = React.useState(30);
+  const [slideValue, setSlideValue] = React.useState([1900, 2020]);
+  const [pieYear, setPieYear] = React.useState(yearValue[0]);
+  const [piePlatform, setPiePlatform] = React.useState(platformValue[0]);
 
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);
@@ -189,58 +193,104 @@ const CustomizedHome = ({ isCollapsed }) => {
     }
   }, []);
 
-  // get bar data
+  // get pie data
+  //   React.useEffect(() => {
+  //     if (preferenceComplete) {
+  //       setBarData([
+  //         {
+  //           id: "Action",
+  //           label: "Action",
+  //           value: 3316,
+  //           //   "color": "hsl(336, 70%, 50%)"
+  //         },
+  //         {
+  //           id: "Sports",
+  //           label: "Sports",
+  //           value: 2346,
+  //           //   "color": "hsl(222, 70%, 50%)"
+  //         },
+  //         {
+  //           id: "Misc",
+  //           label: "Misc",
+  //           value: 1739,
+  //           //   "color": "hsl(120, 70%, 50%)"
+  //         },
+  //         {
+  //           id: "Role_Playing",
+  //           label: "Role_Playing",
+  //           value: 1488,
+  //           //   "color": "hsl(223, 70%, 50%)"
+  //         },
+  //       ]);
+  //     }
+  //   });
+
   React.useEffect(() => {
     if (preferenceComplete) {
-      setBarData([
-        {
-          Plat: "2600",
-          Action: "61",
-          Adventure: "2",
-          Fighting: "2",
-          Misc: "5",
-          Platform: "9",
-          Puzzle: "11",
-          Racing: "6",
-          Role_Playing: "0",
-          Shooter: "24",
-          Simulation: "1",
-          Sports: "12",
-          Strategy: "0",
-        },
-        {
-          Plat: "3DO",
-          Action: "0",
-          Adventure: "1",
-          Fighting: "0",
-          Misc: "0",
-          Platform: "0",
-          Puzzle: "1",
-          Racing: "0",
-          Role_Playing: "0",
-          Shooter: "0",
-          Simulation: "1",
-          Sports: "0",
-          Strategy: "0",
-        },
-        {
-          Plat: "3DS",
-          Action: "182",
-          Adventure: "37",
-          Fighting: "14",
-          Misc: "53",
-          Platform: "28",
-          Puzzle: "20",
-          Racing: "11",
-          Role_Playing: "86",
-          Shooter: "7",
-          Simulation: "30",
-          Sports: "26",
-          Strategy: "15",
-        },
-      ]);
+      fetch(
+        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+          { piePlatform } +
+          "&year=" +
+          { pieYear }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("data", data);
+          console.log("data.data", data.data);
+          if (data.status === 200) {
+            setBar1Data(data.yearValue[0]);
+          }
+        })
+        .catch((e) => {
+          console.log("Error:", e);
+          alert(e);
+        });
     }
-  });
+  }, []);
+
+  const handlePieChartYearChange = (event) => {
+    setPieYear(event.target.value);
+    fetch(
+        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+          { piePlatform } +
+          "&year=" +
+          { pieYear }
+      )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.state === 200) {
+          setBarData(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
+  };
+
+  const handlePieChartPlatformChange = (event) => {
+    setPiePlatform(event.target.value);
+    fetch(
+        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+          { piePlatform } +
+          "&year=" +
+          { pieYear }
+      )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.state === 200) {
+          setBarData(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
+  };
 
   if (preferenceComplete) {
     return (
@@ -289,6 +339,23 @@ const CustomizedHome = ({ isCollapsed }) => {
             </Typography>
           </Box>
           <HomeTable data={topVgSales} />
+          <Box sx={{ width: "50%" }}>
+            <Stack
+              spacing={2}
+              direction="row"
+              sx={{ mb: 1 }}
+              alignItems="center"
+            >
+              <Typography color={colors.grey[100]}>1990</Typography>
+              <Slider
+                style={{ color: 1 == 1 ? colors.blueAccent[200] : "grey" }}
+                aria-label="Volume"
+                value={slideValue}
+                onChange={handleSlideChange}
+              />
+              <Typography color={colors.grey[100]}>2020</Typography>
+            </Stack>
+          </Box>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Box width="50%" height="250px" mt="20px">
               <LineChart isDashboard={false} data="" />
@@ -297,103 +364,80 @@ const CustomizedHome = ({ isCollapsed }) => {
               <LineChart isDashboard={false} data="" />
             </Box>
           </div>
-          <Box sx={{ display: "flex", justifyContent: "center", mb:"10px" }}>
-          <FormControl>
-            <FormLabel id="demo-row-radio-buttons-group-label">
-              <Typography color={colors.grey[100]}>Select Years</Typography>
-            </FormLabel>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-            >
-              <FormControlLabel
-                value="allYear"
-                control={
-                  <Radio
-                    sx={{
-                      color: colors.grey[100],
-                      "&.Mui-checked": {
-                        color: colors.grey[100],
-                      },
-                    }}
-                  />
-                }
-                label={
-                  <Typography color={colors.grey[100]}>
-                    All range of years
-                  </Typography>
-                }
-              />
-              <FormControlLabel
-                value="preferenceYear"
-                control={
-                  <Radio
-                    sx={{
-                      color: colors.grey[100],
-                      "&.Mui-checked": {
-                        color: colors.grey[100],
-                      },
-                    }}
-                  />
-                }
-                label={
-                  <Typography color={colors.grey[100]}>
-                    Years from your preference
-                  </Typography>
-                }
-              />
-            </RadioGroup>
-          </FormControl>
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <Box sx={{ width: "50%" }}>
-              <Stack
-                spacing={2}
-                direction="row"
-                sx={{ mb: 1 }}
-                alignItems="center"
+          <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                <Typography color={colors.grey[100]}>
+                  Select Year from your preference
+                </Typography>
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                onChange={handlePieChartYearChange}
+                value={pieYear}
               >
-                <Typography color={colors.grey[100]}>1990</Typography>
-                <Slider
-                  style={{ color: 1 == 1 ? colors.blueAccent[200] : "grey" }}
-                  aria-label="Volume"
-                  value={slideValue}
-                  onChange={handleSlideChange}
-                />
-                <Typography color={colors.grey[100]}>2020</Typography>
-              </Stack>
-            </Box>
-            <FormGroup style={{ display: "flex", flexDirection: "row" }}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    defaultChecked
-                    style={{ color: colors.grey[100] }}
-                    onChange={(event) => {
-                      console.log("event.target.checked", event.target.checked);
-                    }}
+                {yearValue.map((year) => (
+                  <FormControlLabel
+                    value={year}
+                    control={
+                      <Radio
+                        sx={{
+                          color: colors.grey[100],
+                          "&.Mui-checked": {
+                            color: colors.grey[100],
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <Typography color={colors.grey[100]}>{year}</Typography>
+                    }
                   />
-                }
-                label={<Typography color={colors.grey[100]}>1990</Typography>}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    disabled={true}
-                    style={{ color: 1 == 1 ? "grey" : colors.grey[100] }}
+                ))}
+              </RadioGroup>
+            </FormControl>
+          </Box>
+          <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
+            <FormControl>
+              <FormLabel id="demo-row-radio-buttons-group-label">
+                <Typography color={colors.grey[100]}>
+                  Select Platforms from your preference
+                </Typography>
+              </FormLabel>
+              <RadioGroup
+                row
+                aria-labelledby="demo-row-radio-buttons-group-label"
+                name="row-radio-buttons-group"
+                onChange={handlePieChartPlatformChange}
+                value={piePlatform}
+              >
+                {platformValue.map((platform) => (
+                  <FormControlLabel
+                    value={platform}
+                    control={
+                      <Radio
+                        sx={{
+                          color: colors.grey[100],
+                          "&.Mui-checked": {
+                            color: colors.grey[100],
+                          },
+                        }}
+                      />
+                    }
+                    label={
+                      <Typography color={colors.grey[100]}>
+                        {platform}
+                      </Typography>
+                    }
                   />
-                }
-                label={<Typography color={colors.grey[100]}>2010</Typography>}
-              />
-              <FormControlLabel
-                control={<Checkbox style={{ color: colors.grey[100] }} />}
-                label={<Typography color={colors.grey[100]}>2020</Typography>}
-              />
-            </FormGroup>
+                ))}
+              </RadioGroup>
+            </FormControl>
           </Box>
           <Box height="250px" mt="20px">
-            <HomeBarChart isDashboard={true} data={barData} />
+            <HomePieChart isDashboard={true} data={barData} />
           </Box>
         </Box>
       </div>

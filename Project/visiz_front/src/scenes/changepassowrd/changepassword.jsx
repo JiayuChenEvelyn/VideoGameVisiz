@@ -38,10 +38,10 @@ const Changepassword = () => {
     setShowConfirmPassword((showConfirmPassword) => !showConfirmPassword);
 
   const handleFormSubmit = (values) => {
-    sessionStorage.setItem('uid', 15);
-    sessionStorage.setItem('userName', 123);
     fetch(
-      "http://localhost:8080/users/changePassword?oldPassword=" +
+      "http://localhost:8080/users/changePassword?userName=" +
+        values.username +
+        "&oldPassword=" +
         values.oldPassword +
         "&newPassword=" +
         values.newPassword

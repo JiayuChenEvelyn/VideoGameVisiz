@@ -238,7 +238,7 @@ const CustomizedHome = ({ isCollapsed }) => {
           console.log("data", data);
           console.log("data.data", data.data);
           if (data.status === 200) {
-            setBar1Data(data.yearValue[0]);
+            setBarData(data.data);
           }
         })
         .catch((e) => {

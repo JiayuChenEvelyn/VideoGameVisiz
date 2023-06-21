@@ -254,7 +254,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
         piePlatform +
         "&year=" +
-        pieYear
+        event.target.value
     )
       .then((res) => res.json())
       .then((data) => {
@@ -274,7 +274,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     setPiePlatform(event.target.value);
     fetch(
       "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-        piePlatform +
+        event.target.value +
         "&year=" +
         pieYear
     )

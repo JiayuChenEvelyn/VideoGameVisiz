@@ -237,7 +237,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         .then((data) => {
           console.log("data", data);
           console.log("data.data", data.data);
-          if (data.status === 200) {
+          if (data.state === 200) {
             setBarData(data.data);
           }
         })

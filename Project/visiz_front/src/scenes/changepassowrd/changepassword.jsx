@@ -39,7 +39,9 @@ const Changepassword = () => {
 
   const handleFormSubmit = (values) => {
     fetch(
-      "http://localhost:8080/users/changePassword?oldPassword=" +
+      "http://localhost:8080/users/changePassword?userName=" +
+        values.username +
+        "&oldPassword=" +
         values.oldPassword +
         "&newPassword=" +
         values.newPassword

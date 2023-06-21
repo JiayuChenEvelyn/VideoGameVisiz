@@ -21,16 +21,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({setAuth}) => {
-  // const dataFetch = async (username, password) => {
-  //   const data = await (
-  //     await fetch(
-  //       "http://localhost:8080/users/login?username="+username+"&password="+password
-  //       // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
-  //     )
-  //   ).json();
-  //   console.log(data);
-  //   return data.state;
-  // };
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -39,27 +29,32 @@ const Login = ({setAuth}) => {
 
   const handleFormSubmit = (values) => {
     console.log(values);
-    fetch(
-      "http://localhost:8080/users/login?username="+values.username+"&password="+values.password
-    ).then((response) => {
-      console.log(response);
-      if (response.status === 200){
-        localStorage.setItem("auth", "true");
-        navigate("/dashboard");
 
-      }else{
-        return Promise.reject("Invalid login attempt, state is not 200");
-      }
-    }).catch((message)=>{
-      alert(message);
-    })
-    // var result = 200;
-    // if (result === 200) {
-    //   localStorage.setItem("auth", "true");
-    //   navigate("/dashboard");
-    // } else {
-    //   alert("Invalid login attempt, state is not 200");
-    // }
+    // fetch(
+    //   "http://localhost:8080/users/login?username="+values.username+"&password="+values.password
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     if (data.status === 200) {
+    //       localStorage.setItem("auth", "true");
+    //       navigate("/dashboard");
+    //     }else{
+    //       return Promise.reject("Invalid login attempt, state is not 200");
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
+
+    var result = 200;
+    if (result === 200) {
+      localStorage.setItem("auth", "true");
+      navigate("/preference");
+    } else {
+      alert("Invalid login attempt, state is not 200");
+    }
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();

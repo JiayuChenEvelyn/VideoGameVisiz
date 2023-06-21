@@ -8,167 +8,179 @@ import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import MenuIcon from "@mui/icons-material/Menu";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 import GamesOutlinedIcon from "@mui/icons-material/GamesOutlined";
+import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import "./index.css";
-import { Outlet } from 'react-router-dom';
+import { Outlet } from "react-router-dom";
 
 const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
   const theme = useTheme();
   const color = tokens(theme.palette.mode);
   // const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
+  const tagValue = JSON.parse(localStorage.getItem("tag")) || [];
 
   return (
     <>
-    <Sidebar id="aside" collapsed={isCollapsed} backgroundColor={color.primary[400]}>
-      <Menu
-        iconShape="square"
-        menuItemStyles={{
-          button: ({ level, active, disabled }) => {
-            return {
-              color: active ? "#6870fa" : color.grey[100],
-              backgroundColor: color.primary[400],
-              "&:hover": {
-                backgroundColor: color.primary[400],
-                color: theme.palette.mode === "light" ? "#868dfb" : "#868dfb",
-              },
-            };
-          },
-        }}
+      <Sidebar
+        id="aside"
+        collapsed={isCollapsed}
+        backgroundColor={color.primary[400]}
       >
-        <MenuItem
-          onClick={() => {
-            if (isCollapsed){
-              document.getElementById("aside").nextSibling.style.marginLeft = "250px";
-            }else{
-              document.getElementById("aside").nextSibling.style.marginLeft = "80px";
-            }
-            setIsCollapsed(!isCollapsed);
+        <Menu
+          iconShape="square"
+          menuItemStyles={{
+            button: ({ level, active, disabled }) => {
+              return {
+                color: active ? "#6870fa" : color.grey[100],
+                backgroundColor: color.primary[400],
+                "&:hover": {
+                  backgroundColor: color.primary[400],
+                  color: theme.palette.mode === "light" ? "#868dfb" : "#868dfb",
+                },
+              };
+            },
           }}
-          icon={isCollapsed ? <MenuIcon /> : <MenuIcon />}
         >
-          <Box display="flex" color={color.primary[100]}>
-            <Typography variant="h4"color={color.primary[100]} >Visiz</Typography>
-          </Box>
-        </MenuItem>
-
-        {!isCollapsed && (
-          <Box
-            display="flex"
-            flexDirection="column"
-            justifyContent="space-around"
-            alignItems="center"
-            mb="15px"
+          <MenuItem
+            onClick={() => {
+              if (isCollapsed) {
+                document.getElementById("aside").nextSibling.style.marginLeft =
+                  "250px";
+              } else {
+                document.getElementById("aside").nextSibling.style.marginLeft =
+                  "80px";
+              }
+              setIsCollapsed(!isCollapsed);
+            }}
+            icon={isCollapsed ? <MenuIcon /> : <MenuIcon />}
           >
-            <IconButton>
-              <PersonOutlineIcon sx={{ fontSize: "60px" }} />
-            </IconButton>
-            <Typography
-              variant="h4"
-              fontWeight="bold"
-              marginBottom="10px"
-              color={color.grey[100]}
-            >
-              USER NAME
-            </Typography>
-            <Box display="flex" width="100%" justifyContent="space-around">
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                backgroundColor={color.grey[900]}
-                borderRadius="15%"
-                pt="3px"
-                pb="3px"
-                pl="6px"
-                pr="6px"
-                color={color.greenAccent[200]}
-              >
-                TAG1
-              </Typography>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                backgroundColor={color.grey[900]}
-                borderRadius="15%"
-                pt="3px"
-                pb="3px"
-                pl="6px"
-                pr="6px"
-                color={color.redAccent[200]}
-              >
-                TAG2
-              </Typography>
-              <Typography
-                variant="h5"
-                fontWeight="bold"
-                backgroundColor={color.grey[900]}
-                borderRadius="15%"
-                pt="3px"
-                pb="3px"
-                pl="6px"
-                pr="6px"
-                color={color.blueAccent[200]}
-              >
-                TAG3
+            <Box display="flex" color={color.primary[100]}>
+              <Typography variant="h4" color={color.primary[100]}>
+                Visiz
               </Typography>
             </Box>
-          </Box>
-        )}
+          </MenuItem>
 
-        <MenuItem
-          icon={<DashboardOutlinedIcon />}
-          active={selected === "dashboard"}
-          onClick={() => setSelected("dashboard")}
-          component={<Link to="/dashboard" />}
-        >
-          Dashboard
-        </MenuItem>
-        <SubMenu
-          active={selected === "Steam" || selected === "platform2"}
-          icon={<SportsEsportsOutlinedIcon />}
-          label="Platform"
-        >
+          {!isCollapsed && (
+            <Box
+              display="flex"
+              flexDirection="column"
+              justifyContent="space-around"
+              alignItems="center"
+              mb="15px"
+            >
+              <IconButton>
+                <PersonOutlineIcon sx={{ fontSize: "60px" }} />
+              </IconButton>
+              <Typography
+                variant="h4"
+                fontWeight="bold"
+                marginBottom="10px"
+                color={color.grey[100]}
+              >
+                USER NAME
+              </Typography>
+              <Box display="flex" flexWrap="wrap" justifyContent="space-around">
+                {tagValue.map((tag, i) => (
+                  <Box
+                    sx={{
+                      padding: "3px",
+                      borderRadius: "5px",
+                      width: "30%",
+                      textAlign: "center",
+                      height: "100%",
+                      margin: "3px",
+                      backgroundColor: color.grey[900],
+                    }}
+                  >
+                    <Typography
+                      variant="h6"
+                      fontWeight="bold"
+                      color={
+                        i % 2 == 0
+                          ? color.greenAccent[200]
+                          : color.redAccent[200]
+                      }
+                    >
+                      {tag}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
+          )}
           <MenuItem
-            onClick={() => setSelected("Steam")}
-            active={selected === "Steam"}
-            component={<Link to="/platform?p=Steam" />}
+            icon={<FavoriteBorderOutlinedIcon />}
+            active={selected === "preference"}
+            onClick={() => setSelected("preference")}
+            component={<Link to="/preference" />}
           >
-            {" "}
-            Steam
+            Preferences
           </MenuItem>
           <MenuItem
-            active={selected === "platform2"}
-            onClick={() => setSelected("platform2")}
-            component={<Link to="/platform2" />}
+            icon={<HomeOutlinedIcon />}
+            active={selected === "customizedHome"}
+            onClick={() => setSelected("customizedHome")}
+            component={<Link to="/customizedHome" />}
           >
-            {" "}
-            platform 2
-          </MenuItem>
-        </SubMenu>
-        <SubMenu
-          active={selected === "genre1" || selected === "genre2"}
-          icon={<GamesOutlinedIcon />}
-          label="Genre"
-        >
-          <MenuItem
-            active={selected === "genre1"}
-            onClick={() => setSelected("genre1")}
-            component={<Link to="/genre1" />}
-          >
-            {" "}
-            genre 1
+            Customized home
           </MenuItem>
           <MenuItem
-            active={selected === "genre2"}
-            onClick={() => setSelected("genre2")}
-            component={<Link to="/genre2" />}
+            icon={<DashboardOutlinedIcon />}
+            active={selected === "dashboard"}
+            onClick={() => setSelected("dashboard")}
+            component={<Link to="/dashboard" />}
           >
-            {" "}
-            genre 2
+            Dashboard
           </MenuItem>
-        </SubMenu>
-      </Menu>
-    </Sidebar>
-    <Outlet />
+          <SubMenu
+            active={selected === "Steam" || selected === "platform2"}
+            icon={<SportsEsportsOutlinedIcon />}
+            label="Platform"
+          >
+            <MenuItem
+              onClick={() => setSelected("Steam")}
+              active={selected === "Steam"}
+              component={<Link to="/platform?p=Steam" />}
+            >
+              {" "}
+              Steam
+            </MenuItem>
+            <MenuItem
+              active={selected === "platform2"}
+              onClick={() => setSelected("platform2")}
+              component={<Link to="/platform2" />}
+            >
+              {" "}
+              platform 2
+            </MenuItem>
+          </SubMenu>
+          <SubMenu
+            active={selected === "genre1" || selected === "genre2"}
+            icon={<GamesOutlinedIcon />}
+            label="Genre"
+          >
+            <MenuItem
+              active={selected === "genre1"}
+              onClick={() => setSelected("genre1")}
+              component={<Link to="/genre1" />}
+            >
+              {" "}
+              genre 1
+            </MenuItem>
+            <MenuItem
+              active={selected === "genre2"}
+              onClick={() => setSelected("genre2")}
+              component={<Link to="/genre2" />}
+            >
+              {" "}
+              genre 2
+            </MenuItem>
+          </SubMenu>
+        </Menu>
+      </Sidebar>
+      <Outlet />
     </>
   );
 };

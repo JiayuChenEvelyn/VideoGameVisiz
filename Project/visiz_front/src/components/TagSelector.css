@@ -14,13 +14,14 @@ body {
 }
 
 .tags-input {
+    width: 500px;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     min-height: 48px;
     /* width: 480px; */
-    width: 100%;
-    padding: 0 8px;
+    margin: 5px 10px;
+    padding: 0 10px;
     border: 1px solid rgb(214, 216, 218);
     border-radius: 6px;
     background-color: white;

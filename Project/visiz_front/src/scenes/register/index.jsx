@@ -28,30 +28,6 @@ import { useState, useEffect } from "react";
 
 const Register = () => {
 
-  const dataFetch = async (username, password) => {
-    const data = await (
-      await fetch(
-        "http://localhost:8080/users/reg?username="+username+"&password="+password
-        // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
-      )
-    ).json();
-    console.log(data);
-    return data.state;
-  };
-
-  // useEffect(() => {
-  //   const dataFetch = async () => {
-  //     const data = await (
-  //       await fetch(
-  //         "http://localhost:8080/users/reg?username="+"admin"+"&password="+"123"
-  //       )
-  //     ).json();
-  //     console.log(data);
-  //   };
-
-  //   dataFetch();
-  // }, []);
-
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -63,25 +39,31 @@ const Register = () => {
     setShowConfirmPassword((showConfirmPassword) => !showConfirmPassword);
 
   const handleFormSubmit = (values) => {
-    console.log(values);
-    fetch(
-      "http://localhost:8080/users/reg?username="+values.username+"&password="+values.password
-    ).then((response) => {
-      console.log(response);
-      if (response.status === 200){
-        localStorage.setItem("auth", "true");
-        handleClickOpen();
-      }else{
-        return Promise.reject("Invalid login attempt, state is not 200");
-      }
-    }).catch((message)=>{
-      alert(message);
-    })
-    // var result = 200;
-    // if (result === 200){
-    //   handleClickOpen();
-    // }
-    // navigate("/login");
+    // fetch(
+    //   "http://localhost:8080/users/reg?username=" +
+    //     values.username +
+    //     "&password=" +
+    //     values.password
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     if (data.status === 200) {
+    //       handleClickOpen();
+    //     } else {
+    //       return Promise.reject("Invalid register attempt, state is not 200");
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
+
+    var result = 200;
+    if (result === 200){
+      handleClickOpen();
+    }
+    navigate("/login");
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -255,7 +237,8 @@ const Register = () => {
 const checkoutSchema = yup.object().shape({
   username: yup.string().required("required"),
   password: yup.string().required("required"),
-  confirmPassword: yup.string()
+  confirmPassword: yup
+    .string()
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("required"),
 });

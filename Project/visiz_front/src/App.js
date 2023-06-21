@@ -15,6 +15,9 @@ import Profile from "./scenes/profile";
 import Platform from "./scenes/platform/platform.jsx";
 import Game from "./scenes/game/game";
 import ProtectedRoute from "./protectedRoute";
+import Changepassword from "./scenes/changepassowrd/changepassword";
+import Preference from "./scenes/Preference/preference";
+import CustomizedHome from "./scenes/CustomizedHome/CustomizedHome"
 
 function App() {
   console.log("app");
@@ -35,7 +38,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              {/* <Route path="/changepassword" element={<Changepassword />} /> */}
+              <Route path="/changepassword" element={<Changepassword />} />
               <Route
                 element={
                   <ProtectedRoute>
@@ -50,7 +53,7 @@ function App() {
                   path="/dashboard"
                   element={
                     <ProtectedRoute>
-                      <Dashboard isCollapsed={isCollapsed}/>
+                      <Dashboard isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -58,7 +61,7 @@ function App() {
                   path="/bar"
                   element={
                     <ProtectedRoute>
-                      <Bar isCollapsed={isCollapsed}/>
+                      <Bar isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -66,7 +69,7 @@ function App() {
                   path="/pie"
                   element={
                     <ProtectedRoute>
-                      <Pie isCollapsed={isCollapsed}/>
+                      <Pie isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -74,7 +77,7 @@ function App() {
                   path="/line"
                   element={
                     <ProtectedRoute>
-                      <Line isCollapsed={isCollapsed}/>
+                      <Line isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -82,7 +85,7 @@ function App() {
                   path="/geography"
                   element={
                     <ProtectedRoute>
-                      <Geomap isCollapsed={isCollapsed}/>
+                      <Geomap isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -90,7 +93,7 @@ function App() {
                   path="/profile"
                   element={
                     <ProtectedRoute>
-                      <Profile isCollapsed={isCollapsed}/>
+                      <Profile isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -98,7 +101,7 @@ function App() {
                   path="/platform"
                   element={
                     <ProtectedRoute>
-                      <Platform isCollapsed={isCollapsed}/>
+                      <Platform isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />
@@ -106,7 +109,23 @@ function App() {
                   path="/game"
                   element={
                     <ProtectedRoute>
-                      <Game isCollapsed={isCollapsed}/>
+                      <Game isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/preference"
+                  element={
+                    <ProtectedRoute>
+                      <Preference isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/customizedHome"
+                  element={
+                    <ProtectedRoute>
+                      <CustomizedHome isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />

@@ -11,7 +11,7 @@ import GeoChart from "../../components/GeoChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import * as React from "react";
-// import { data as vgsales } from "../../data/vgsales";
+import { data as vgsales } from "../../data/vgsales";
 import PieChart from "../../components/PieChart";
 import Topbar from "../global/topbar";
 import InterestsPopOver from "../../components/InterestsPopOver";
@@ -21,52 +21,32 @@ const Dashboard = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [showInterestPopOver, setShowInterestPopOver] = React.useState(true);
-  const [topVgSales, setTopVgSales] = React.useState([]);
+  
+  // const [topVgSales, setTopVgSales] = React.useState([]);
 
-  const dataFetch = async () => {
-    var res = await (
-      await fetch(
-        "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
-        // "http://localhost:8080/users/reg?username="+"a"+"&password="+"123"
-      )
-    ).json();
-    console.log("res",res);
-    return res;
-  };
-
-  React.useEffect(() => {
-    // fetch("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000")
-    //   .then((response) => response.json())
-    //     .then((response)=>{
-    //       console.log(response)
-    //     if (response.status === 200) {
-    //       setTopVgSales(response.data);
-    //     } else {
-    //       return Promise.reject("Invalid topgame attempt, status is not 200");
-    //     }
-    //   })
-    //   .catch((message) => {
-    //     alert(message);
-    //   });
-
-    fetch(
-        'http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000'
-    )
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-          console.log(data.data);
-          setTopVgSales(data.data);
-        })
-        .catch(e => console.log('错误:', e))
-  }, []);
+  // React.useEffect(() => {
+  //   fetch(
+  //     "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log("data",data);
+  //       console.log("data.data", data.data);
+  //       if (data.status === 200) {
+  //         setTopVgSales(data.data);
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       console.log("Error:", e);
+  //       alert(e);
+  //     });
+  // }, []);
 
   return (
-    <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
-      <InterestsPopOver
-        open={showInterestPopOver}
-        setOpen={setShowInterestPopOver}
-      />
+    <div
+      id="rightContent"
+      style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
+    >
       <Topbar title="DASHBOARD" subtitle="Welcome to visiz" />
       <Box m="20px">
         {/* HEADER */}
@@ -212,10 +192,10 @@ const Dashboard = ({ isCollapsed }) => {
                 Top Rank Games
               </Typography>
             </Box>
-            {topVgSales.map((game, i) => (
+            {vgsales.slice(1,100).map((game, i) => (
               <Box
-                key={`${game.gameName}-${i}`}
-                // key={`${game.Name}-${i}`}
+                // key={`${game.gameName}-${i}`}
+                key={`${game.Name}-${i}`}
                 display="flex"
                 justifyContent="space-between"
                 alignItems="center"
@@ -228,16 +208,16 @@ const Dashboard = ({ isCollapsed }) => {
                     variant="h5"
                     fontWeight="600"
                   >
-                    {/* {game.Name} */}
-                    {game.gameName}
+                    {game.Name}
+                    {/* {game.gameName} */}
                   </Typography>
                   <Typography color={colors.grey[100]}>
-                    {/* {game.Publisher} */}
-                    {game.publisher}
+                    {game.Publisher}
+                    {/* {game.publisher} */}
                   </Typography>
                   <Typography color={colors.grey[100]}>
-                    {/* {"Year " + game.Year} */}
-                    {"Year " + game.year}
+                    {"Year " + game.Year}
+                    {/* {"Year " + game.year} */}
                   </Typography>
                 </Box>
                 <Box
@@ -246,8 +226,8 @@ const Dashboard = ({ isCollapsed }) => {
                   borderRadius="4px"
                 >
                   <Typography color={colors.grey[100]}>
-                    {/* {game.Global_Sales} */}
-                    {game.globalSales}
+                    {game.Global_Sales}
+                    {/* {game.globalSales} */}
                   </Typography>
                   <Typography
                     variant="h9"

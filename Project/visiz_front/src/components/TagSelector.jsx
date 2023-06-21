@@ -1,9 +1,14 @@
 import * as React from "react";
 import "./TagSelector.css";
 
-const TagsInput = ({tags, setTags}) => {
+const TagSelector = () => {
+	const v = JSON.parse(localStorage.getItem("tag"))||[];
+	// const [tags, setTags] = React.useState([]);
+	console.log(typeof(v), v, Object.values(v));
+	const [tags, setTags] = React.useState(Object.values(v) || []);
 	const removeTags = indexToRemove => {
 		setTags(tags.filter((_, index) => index !== indexToRemove));
+		localStorage.setItem("tag", JSON.stringify(tags.filter((_, index) => index !== indexToRemove)));
         console.log("tags", tags.filter((_, index) => index !== indexToRemove), "indexToRemove",indexToRemove);
 	};
 
@@ -17,6 +22,7 @@ const TagsInput = ({tags, setTags}) => {
  		if ((event.target.value !== "")&& (!tags.includes(value.trim()))) {
 			// setTags(tags.concat([event.target.value]));
             setTags([...tags, value.trim()])
+			localStorage.setItem("tag", JSON.stringify([...tags, value.trim()]));
 			event.target.value = "";
             console.log([...tags, value.trim()]);
 		}
@@ -44,5 +50,4 @@ const TagsInput = ({tags, setTags}) => {
 	);
 };
 
-export default TagsInput;
-{/* <TagsInput selectedTags={selectedTags}  tags={['Nodejs', 'MongoDB']}/> */}
+export default TagSelector;

@@ -11,6 +11,7 @@ import Typography from "@mui/material/Typography";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
 import TagsInput from "./TagSelector";
+import MultiSelector from "./MultiSelector";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {

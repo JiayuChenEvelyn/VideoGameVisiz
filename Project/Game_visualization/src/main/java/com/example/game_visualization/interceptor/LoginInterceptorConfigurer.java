@@ -24,6 +24,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         patterns.add("/web/login.html");
         patterns.add("/users/reg");
         patterns.add("/users/login");
+        patterns.add("/users/changePassword");
         patterns.add("/game/showTop10");
         //将自定义拦截器进行注册，/**表示全部拦截
         registry.addInterceptor(interceptor).addPathPatterns("/**").excludePathPatterns(patterns);

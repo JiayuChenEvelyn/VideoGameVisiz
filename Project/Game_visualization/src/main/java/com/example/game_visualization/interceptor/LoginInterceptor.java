@@ -17,13 +17,14 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object obj=request.getSession().getAttribute("uid");
-        if(obj==null){//说明用户没有登陆
-            response.sendRedirect("/web/login.html");//重定向到登陆页面
-            //结束后续调用
-            return false;
-        }
-        //登陆后才进的其他页面
+//        Object obj=request.getSession().getAttribute("uid");
+//        if(obj==null){//说明用户没有登陆
+//            response.sendRedirect("/web/login.html");//重定向到登陆页面
+//            //结束后续调用
+//            return false;
+//        }
+//        //登陆后才进的其他页面
+//        return true;
         return true;
     }
     //ModelAndView对象返回后被调用

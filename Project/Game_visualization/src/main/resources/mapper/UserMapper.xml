@@ -16,8 +16,8 @@
     <select id="findByUsername" resultType="com.example.game_visualization.entity.User">
         SELECT * FROM t_user WHERE username = #{username}
     </select>
-    <update id="updatePasswordByUid">
-        UPDATE t_user SET password=#{password} where uid=#{uid}
+    <update id="updatePasswordByUsername">
+        UPDATE t_user SET password=#{password} where username = #{username}
     </update>
     <select id="findByUid" resultType="com.example.game_visualization.entity.User">
         SELECT * FROM t_user WHERE uid = #{uid}

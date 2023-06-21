@@ -40,10 +40,8 @@ public class UserController extends BaseController{
     }
     @CrossOrigin(origins = {"http://localhost:3000"})
     @RequestMapping("changePassword")
-    public JsonResult<User> changePassword(String oldPassword, String newPassword, HttpSession session){
-        Integer uid=getUidFromSession(session);
-        String username=getUsernameFromSession(session);
-        userService.changePassword(uid,username,oldPassword,newPassword);
+    public JsonResult<User> changePassword(String username,String oldPassword, String newPassword){
+        userService.changePassword(username,oldPassword,newPassword);
         return new JsonResult<User>(OK);
     }
 }

@@ -18,11 +18,11 @@ public interface UserMapper {
     User findByUsername(String username);
 
     /**
-     * 根据uid更新密码
-     * @param uid
+     * 根据username更新密码
+     * @param username
      * @return 受到增，删，改所影响的行数
      */
-    Integer updatePasswordByUid(Integer uid,String password);
+    Integer updatePasswordByUsername(String username,String password);
 
     /**
      * 根据uid查询用户

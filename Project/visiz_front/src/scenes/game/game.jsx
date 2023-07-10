@@ -24,6 +24,7 @@ const Game = ({ isCollapsed }) => {
         console.log("data.data", data.data);
         if (data.status === 200) {
           setGameInfo(data.data);
+          setValue(data.data.rating);
         }
       })
       .catch((e) => {
@@ -32,13 +33,12 @@ const Game = ({ isCollapsed }) => {
       });
   }, []);
 
-  const updateScore = (event, newValue) => {
-    setValue(newValue);
+  const updateScore = () => {
     fetch(
       "http://localhost:8080/game/updateGame?gameName=" +
         gameName +
         "score" +
-        newValue
+        value
     )
       .then((res) => res.json())
       .then((data) => {
@@ -129,10 +129,13 @@ const Game = ({ isCollapsed }) => {
             defaultValue={2.5}
             precision={0.5}
             sx={{ fontSize: "45px" }}
-            onChange={updateScore}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
           />
         </Stack>
         <Button
+          onClick={updateScore}
           variant="text"
           sx={{
             marginTop: "30px",

@@ -6,7 +6,7 @@ import SportsMmaOutlinedIcon from "@mui/icons-material/SportsMmaOutlined";
 import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
 import Header from "../../components/Header";
-import LineChart from "../../components/LineChart";
+import HomeLineChart from "../../components/HomeLineChart";
 import GeoChart from "../../components/GeoChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
@@ -28,6 +28,7 @@ import HomePieChart from "../../components/HomePieChart";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import { data as lineData } from "../../data/lineData";
 
 const CustomizedHome = ({ isCollapsed }) => {
   const theme = useTheme();
@@ -45,6 +46,8 @@ const CustomizedHome = ({ isCollapsed }) => {
     preferenceComplete = false;
   }
 
+
+  
   const [topVgSales, setTopVgSales] = React.useState([]);
   const [genreCount, setGenreCount] = React.useState([]);
   const [barData, setBarData] = React.useState([]);
@@ -54,10 +57,18 @@ const CustomizedHome = ({ isCollapsed }) => {
   const [tableYear, setTableYear] = React.useState(yearValue[0]);
   const [tablePlatform, setTablePlatform] = React.useState(platformValue[0]);
   const [tableGenre, setTableGenre] = React.useState(genreValue[0]);
+  const [lineChartData1, setLineChart1] = React.useState(lineData);
+  const [lineChartData2, setLineChart2] = React.useState(lineData);
+
 
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);
     console.log(newValue);
+    var temp = lineData;
+    for (let i = 0; i < data.length; i++) {
+      temp[i].data.filter(obj => obj.x >= newValue[0] && obj.x <= newValue[1]);
+    }
+    setLineChart1(temp);
   };
 
   const icon = {
@@ -583,10 +594,10 @@ const CustomizedHome = ({ isCollapsed }) => {
             }}
           >
             <Box width="50%" height="250px" mt="20px">
-              <LineChart isDashboard={false} data="" />
+              <HomeLineChart isDashboard={false} data={lineChartData1}/>
             </Box>
             <Box width="50%" height="250px" mt="20px">
-              <LineChart isDashboard={false} data="" />
+              <HomeLineChart isDashboard={false}  data={lineChartData2}/>
             </Box>
           </div>
           <div

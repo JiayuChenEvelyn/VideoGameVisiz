@@ -15,6 +15,7 @@ const Game = ({ isCollapsed }) => {
   const gameName = queryParameters.get("name");
   const [value, setValue] = React.useState(2);
   const [score, setScore] = React.useState(100);
+  const [people, setPeople] = React.useState(0);
   const [gameInfo, setGameInfo] = React.useState({});
 
 
@@ -28,6 +29,7 @@ const Game = ({ isCollapsed }) => {
           setGameInfo(data.data);
           setScore(data.data.rating);
           setValue(data.data.rating/20);
+          setPeople(data.data.count);
         }
       })
       .catch((e) => {
@@ -50,6 +52,7 @@ const Game = ({ isCollapsed }) => {
         if (data.state === 200) {
           setValue(data.data/20);
           setScore(data.data);
+          setPeople(people+1);
         }
       })
       .catch((e) => {
@@ -123,7 +126,7 @@ const Game = ({ isCollapsed }) => {
           color={colors.grey[100]}
         >
           <span style={{ paddingRight: "10px" }}>Game rating</span>
-          {score} rated by {gameInfo.rateCount} people
+          {score} rated by {people} nubers of people
         </Typography>
 
         <Stack spacing={3} sx={{ marginTop: "30px" }}>

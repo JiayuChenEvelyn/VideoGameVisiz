@@ -219,9 +219,17 @@ const CustomizedHome = ({ isCollapsed }) => {
             .then((res) => res.json())
             .then((data) => {
               if (data.state === 200) {
-                if (!Object.keys(genreCount).includes(genre)){
+                var flag = 0;
+                for (let i = 0; i < genreCount.length; i++) {
+                  if (genreCount[i].genre === genre){
+                    flag = 1;
+                  }
+                }
+                if (flag === 0){
                   console.log("data", data);
+                  console.log("[...prevState, {genre: genre, count: data.data}]", [...prevState, {genre: genre, count: data.data}]);
                   setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
+
                 }
               }
             })

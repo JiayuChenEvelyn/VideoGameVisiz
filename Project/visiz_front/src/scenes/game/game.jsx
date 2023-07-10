@@ -22,7 +22,7 @@ const Game = ({ isCollapsed }) => {
       .then((data) => {
         console.log("data", data);
         console.log("data.data", data.data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           setGameInfo(data.data);
           setValue(data.data.rating);
         }
@@ -37,15 +37,14 @@ const Game = ({ isCollapsed }) => {
     fetch(
       "http://localhost:8080/game/updateRating?gameName=" +
         gameName +
-        "rating" +
+        "&rating=" +
         value
     )
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);
-        console.log("data.data", data.data);
-        if (data.status === 200) {
-          setValue(data.date);
+        if (data.state === 200) {
+          setValue(data.data);
         }
       })
       .catch((e) => {

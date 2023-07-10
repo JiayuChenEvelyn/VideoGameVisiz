@@ -119,7 +119,7 @@ const Game = ({ isCollapsed }) => {
           color={colors.grey[100]}
         >
           <span style={{ paddingRight: "10px" }}>Game rating</span>
-          {value*20.0} {gameInfo.rateCount}
+          {value} {gameInfo.rateCount}
         </Typography>
 
         <Stack spacing={3} sx={{ marginTop: "30px" }}>

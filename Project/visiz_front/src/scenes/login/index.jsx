@@ -36,7 +36,7 @@ const Login = ({setAuth}) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", data.username);
           navigate("/dashboard");
@@ -49,6 +49,9 @@ const Login = ({setAuth}) => {
         console.log("Error:", e);
         alert(e);
       });
+      // localStorage.setItem("auth", "true");
+      // localStorage.setItem("username", values.username);
+      // navigate("/dashboard");
 
   };
   const handleMouseDownPassword = (event) => {

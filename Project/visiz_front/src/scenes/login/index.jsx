@@ -38,7 +38,7 @@ const Login = ({setAuth}) => {
         console.log("data", data);
         if (data.state === 200) {
           localStorage.setItem("auth", "true");
-          localStorage.setItem("username", data.username);
+          localStorage.setItem("username", data.data.username);
           navigate("/dashboard");
 
         }else{

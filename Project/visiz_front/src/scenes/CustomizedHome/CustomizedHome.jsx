@@ -226,8 +226,7 @@ const CustomizedHome = ({ isCollapsed }) => {
                   }
                 }
                 if (flag === 0){
-                  console.log("data", data);
-                  console.log("[...prevState, {genre: genre, count: data.data}]", [...prevState, {genre: genre, count: data.data}]);
+                  console.log("data setGenreCount", data);
                   setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
 
                 }

@@ -209,6 +209,7 @@ const CustomizedHome = ({ isCollapsed }) => {
   //     ]);
   //   }
   // }, []);
+    var temp = [];
     React.useEffect(() => {
       if (preferenceComplete) {
         console.log("genreValue",genreValue);
@@ -220,14 +221,18 @@ const CustomizedHome = ({ isCollapsed }) => {
             .then((data) => {
               if (data.state === 200) {
                 var flag = 0;
-                for (let i = 0; i < genreCount.length; i++) {
-                  if (genreCount[i].genre === genre){
+                for (let i = 0; i < temp.length; i++) {
+                  if (temp[i].genre === genre){
                     flag = 1;
                   }
                 }
                 if (flag === 0){
-                  console.log("data setGenreCount", data);
-                  setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
+                  console.log("genre", genre);
+                  console.log("data", data);
+                  console.log("genreCount", genreCount);
+                  temp.push({genre: genre, count: data.data});
+                  setGenreCount(temp);
+                  // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
 
                 }
               }

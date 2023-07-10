@@ -6,6 +6,7 @@ import Topbar from "../global/topbar";
 import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
 
 const Game = ({ isCollapsed }) => {
   const theme = useTheme();
@@ -18,6 +19,7 @@ const Game = ({ isCollapsed }) => {
   const [people, setPeople] = React.useState(0);
   const [gameInfo, setGameInfo] = React.useState({});
 
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     fetch("http://localhost:8080/game/showGameDetail?gameName=" + gameName)
@@ -53,6 +55,7 @@ const Game = ({ isCollapsed }) => {
           setValue(data.data/20);
           setScore(data.data);
           setPeople(people+1);
+          navigate("/preference");
         }
       })
       .catch((e) => {

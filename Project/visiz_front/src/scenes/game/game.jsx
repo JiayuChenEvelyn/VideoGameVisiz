@@ -29,7 +29,7 @@ const Game = ({ isCollapsed }) => {
           setGameInfo(data.data);
           setScore(data.data.rating);
           setValue(data.data.rating/20);
-          setPeople(data.data.count);
+          setPeople(data.data.rateCount);
         }
       })
       .catch((e) => {

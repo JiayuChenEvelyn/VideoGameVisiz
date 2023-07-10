@@ -219,9 +219,9 @@ const CustomizedHome = ({ isCollapsed }) => {
             .then((res) => res.json())
             .then((data) => {
               console.log("data", data);
-              console.log("data.data", data.data);
               if (data.status === 200) {
                 temp.add(data.count);
+                setGenreCount(prevState => [...prevState, data.count])
               }
             })
             .catch((e) => {
@@ -229,7 +229,6 @@ const CustomizedHome = ({ isCollapsed }) => {
               alert(e);
             })
         ));
-        setGenreCount(temp);
       }
     }, []);
 

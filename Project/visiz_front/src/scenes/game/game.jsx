@@ -131,6 +131,7 @@ const Game = ({ isCollapsed }) => {
 
         <Stack spacing={3} sx={{ marginTop: "30px" }}>
           <Rating
+            value={value}
             size="large"
             name="half-rating"
             defaultValue={2.5}

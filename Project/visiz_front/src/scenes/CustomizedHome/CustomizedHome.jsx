@@ -219,8 +219,10 @@ const CustomizedHome = ({ isCollapsed }) => {
             .then((res) => res.json())
             .then((data) => {
               if (data.state === 200) {
-                console.log("data", data);
-                setGenreCount(prevState => [...prevState, data.data])
+                if (!Object.keys(genreCount).includes(genre)){
+                  console.log("data", data);
+                  setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
+                }
               }
             })
             .catch((e) => {
@@ -452,10 +454,10 @@ const CustomizedHome = ({ isCollapsed }) => {
                 justifyContent="center"
               >
                 <StatBox
-                  title={data}
-                  subtitle={genreValue[i]+ " games in total"}
-                  progress={data / 10973.0}
-                  icon={icon[genreValue[i]]}
+                  title={data.genre}
+                  subtitle={data.genre+ " games in total"}
+                  progress={data.count / 10973.0}
+                  icon={icon[data.genre]}
                 />
               </Box>
             ))}

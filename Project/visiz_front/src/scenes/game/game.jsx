@@ -17,7 +17,7 @@ const Game = ({ isCollapsed }) => {
   const [gameInfo, setGameInfo] = React.useState({});
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/game/showGame?gameName=" + gameName)
+    fetch("http://localhost:8080/game/showGameDetail?gameName=" + gameName)
       .then((res) => res.json())
       .then((data) => {
         console.log("data", data);
@@ -35,9 +35,9 @@ const Game = ({ isCollapsed }) => {
 
   const updateScore = () => {
     fetch(
-      "http://localhost:8080/game/updateGame?gameName=" +
+      "http://localhost:8080/game/updateRating?gameName=" +
         gameName +
-        "score" +
+        "rating" +
         value
     )
       .then((res) => res.json())

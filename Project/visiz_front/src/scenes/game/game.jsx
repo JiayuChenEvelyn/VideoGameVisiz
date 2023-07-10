@@ -14,7 +14,9 @@ const Game = ({ isCollapsed }) => {
   const queryParameters = new URLSearchParams(window.location.search);
   const gameName = queryParameters.get("name");
   const [value, setValue] = React.useState(2);
+  const [score, setScore] = React.useState(100);
   const [gameInfo, setGameInfo] = React.useState({});
+
 
   React.useEffect(() => {
     fetch("http://localhost:8080/game/showGameDetail?gameName=" + gameName)
@@ -24,6 +26,7 @@ const Game = ({ isCollapsed }) => {
         console.log("data.data", data.data);
         if (data.state === 200) {
           setGameInfo(data.data);
+          setScore(data.data.rating);
           setValue(data.data.rating/20);
         }
       })
@@ -46,6 +49,7 @@ const Game = ({ isCollapsed }) => {
         console.log("data", data);
         if (data.state === 200) {
           setValue(data.data/20);
+          setScore(data.data);
         }
       })
       .catch((e) => {
@@ -103,7 +107,7 @@ const Game = ({ isCollapsed }) => {
           color={colors.grey[100]}
         >
           <span style={{ paddingRight: "10px" }}>Sales:</span>${" "}
-          {gameInfo.globalSales}
+          {gameInfo.globalSales} millions
         </Typography>
         <Typography
           margin="0px 0px 7px 0px"

@@ -24,7 +24,7 @@ const Game = ({ isCollapsed }) => {
         console.log("data.data", data.data);
         if (data.state === 200) {
           setGameInfo(data.data);
-          setValue(data.data.rating);
+          setValue(data.data.rating*20.0);
         }
       })
       .catch((e) => {
@@ -34,6 +34,7 @@ const Game = ({ isCollapsed }) => {
   }, []);
 
   const updateScore = () => {
+    console.log("value",value);
     fetch(
       "http://localhost:8080/game/updateRating?gameName=" +
         gameName +
@@ -44,7 +45,7 @@ const Game = ({ isCollapsed }) => {
       .then((data) => {
         console.log("data", data);
         if (data.state === 200) {
-          setValue(data.data);
+          setValue(data.data/20.0);
         }
       })
       .catch((e) => {
@@ -118,7 +119,7 @@ const Game = ({ isCollapsed }) => {
           color={colors.grey[100]}
         >
           <span style={{ paddingRight: "10px" }}>Game rating</span>
-          {gameInfo.rating} {gameInfo.rateCount}
+          {value*20.0} {gameInfo.rateCount}
         </Typography>
 
         <Stack spacing={3} sx={{ marginTop: "30px" }}>

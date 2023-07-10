@@ -17,10 +17,11 @@ import Game from "./scenes/game/game";
 import ProtectedRoute from "./protectedRoute";
 import Changepassword from "./scenes/changepassowrd/changepassword";
 import Preference from "./scenes/Preference/preference";
-import CustomizedHome from "./scenes/CustomizedHome/CustomizedHome"
+import CustomizedHome from "./scenes/CustomizedHome/CustomizedHome";
+import Recommend from "./scenes/Recommend/recommend";
+import Genre from "./scenes/genre/genre";
 
 function App() {
-  console.log("app");
   const [theme, colorMode] = useMode();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
@@ -106,6 +107,14 @@ function App() {
                   }
                 />
                 <Route
+                  path="/genre"
+                  element={
+                    <ProtectedRoute>
+                      <Genre isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
                   path="/game"
                   element={
                     <ProtectedRoute>
@@ -126,6 +135,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <CustomizedHome isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/predict"
+                  element={
+                    <ProtectedRoute>
+                      <Recommend />
                     </ProtectedRoute>
                   }
                 />

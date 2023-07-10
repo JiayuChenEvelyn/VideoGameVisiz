@@ -28,6 +28,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
         backgroundColor={color.primary[400]}
       >
         <Menu
+          className="menu"
           iconShape="square"
           menuItemStyles={{
             button: ({ level, active, disabled }) => {
@@ -84,6 +85,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
               <Box display="flex" flexWrap="wrap" justifyContent="space-around">
                 {tagValue.map((tag, i) => (
                   <Box
+                    key={i}
                     sx={{
                       padding: "3px",
                       borderRadius: "5px",
@@ -135,47 +137,154 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
             Dashboard
           </MenuItem>
           <SubMenu
-            active={selected === "Steam" || selected === "platform2"}
+            active={
+              selected === "DS" ||
+              selected === "PS2" ||
+              selected === "PS3" ||
+              selected === "Wii" ||
+              selected === "X360" ||
+              selected === "PSP" ||
+              selected === "PS"
+            }
             icon={<SportsEsportsOutlinedIcon />}
             label="Platform"
           >
             <MenuItem
-              onClick={() => setSelected("Steam")}
-              active={selected === "Steam"}
-              component={<Link to="/platform?p=Steam" />}
+              onClick={() => setSelected("DS")}
+              active={selected === "DS"}
+              component={<Link to="/platform?p=DS" />}
             >
               {" "}
-              Steam
+              DS
             </MenuItem>
             <MenuItem
-              active={selected === "platform2"}
-              onClick={() => setSelected("platform2")}
-              component={<Link to="/platform2" />}
+              active={selected === "PS2"}
+              onClick={() => setSelected("PS2")}
+              component={<Link to="/platform?p=PS2" />}
             >
               {" "}
-              platform 2
+              PS2
+            </MenuItem>
+            <MenuItem
+              active={selected === "PS3"}
+              onClick={() => setSelected("PS3")}
+              component={<Link to="/platform?p=PS3" />}
+            >
+              {" "}
+              PS3
+            </MenuItem>
+            <MenuItem
+              active={selected === "Wii"}
+              onClick={() => setSelected("Wii")}
+              component={<Link to="/platform?p=Wii" />}
+            >
+              {" "}
+              Wii
+            </MenuItem>
+            <MenuItem
+              active={selected === "X360"}
+              onClick={() => setSelected("X360")}
+              component={<Link to="/platform?p=X360" />}
+            >
+              {" "}
+              X360
+            </MenuItem>
+            <MenuItem
+              active={selected === "PSP"}
+              onClick={() => setSelected("PSP")}
+              component={<Link to="/platform?p=PSP" />}
+            >
+              {" "}
+              PSP
             </MenuItem>
           </SubMenu>
           <SubMenu
-            active={selected === "genre1" || selected === "genre2"}
+            active={
+              selected === "Action" ||
+              selected === "Fighting" ||
+              selected === "Misc" ||
+              selected === "Puzzle" ||
+              selected === "Role_Playing" ||
+              selected === "Shooter" || 
+              selected === "Adventure" || 
+              selected === "Simulation" || 
+              selected === "Platform" || 
+              selected === "Racing"  
+            }
             icon={<GamesOutlinedIcon />}
             label="Genre"
           >
             <MenuItem
-              active={selected === "genre1"}
-              onClick={() => setSelected("genre1")}
-              component={<Link to="/genre1" />}
+              active={selected === "Action"}
+              onClick={() => setSelected("Action")}
+              component={<Link to="/genre?g=Action" />}
             >
               {" "}
-              genre 1
+              Action
             </MenuItem>
             <MenuItem
-              active={selected === "genre2"}
-              onClick={() => setSelected("genre2")}
-              component={<Link to="/genre2" />}
+              active={selected === "Adventure"}
+              onClick={() => setSelected("Adventure")}
+              component={<Link to="/genre?g=Adventure" />}
             >
               {" "}
-              genre 2
+              Adventure
+            </MenuItem>
+            <MenuItem
+              active={selected === "Fighting"}
+              onClick={() => setSelected("Fighting")}
+              component={<Link to="/genre?g=Fighting" />}
+            >
+              {" "}
+              Fighting
+            </MenuItem>
+            <MenuItem
+              active={selected === "Misc"}
+              onClick={() => setSelected("Misc")}
+              component={<Link to="/genre?g=Misc" />}
+            >
+              {" "}
+              Misc
+            </MenuItem>
+            <MenuItem
+              active={selected === "Platform"}
+              onClick={() => setSelected("Platform")}
+              component={<Link to="/genre?g=Platform" />}
+            >
+              {" "}
+              Platform
+            </MenuItem>
+            <MenuItem
+              active={selected === "Puzzle"}
+              onClick={() => setSelected("Puzzle")}
+              component={<Link to="/genre?g=Puzzle" />}
+            >
+              {" "}
+              Puzzle
+            </MenuItem>
+            <MenuItem
+              active={selected === "Racing"}
+              onClick={() => setSelected("Racing")}
+              component={<Link to="/genre?g=Racing" />}
+            >
+              {" "}
+              Racing
+            </MenuItem>
+            <MenuItem
+              active={selected === "Shooter"}
+              onClick={() => setSelected("Shooter")}
+              component={<Link to="/genre?g=Shooter" />}
+            >
+              {" "}
+              Shooter
+            </MenuItem>
+            <MenuItem
+              active={selected === "Role_Playing"}
+              onClick={() => setSelected("Role_Playing")}
+              component={<Link to="/genre?g=Role_Playing" />}
+            >
+              {" "}
+              Role_Playing
             </MenuItem>
           </SubMenu>
         </Menu>

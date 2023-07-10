@@ -25,7 +25,9 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import HomePieChart from "../../components/HomePieChart";
-import Platform from "../platform/platform";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 
 const CustomizedHome = ({ isCollapsed }) => {
   const theme = useTheme();
@@ -49,9 +51,13 @@ const CustomizedHome = ({ isCollapsed }) => {
   const [slideValue, setSlideValue] = React.useState([1900, 2020]);
   const [pieYear, setPieYear] = React.useState(yearValue[0]);
   const [piePlatform, setPiePlatform] = React.useState(platformValue[0]);
+  const [tableYear, setTableYear] = React.useState(yearValue[0]);
+  const [tablePlatform, setTablePlatform] = React.useState(platformValue[0]);
+  const [tableGenre, setTableGenre] = React.useState(genreValue[0]);
 
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);
+    console.log(newValue);
   };
 
   const icon = {
@@ -194,104 +200,198 @@ const CustomizedHome = ({ isCollapsed }) => {
   }, []);
 
   // get pie data
-  //   React.useEffect(() => {
-  //     if (preferenceComplete) {
-  //       setBarData([
-  //         {
-  //           id: "Action",
-  //           label: "Action",
-  //           value: 3316,
-  //           //   "color": "hsl(336, 70%, 50%)"
-  //         },
-  //         {
-  //           id: "Sports",
-  //           label: "Sports",
-  //           value: 2346,
-  //           //   "color": "hsl(222, 70%, 50%)"
-  //         },
-  //         {
-  //           id: "Misc",
-  //           label: "Misc",
-  //           value: 1739,
-  //           //   "color": "hsl(120, 70%, 50%)"
-  //         },
-  //         {
-  //           id: "Role_Playing",
-  //           label: "Role_Playing",
-  //           value: 1488,
-  //           //   "color": "hsl(223, 70%, 50%)"
-  //         },
-  //       ]);
-  //     }
-  //   });
-
   React.useEffect(() => {
     if (preferenceComplete) {
-      fetch(
-        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-          piePlatform +
-          "&year=" +
-          pieYear
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          console.log("data", data);
-          console.log("data.data", data.data);
-          if (data.state === 200) {
-            setBarData(data.data);
-          }
-        })
-        .catch((e) => {
-          console.log("Error:", e);
-          alert(e);
-        });
+      setBarData([
+        {
+          id: "Action",
+          label: "Action",
+          value: 3316,
+          //   "color": "hsl(336, 70%, 50%)"
+        },
+        {
+          id: "Sports",
+          label: "Sports",
+          value: 2346,
+          //   "color": "hsl(222, 70%, 50%)"
+        },
+        {
+          id: "Misc",
+          label: "Misc",
+          value: 1739,
+          //   "color": "hsl(120, 70%, 50%)"
+        },
+        {
+          id: "Role_Playing",
+          label: "Role_Playing",
+          value: 1488,
+          //   "color": "hsl(223, 70%, 50%)"
+        },
+      ]);
     }
-  }, []);
+  });
+  //   React.useEffect(() => {
+  //     if (preferenceComplete) {
+  //       fetch(
+  //         "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+  //           piePlatform +
+  //           "&year=" +
+  //           pieYear
+  //       )
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log("data", data);
+  //           console.log("data.data", data.data);
+  //           if (data.state === 200) {
+  //             setBarData(data.data);
+  //           }
+  //         })
+  //         .catch((e) => {
+  //           console.log("Error:", e);
+  //           alert(e);
+  //         });
+  //     }
+  //   }, []);
 
   const handlePieChartYearChange = (event) => {
     setPieYear(event.target.value);
-    fetch(
-      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-        piePlatform +
-        "&year=" +
-        event.target.value
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
-        if (data.state === 200) {
-          setBarData(data.data);
-        }
-      })
-      .catch((e) => {
-        console.log("Error:", e);
-        alert(e);
-      });
+    // fetch(
+    //   "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+    //     piePlatform +
+    //     "&year=" +
+    //     event.target.value
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     console.log("data.data", data.data);
+    //     if (data.state === 200) {
+    //       setBarData(data.data);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
   };
 
   const handlePieChartPlatformChange = (event) => {
     setPiePlatform(event.target.value);
-    fetch(
-      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-        event.target.value +
-        "&year=" +
-        pieYear
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
-        if (data.state === 200) {
-          setBarData(data.data);
-        }
-      })
-      .catch((e) => {
-        console.log("Error:", e);
-        alert(e);
-      });
+    // fetch(
+    //   "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+    //     event.target.value +
+    //     "&year=" +
+    //     pieYear
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     console.log("data.data", data.data);
+    //     if (data.state === 200) {
+    //       setBarData(data.data);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
   };
 
+  const handleTableYearChange = (event) => {
+    setTableYear(event.target.value);
+    console.log(
+      "http://localhost:8080/game/showTop10?genre=" +
+        tableGenre +
+        "&platform=" +
+        tablePlatform +
+        "&year" +
+        event.target.value
+    );
+    // fetch(
+    // "http://localhost:8080/game/showTop10?genre=" +
+    // tableGenre +
+    // "&platform=" +
+    // tablePlatform +
+    // "&year" +
+    // event.target.value
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     console.log("data.data", data.data);
+    //     if (data.status === 200) {
+    //       setTopVgSales(data.data);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
+  };
+
+  const handleTableGenreChange = (event) => {
+    setTableGenre(event.target.value);
+    console.log(
+      "http://localhost:8080/game/showTop10?genre=" +
+        event.target.value +
+        "&platform=" +
+        tablePlatform +
+        "&year" +
+        tableYear
+    );
+    // fetch(
+    // "http://localhost:8080/game/showTop10?genre=" +
+    // event.target.value +
+    // "&platform=" +
+    // tablePlatform +
+    // "&year" +
+    // tableYear
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     console.log("data.data", data.data);
+    //     if (data.status === 200) {
+    //       setTopVgSales(data.data);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
+  };
+
+  const handleTablePlatformChange = (event) => {
+    setTablePlatform(event.target.value);
+    console.log(
+      "http://localhost:8080/game/showTop10?genre=" +
+        tableGenre +
+        "&platform=" +
+        event.target.value +
+        "&year" +
+        tableYear
+    );
+    // fetch(
+    // "http://localhost:8080/game/showTop10?genre=" +
+    // tableGenre +
+    // "&platform=" +
+    // event.target.value +
+    // "&year" +
+    // tableYear
+    // )
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     console.log("data", data);
+    //     console.log("data.data", data.data);
+    //     if (data.status === 200) {
+    //       setTopVgSales(data.data);
+    //     }
+    //   })
+    //   .catch((e) => {
+    //     console.log("Error:", e);
+    //     alert(e);
+    //   });
+  };
   if (preferenceComplete) {
     return (
       <div
@@ -309,6 +409,7 @@ const CustomizedHome = ({ isCollapsed }) => {
           >
             {genreCount.map((data) => (
               <Box
+                key={data.genre}
                 width="30%"
                 height="120px"
                 borderRadius="12px"
@@ -338,25 +439,124 @@ const CustomizedHome = ({ isCollapsed }) => {
               Top Rank Games
             </Typography>
           </Box>
+          <div style={{ display: "flex", alignContent: "space-between" }}>
+            <Box sx={{ width: "30%", margin: "10px" }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Select year from your preference
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={tableYear}
+                  label="Select year from your preference"
+                  onChange={handleTableYearChange}
+                  sx={{
+                    height: "2.5rem",
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  {yearValue.map((year) => (
+                    <MenuItem key={year} color="white" value={year}>
+                      <Typography color={colors.grey[100]}>{year}</Typography>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: "30%", margin: "10px" }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Select platform from your preference
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={tablePlatform}
+                  label="Select year from your preference"
+                  onChange={handleTablePlatformChange}
+                  sx={{
+                    height: "2.5rem",
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  {platformValue.map((platform) => (
+                    <MenuItem key={platform} color="white" value={platform}>
+                      <Typography color={colors.grey[100]}>
+                        {platform}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+            <Box sx={{ width: "30%", margin: "10px" }}>
+              <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">
+                  Select genre from your preference
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={tableGenre}
+                  label="Select year from your preference"
+                  onChange={handleTableGenreChange}
+                  sx={{
+                    height: "2.5rem",
+                    color: "white",
+                    "& .MuiOutlinedInput-notchedOutline": {
+                      borderColor: "white",
+                    },
+                    "& .MuiSvgIcon-root": {
+                      color: "white",
+                    },
+                  }}
+                >
+                  {genreValue.map((genre) => (
+                    <MenuItem key={genre} color="white" value={genre}>
+                      <Typography color={colors.grey[100]}>{genre}</Typography>
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          </div>
           <HomeTable data={topVgSales} />
-          <Box sx={{ width: "50%" }}>
+          <Box sx={{ }}>
             <Stack
               spacing={2}
               direction="row"
-              sx={{ mb: 1 }}
+              sx={{ mt: 2, width: "80%" }}
+              display="flex"
               alignItems="center"
             >
               <Typography color={colors.grey[100]}>1990</Typography>
               <Slider
-                style={{ color: 1 == 1 ? colors.blueAccent[200] : "grey" }}
-                aria-label="Volume"
+                style={{ color: colors.blueAccent[200] }}
                 value={slideValue}
                 onChange={handleSlideChange}
+                step={1}
+                marks
+                min={1990}
+                max={2022}
+                valueLabelDisplay="auto"
               />
               <Typography color={colors.grey[100]}>2020</Typography>
             </Stack>
           </Box>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <div style={{ marginTop:"0px", display: "flex", justifyContent: "space-between" }}>
             <Box width="50%" height="250px" mt="20px">
               <LineChart isDashboard={false} data="" />
             </Box>
@@ -364,79 +564,81 @@ const CustomizedHome = ({ isCollapsed }) => {
               <LineChart isDashboard={false} data="" />
             </Box>
           </div>
-          <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                <Typography color={colors.grey[100]}>
-                  Select Year from your preference
-                </Typography>
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                onChange={handlePieChartYearChange}
-                value={pieYear}
-              >
-                {yearValue.map((year) => (
-                  <FormControlLabel
-                    value={year}
-                    control={
-                      <Radio
-                        sx={{
-                          color: colors.grey[100],
-                          "&.Mui-checked": {
+          <div style={{ marginTop: "10px", display: "flex", justifyContent:"space-around" }}>
+            <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
+              <FormControl>
+                <FormLabel id="demo-row-radio-buttons-group-label">
+                  <Typography color={colors.grey[100]}>
+                    Select Year from your preference
+                  </Typography>
+                </FormLabel>
+                <RadioGroup
+                  row
+                  name="row-radio-buttons-group"
+                  onChange={handlePieChartYearChange}
+                  value={pieYear}
+                >
+                  {yearValue.map((year) => (
+                    <FormControlLabel
+                      key={year}
+                      value={year}
+                      control={
+                        <Radio
+                          sx={{
                             color: colors.grey[100],
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <Typography color={colors.grey[100]}>{year}</Typography>
-                    }
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                <Typography color={colors.grey[100]}>
-                  Select Platforms from your preference
-                </Typography>
-              </FormLabel>
-              <RadioGroup
-                row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
-                onChange={handlePieChartPlatformChange}
-                value={piePlatform}
-              >
-                {platformValue.map((platform) => (
-                  <FormControlLabel
-                    value={platform}
-                    control={
-                      <Radio
-                        sx={{
-                          color: colors.grey[100],
-                          "&.Mui-checked": {
+                            "&.Mui-checked": {
+                              color: colors.grey[100],
+                            },
+                          }}
+                        />
+                      }
+                      label={
+                        <Typography color={colors.grey[100]}>{year}</Typography>
+                      }
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </Box>
+            <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
+              <FormControl>
+                <FormLabel id="demo-row-radio-buttons-group-label">
+                  <Typography color={colors.grey[100]}>
+                    Select Platforms from your preference
+                  </Typography>
+                </FormLabel>
+                <RadioGroup
+                  row
+                  name="row-radio-buttons-group"
+                  onChange={handlePieChartPlatformChange}
+                  value={piePlatform}
+                >
+                  {platformValue.map((platform) => (
+                    <FormControlLabel
+                      key={platform}
+                      value={platform}
+                      control={
+                        <Radio
+                          sx={{
                             color: colors.grey[100],
-                          },
-                        }}
-                      />
-                    }
-                    label={
-                      <Typography color={colors.grey[100]}>
-                        {platform}
-                      </Typography>
-                    }
-                  />
-                ))}
-              </RadioGroup>
-            </FormControl>
-          </Box>
-          <Box height="250px" mt="20px">
+                            "&.Mui-checked": {
+                              color: colors.grey[100],
+                            },
+                          }}
+                        />
+                      }
+                      label={
+                        <Typography color={colors.grey[100]}>
+                          {platform}
+                        </Typography>
+                      }
+                    />
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </Box>
+          </div>
+          <Box height="250px" mt="5px">
             <HomePieChart isDashboard={true} data={barData} />
           </Box>
         </Box>

@@ -16,7 +16,6 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { tokens } from "../theme";
-import { mockData as data } from "../data/steamData";
 import { useNavigate } from "react-router-dom";
 
 function TablePaginationActions(props) {
@@ -86,25 +85,33 @@ function createData(name, calories, fat) {
   return { name, calories, fat };
 }
 
-const rows = data.sort((a, b) => (a.review_score < b.review_score ? 1 : -1));
 
 const columns = [
-  { id: "name", label: "Name", minWidth: 170 },
-  { id: "tags", label: "Tags", minWidth: 170, align: "right" },
+  { id: "name", label: "Name", minWidth: 80 },
+  { id: "platform", label: "Platform", minWidth: 80, align: "right" },
   {
-    id: "developers",
-    label: "Developers",
+    id: "year",
+    label: "year",
     minWidth: 170,
     align: "right",
     format: (value) => value.toLocaleString("en-US"),
   },
-  { id: "price", label: "Price", minWidth: 170, align: "right" },
-  { id: "review_score", label: "Review Score", minWidth: 170, align: "right" },
+  { id: "genre", label: "Genre", minWidth: 80, align: "right" },
+  { id: "publisher", label: "Publisher", minWidth: 80, align: "right" },
+  { id: "NA_Sales", label: "NA_Sales", minWidth: 80, align: "right" },
+  { id: "EU_Sales", label: "EU_Sales", minWidth: 80, align: "right" },
+  { id: "JP_Sales", label: "JP_Sales", minWidth: 80, align: "right" },
+  { id: "Other_Sales", label: "Other_Sales", minWidth: 80, align: "right" },
+  { id: "Global_Sales", label: "Global_Sales", minWidth: 80, align: "right" },
+  { id: "Rating", label: "Rating", minWidth: 80, align: "right" },
 ];
 
-export default function CustomPaginationActionsTable() {
+export default function GameTable({ data }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  console.log("data",data);
+  const rows = data.sort((a, b) => (a.Rating < b.Rating ? 1 : -1));
+
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -152,26 +159,44 @@ export default function CustomPaginationActionsTable() {
           ).map((row) => (
             <TableRow
               hover={true}
-              key={row.name}
+              key={row.Name}
               onClick={() => {
-                navigate("/game?id=" + row.appid + "&name=" + row.name);
+                navigate("/game?name=" + row.Name);
               }}
               style={{ cursor: "pointer" }}
             >
-              <TableCell style={{ width: 160 }} component="th" scope="row">
-                {row.name}
+              <TableCell style={{ width: 120 }} component="th" scope="row">
+                {row.Name}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.tags}
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Platform}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.developers}
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Year}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.price}
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Genre}
               </TableCell>
-              <TableCell style={{ width: 160 }} align="right">
-                {row.review_score}
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Publisher}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.NA_Sales}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.EU_Sales}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.JP_Sales}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Other_Sales}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Global_Sales}
+              </TableCell>
+              <TableCell style={{ width: 120 }} align="right">
+                {row.Rating}
               </TableCell>
             </TableRow>
           ))}

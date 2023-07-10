@@ -42,8 +42,8 @@ const Topbar = ({ title, subtitle }) => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
-          <AccountCircleOutlinedIcon onClick={handleClickProfile} />
+        <IconButton onClick={handleClickProfile}>
+          <AccountCircleOutlinedIcon />
         </IconButton>
       </Box>
     </Box>

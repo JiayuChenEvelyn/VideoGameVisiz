@@ -149,7 +149,7 @@ export default function HomeTable({data}) {
           ).map((row) => (
             <TableRow
               hover={true}
-              key={row.name}
+              key={row.gameName}
               onClick={() => {
                 navigate("/game?name=" + row.gameName);
               }}

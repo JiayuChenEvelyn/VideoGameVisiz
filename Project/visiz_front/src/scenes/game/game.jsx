@@ -1,8 +1,11 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import Button from "@mui/material/Button";
 import { tokens } from "../../theme";
 import * as React from "react";
 import Topbar from "../global/topbar";
 import { Link } from "react-router-dom";
+import Rating from "@mui/material/Rating";
+import Stack from "@mui/material/Stack";
 
 const Game = ({ isCollapsed }) => {
   const theme = useTheme();
@@ -11,6 +14,7 @@ const Game = ({ isCollapsed }) => {
   const queryParameters = new URLSearchParams(window.location.search);
   const gameId = queryParameters.get("id");
   const gameName = queryParameters.get("name");
+  const [value, setValue] = React.useState(2);
 
   return (
     <div
@@ -114,6 +118,28 @@ const Game = ({ isCollapsed }) => {
           to face stronger and smarter aliens in this 3D top-down roguelite
           shooter
         </Typography>
+        <Stack spacing={3} sx={{ marginTop: "30px" }}>
+          <Rating
+            size="large"
+            name="half-rating"
+            defaultValue={2.5}
+            precision={0.5}
+            sx={{ fontSize: "45px" }}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+          />
+        </Stack>
+        <Button
+          variant="text"
+          sx={{
+            marginTop: "30px",
+            color: colors.grey[100],
+            backgroundColor: colors.grey[500],
+          }}
+        >
+          Submit
+        </Button>
       </Box>
     </div>
   );

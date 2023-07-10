@@ -21,26 +21,7 @@ const Dashboard = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [showInterestPopOver, setShowInterestPopOver] = React.useState(true);
-  
-  // const [topVgSales, setTopVgSales] = React.useState([]);
 
-  // React.useEffect(() => {
-  //   fetch(
-  //     "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log("data",data);
-  //       console.log("data.data", data.data);
-  //       if (data.status === 200) {
-  //         setTopVgSales(data.data);
-  //       }
-  //     })
-  //     .catch((e) => {
-  //       console.log("Error:", e);
-  //       alert(e);
-  //     });
-  // }, []);
 
   return (
     <div

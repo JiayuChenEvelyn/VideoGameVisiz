@@ -198,6 +198,25 @@ const CustomizedHome = ({ isCollapsed }) => {
       ]);
     }
   }, []);
+  //   React.useEffect(() => {
+  //     if (preferenceComplete) {
+  //       fetch(
+  //         "http://localhost:8080/game/genreCount?genres=genreValue"
+  //       )
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //           console.log("data", data);
+  //           console.log("data.data", data.data);
+  //           if (data.status === 200) {
+  //             setGenreCount(data.data);
+  //           }
+  //         })
+  //         .catch((e) => {
+  //           console.log("Error:", e);
+  //           alert(e);
+  //         });
+  //     }
+  //   }, []);
 
   // get pie data
   React.useEffect(() => {
@@ -534,7 +553,7 @@ const CustomizedHome = ({ isCollapsed }) => {
             </Box>
           </div>
           <HomeTable data={topVgSales} />
-          <Box sx={{ }}>
+          <Box sx={{}}>
             <Stack
               spacing={2}
               direction="row"
@@ -556,7 +575,13 @@ const CustomizedHome = ({ isCollapsed }) => {
               <Typography color={colors.grey[100]}>2020</Typography>
             </Stack>
           </Box>
-          <div style={{ marginTop:"0px", display: "flex", justifyContent: "space-between" }}>
+          <div
+            style={{
+              marginTop: "0px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
             <Box width="50%" height="250px" mt="20px">
               <LineChart isDashboard={false} data="" />
             </Box>
@@ -564,7 +589,13 @@ const CustomizedHome = ({ isCollapsed }) => {
               <LineChart isDashboard={false} data="" />
             </Box>
           </div>
-          <div style={{ marginTop: "10px", display: "flex", justifyContent:"space-around" }}>
+          <div
+            style={{
+              marginTop: "10px",
+              display: "flex",
+              justifyContent: "space-around",
+            }}
+          >
             <Box sx={{ display: "flex", justifyContent: "center", mb: "10px" }}>
               <FormControl>
                 <FormLabel id="demo-row-radio-buttons-group-label">

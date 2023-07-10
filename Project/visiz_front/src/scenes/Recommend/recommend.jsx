@@ -28,7 +28,7 @@ export default function Recommend() {
   };
 
   const handleRecommendSubmit = () => {
-    axios.post('http://127.0.0.1:5000/recommend', { gameName: gameName })
+    axios.post('http://10.68.26.110:3000/recommend', { gameName: gameName })
       .then(res => {
         setRecommendedGames(res.data.recommended_games);
       })
@@ -39,7 +39,7 @@ export default function Recommend() {
   };
 
   const handlePredictSubmit = () => {
-    axios.post('http://127.0.0.1:5000/predict', gameFeatures)
+    axios.post('http://10.68.26.110:3000/predict', gameFeatures)
       .then(res => {
         console.log(res.data.score)
         setPredictedScore(res.data.score);

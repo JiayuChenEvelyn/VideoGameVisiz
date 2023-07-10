@@ -24,7 +24,7 @@ const Game = ({ isCollapsed }) => {
         console.log("data.data", data.data);
         if (data.state === 200) {
           setGameInfo(data.data);
-          setValue(data.data.rating*20.0);
+          setValue(data.data.rating/20);
         }
       })
       .catch((e) => {
@@ -45,7 +45,7 @@ const Game = ({ isCollapsed }) => {
       .then((data) => {
         console.log("data", data);
         if (data.state === 200) {
-          setValue(data.data/20.0);
+          setValue(data.data/20);
         }
       })
       .catch((e) => {

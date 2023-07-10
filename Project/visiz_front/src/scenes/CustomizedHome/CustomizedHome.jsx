@@ -65,10 +65,11 @@ const CustomizedHome = ({ isCollapsed }) => {
     setSlideValue(newValue);
     console.log(newValue);
     var temp = lineData;
+    var test = temp;
     for (let i = 0; i < data.length; i++) {
-      temp[i].data.filter(obj => obj.x >= newValue[0] && obj.x <= newValue[1]);
+      test = temp[i].data.filter(obj => obj.x >= newValue[0] && obj.x <= newValue[1]);
     }
-    setLineChart1(temp);
+    setLineChart1(test);
   };
 
   const icon = {

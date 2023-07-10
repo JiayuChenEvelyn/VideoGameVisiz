@@ -188,46 +188,50 @@ const CustomizedHome = ({ isCollapsed }) => {
   //   }, []);
 
   // get genre data
-  React.useEffect(() => {
-    if (preferenceComplete) {
-      setGenreCount([
-        {
-          genre: "Action",
-          count: 3316,
-          total: 16598,
-        },
-        {
-          genre: "Sports",
-          count: 2346,
-          total: 16598,
-        },
-        {
-          genre: "Misc",
-          count: 1739,
-          total: 16598,
-        },
-      ]);
-    }
-  }, []);
-  //   React.useEffect(() => {
-  //     if (preferenceComplete) {
-  //       fetch(
-  //         "http://localhost:8080/game/genreCount?genres=genreValue"
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log("data", data);
-  //           console.log("data.data", data.data);
-  //           if (data.status === 200) {
-  //             setGenreCount(data.data);
-  //           }
-  //         })
-  //         .catch((e) => {
-  //           console.log("Error:", e);
-  //           alert(e);
-  //         });
-  //     }
-  //   }, []);
+  // React.useEffect(() => {
+  //   if (preferenceComplete) {
+  //     setGenreCount([
+  //       {
+  //         genre: "Action",
+  //         count: 3316,
+  //         total: 16598,
+  //       },
+  //       {
+  //         genre: "Sports",
+  //         count: 2346,
+  //         total: 16598,
+  //       },
+  //       {
+  //         genre: "Misc",
+  //         count: 1739,
+  //         total: 16598,
+  //       },
+  //     ]);
+  //   }
+  // }, []);
+    React.useEffect(() => {
+      if (preferenceComplete) {
+        var temp = [];
+        genreValue.map(genre=>(
+          fetch(
+            "http://localhost:8080/game/showGenreCount?genre="+genre
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log("data", data);
+              console.log("data.data", data.data);
+              if (data.status === 200) {
+                temp.add(data.count);
+              }
+            })
+            .catch((e) => {
+              console.log("Error:", e);
+              alert(e);
+            })
+        ));
+        setGenreCount(temp);
+      }
+    }, []);
 
   // get pie data
   React.useEffect(() => {
@@ -437,9 +441,9 @@ const CustomizedHome = ({ isCollapsed }) => {
               justifyContent: "space-evenly",
             }}
           >
-            {genreCount.map((data) => (
+            {genreCount.map((data,i) => (
               <Box
-                key={data.genre}
+                key={i}
                 width="30%"
                 height="120px"
                 borderRadius="12px"
@@ -450,10 +454,10 @@ const CustomizedHome = ({ isCollapsed }) => {
                 justifyContent="center"
               >
                 <StatBox
-                  title={data.count}
-                  subtitle={data.genre + " games in total"}
-                  progress={data.count / data.total}
-                  icon={icon[data.genre]}
+                  title={data}
+                  subtitle={genreValue[i]+ " games in total"}
+                  progress={data / 10973.0}
+                  icon={icon[genreValue[i]]}
                 />
               </Box>
             ))}

@@ -19,6 +19,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
   // const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const tagValue = JSON.parse(localStorage.getItem("tag")) || [];
+  const username = JSON.parse(localStorage.getItem("username")) || [];
 
   return (
     <>
@@ -80,7 +81,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
                 marginBottom="10px"
                 color={color.grey[100]}
               >
-                USER NAME
+                {username}
               </Typography>
               <Box display="flex" flexWrap="wrap" justifyContent="space-around">
                 {tagValue.map((tag, i) => (

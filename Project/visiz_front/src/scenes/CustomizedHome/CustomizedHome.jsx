@@ -64,12 +64,17 @@ const CustomizedHome = ({ isCollapsed }) => {
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);
     console.log(newValue);
-    var temp = lineData;
-    var test = temp;
-    for (let i = 0; i < data.length; i++) {
-      test = temp[i].data.filter(obj => obj.x >= newValue[0] && obj.x <= newValue[1]);
+    var temp = [];
+    for (let i = 0; i < lineData.length; i++) {
+      console.log(lineData[i].data, lineData[i].data[0].x);
+      temp.push({id: lineData[i].id, data: []});
+      for (let j = 0; j < lineData[i].data.length; j++){
+        if (lineData[i].data[j].x >= newValue[0] && lineData[i].data[j].x <= newValue[1]){
+          temp[i].data.push(lineData[i].data[j])
+        }
+      }
     }
-    setLineChart1(test);
+    setLineChart1(temp);
   };
 
   const icon = {
@@ -189,62 +194,62 @@ const CustomizedHome = ({ isCollapsed }) => {
   //   }, []);
 
   // get genre data
-  // React.useEffect(() => {
-  //   if (preferenceComplete) {
-  //     setGenreCount([
-  //       {
-  //         genre: "Action",
-  //         count: 3316,
-  //         total: 16598,
-  //       },
-  //       {
-  //         genre: "Sports",
-  //         count: 2346,
-  //         total: 16598,
-  //       },
-  //       {
-  //         genre: "Misc",
-  //         count: 1739,
-  //         total: 16598,
-  //       },
-  //     ]);
-  //   }
-  // }, []);
-    var temp = [];
-    React.useEffect(() => {
-      if (preferenceComplete) {
-        console.log("genreValue",genreValue);
-        genreValue.map(genre=>(
-          fetch(
-            "http://localhost:8080/game/showGenreCount?genre="+genre
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.state === 200) {
-                var flag = 0;
-                for (let i = 0; i < temp.length; i++) {
-                  if (temp[i].genre === genre){
-                    flag = 1;
-                  }
-                }
-                if (flag === 0){
-                  console.log("genre", genre);
-                  console.log("data", data);
-                  console.log("genreCount", genreCount);
-                  temp.push({genre: genre, count: data.data});
-                  setGenreCount(temp);
-                  // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
+  React.useEffect(() => {
+    if (preferenceComplete) {
+      setGenreCount([
+        {
+          genre: "Action",
+          count: 3316,
+          total: 16598,
+        },
+        {
+          genre: "Sports",
+          count: 2346,
+          total: 16598,
+        },
+        {
+          genre: "Misc",
+          count: 1739,
+          total: 16598,
+        },
+      ]);
+    }
+  }, []);
+    // var temp = [];
+    // React.useEffect(() => {
+    //   if (preferenceComplete) {
+    //     console.log("genreValue",genreValue);
+    //     genreValue.map(genre=>(
+    //       fetch(
+    //         "http://localhost:8080/game/showGenreCount?genre="+genre
+    //       )
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //           if (data.state === 200) {
+    //             var flag = 0;
+    //             for (let i = 0; i < temp.length; i++) {
+    //               if (temp[i].genre === genre){
+    //                 flag = 1;
+    //               }
+    //             }
+    //             if (flag === 0){
+    //               console.log("genre", genre);
+    //               console.log("data", data);
+    //               console.log("genreCount", genreCount);
+    //               temp.push({genre: genre, count: data.data});
+    //               setGenreCount(temp);
+    //               // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
 
-                }
-              }
-            })
-            .catch((e) => {
-              console.log("Error:", e);
-              alert(e);
-            })
-        ));
-      }
-    }, []);
+    //             }
+    //           }
+    //         })
+    //         .catch((e) => {
+    //           console.log("Error:", e);
+    //           alert(e);
+    //         })
+    //     ));
+    //   }
+    // }, []);
 
   // get pie data
   React.useEffect(() => {

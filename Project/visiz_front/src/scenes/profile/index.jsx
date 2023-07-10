@@ -21,13 +21,14 @@ import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
 import Topbar from "../global/topbar";
 import TagsInput from "../../components/TagSelector";
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
-const Profile = ({isCollapsed}) => {
+
+const Profile = ({ isCollapsed }) => {
   const navigate = useNavigate();
   const [firstName, setFirstName] = React.useState("firstName");
   const [lastName, setLastName] = React.useState("lastName");
@@ -52,6 +53,11 @@ const Profile = ({isCollapsed}) => {
     setOpenDialog(false);
   };
 
+  const clearLocalStorage = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
@@ -68,7 +74,10 @@ const Profile = ({isCollapsed}) => {
   };
 
   return (
-    <div id="rightContent" style={isCollapsed?{ marginLeft: "80px" }:{ marginLeft: "250px" }}>
+    <div
+      id="rightContent"
+      style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
+    >
       <Topbar title="Profile" subtitle="Edit your profile here" />
       <Box padding="30px">
         <Formik
@@ -183,6 +192,17 @@ const Profile = ({isCollapsed}) => {
             </form>
           )}
         </Formik>
+        <Button
+          onClick={clearLocalStorage}
+          variant="text"
+          sx={{
+            marginTop: "30px",
+            color: colors.grey[100],
+            backgroundColor: colors.grey[500],
+          }}
+        >
+          Log out
+        </Button>
       </Box>
       <Dialog
         open={openDialog}
@@ -190,16 +210,26 @@ const Profile = ({isCollapsed}) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title" sx={{fontSize:"20px", color:colors.grey[100]}}>
+        <DialogTitle
+          id="alert-dialog-title"
+          sx={{ fontSize: "20px", color: colors.grey[100] }}
+        >
           {"Successfully updated!"}
         </DialogTitle>
         <DialogContent>
-          <DialogContentText id="alert-dialog-description" sx={{color:colors.grey[100]}}>
+          <DialogContentText
+            id="alert-dialog-description"
+            sx={{ color: colors.grey[100] }}
+          >
             You have updated your profile data.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} autoFocus sx={{color:colors.grey[100]}}>
+          <Button
+            onClick={handleClose}
+            autoFocus
+            sx={{ color: colors.grey[100] }}
+          >
             OK
           </Button>
         </DialogActions>

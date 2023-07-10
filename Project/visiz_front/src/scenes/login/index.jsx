@@ -30,31 +30,26 @@ const Login = ({setAuth}) => {
   const handleFormSubmit = (values) => {
     console.log(values);
 
-    // fetch(
-    //   "http://localhost:8080/users/login?username="+values.username+"&password="+values.password
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     if (data.status === 200) {
-    //       localStorage.setItem("auth", "true");
-    //       navigate("/dashboard");
-    //     }else{
-    //       return Promise.reject("Invalid login attempt, state is not 200");
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+      "http://localhost:8080/users/login?username="+values.username+"&password="+values.password
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        if (data.status === 200) {
+          localStorage.setItem("auth", "true");
+          localStorage.setItem("username", data.username);
+          navigate("/dashboard");
 
-    var result = 200;
-    if (result === 200) {
-      localStorage.setItem("auth", "true");
-      navigate("/preference");
-    } else {
-      alert("Invalid login attempt, state is not 200");
-    }
+        }else{
+          return Promise.reject("Invalid login attempt, state is not 200");
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
+
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();

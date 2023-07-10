@@ -211,17 +211,16 @@ const CustomizedHome = ({ isCollapsed }) => {
   // }, []);
     React.useEffect(() => {
       if (preferenceComplete) {
-        var temp = [];
+        console.log("genreValue",genreValue);
         genreValue.map(genre=>(
           fetch(
             "http://localhost:8080/game/showGenreCount?genre="+genre
           )
             .then((res) => res.json())
             .then((data) => {
-              console.log("data", data);
-              if (data.status === 200) {
-                temp.add(data.count);
-                setGenreCount(prevState => [...prevState, data.count])
+              if (data.state === 200) {
+                console.log("data", data);
+                setGenreCount(prevState => [...prevState, data.data])
               }
             })
             .catch((e) => {

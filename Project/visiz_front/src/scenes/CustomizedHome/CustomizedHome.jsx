@@ -29,7 +29,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import { data as lineData } from "../../data/lineData";
-
+import { data as lineData2 } from "../../data/genreSalesLineData";
 const CustomizedHome = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -46,12 +46,10 @@ const CustomizedHome = ({ isCollapsed }) => {
     preferenceComplete = false;
   }
 
-
-  
   const [topVgSales, setTopVgSales] = React.useState([]);
   const [genreCount, setGenreCount] = React.useState([]);
   const [barData, setBarData] = React.useState([]);
-  const [slideValue, setSlideValue] = React.useState([1900, 2020]);
+  const [slideValue, setSlideValue] = React.useState([1980, 2020]);
   const [pieYear, setPieYear] = React.useState(yearValue[0]);
   const [piePlatform, setPiePlatform] = React.useState(platformValue[0]);
   const [tableYear, setTableYear] = React.useState(yearValue[0]);
@@ -60,21 +58,38 @@ const CustomizedHome = ({ isCollapsed }) => {
   const [lineChartData1, setLineChart1] = React.useState(lineData);
   const [lineChartData2, setLineChart2] = React.useState(lineData);
 
-
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);
     console.log(newValue);
     var temp = [];
     for (let i = 0; i < lineData.length; i++) {
       console.log(lineData[i].data, lineData[i].data[0].x);
-      temp.push({id: lineData[i].id, data: []});
-      for (let j = 0; j < lineData[i].data.length; j++){
-        if (lineData[i].data[j].x >= newValue[0] && lineData[i].data[j].x <= newValue[1]){
-          temp[i].data.push(lineData[i].data[j])
+      temp.push({ id: lineData[i].id, data: [] });
+      for (let j = 0; j < lineData[i].data.length; j++) {
+        if (
+          lineData[i].data[j].x >= newValue[0] &&
+          lineData[i].data[j].x <= newValue[1]
+        ) {
+          temp[i].data.push(lineData[i].data[j]);
         }
       }
     }
     setLineChart1(temp);
+
+    var temp = [];
+    for (let i = 0; i < lineData2.length; i++) {
+      console.log(lineData2[i].data, lineData2[i].data[0].x);
+      temp.push({ id: lineData2[i].id, data: [] });
+      for (let j = 0; j < lineData2[i].data.length; j++) {
+        if (
+          lineData2[i].data[j].x >= newValue[0] &&
+          lineData2[i].data[j].x <= newValue[1]
+        ) {
+          temp[i].data.push(lineData2[i].data[j]);
+        }
+      }
+    }
+    setLineChart2(temp);
   };
 
   const icon = {
@@ -143,306 +158,196 @@ const CustomizedHome = ({ isCollapsed }) => {
   // get table data
   React.useEffect(() => {
     if (preferenceComplete) {
-      setTopVgSales([
-        {
-          rank: "1",
-          gameName: "Wii Sports",
-          platform: "Wii",
-          year: "2006",
-          genre: "Sports",
-          publisher: "Nintendo",
-          NASales: "41.49",
-          EUSales: "29.02",
-          JPSales: "3.77",
-          otherSales: "8.46",
-          globalSales: "82.74",
-        },
-        {
-          rank: "2",
-          gameName: "Super Mario Bros.",
-          platform: "NES",
-          year: "1985",
-          genre: "Platform",
-          publisher: "Nintendo",
-          NASales: "29.08",
-          EUSales: "3.58",
-          JPSales: "6.81",
-          ptherSales: "0.77",
-          globalSales: "40.24",
-        },
-      ]);
+      fetch(
+        "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("data", data);
+          console.log("data.data", data.data);
+          if (data.status === 200) {
+            setTopVgSales(data.data);
+          }
+        })
+        .catch((e) => {
+          console.log("Error:", e);
+          alert(e);
+        });
     }
   }, []);
-  //   React.useEffect(() => {
-  //     if (preferenceComplete) {
-  //       fetch(
-  //         "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log("data", data);
-  //           console.log("data.data", data.data);
-  //           if (data.status === 200) {
-  //             setTopVgSales(data.data);
-  //           }
-  //         })
-  //         .catch((e) => {
-  //           console.log("Error:", e);
-  //           alert(e);
-  //         });
-  //     }
-  //   }, []);
 
   // get genre data
+  var temp = [];
   React.useEffect(() => {
     if (preferenceComplete) {
-      setGenreCount([
-        {
-          genre: "Action",
-          count: 3316,
-          total: 16598,
-        },
-        {
-          genre: "Sports",
-          count: 2346,
-          total: 16598,
-        },
-        {
-          genre: "Misc",
-          count: 1739,
-          total: 16598,
-        },
-      ]);
+      console.log("genreValue", genreValue);
+      genreValue.map((genre) =>
+        fetch("http://localhost:8080/game/showGenreCount?genre=" + genre)
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.state === 200) {
+              var flag = 0;
+              for (let i = 0; i < temp.length; i++) {
+                if (temp[i].genre === genre) {
+                  flag = 1;
+                }
+              }
+              if (flag === 0) {
+                console.log("genre", genre);
+                console.log("data", data);
+                console.log("genreCount", genreCount);
+                temp.push({ genre: genre, count: data.data });
+                setGenreCount(temp);
+                // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
+              }
+            }
+          })
+          .catch((e) => {
+            console.log("Error:", e);
+            alert(e);
+          })
+      );
     }
   }, []);
-    // var temp = [];
-    // React.useEffect(() => {
-    //   if (preferenceComplete) {
-    //     console.log("genreValue",genreValue);
-    //     genreValue.map(genre=>(
-    //       fetch(
-    //         "http://localhost:8080/game/showGenreCount?genre="+genre
-    //       )
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //           if (data.state === 200) {
-    //             var flag = 0;
-    //             for (let i = 0; i < temp.length; i++) {
-    //               if (temp[i].genre === genre){
-    //                 flag = 1;
-    //               }
-    //             }
-    //             if (flag === 0){
-    //               console.log("genre", genre);
-    //               console.log("data", data);
-    //               console.log("genreCount", genreCount);
-    //               temp.push({genre: genre, count: data.data});
-    //               setGenreCount(temp);
-    //               // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
-
-    //             }
-    //           }
-    //         })
-    //         .catch((e) => {
-    //           console.log("Error:", e);
-    //           alert(e);
-    //         })
-    //     ));
-    //   }
-    // }, []);
 
   // get pie data
   React.useEffect(() => {
     if (preferenceComplete) {
-      setBarData([
-        {
-          id: "Action",
-          label: "Action",
-          value: 3316,
-          //   "color": "hsl(336, 70%, 50%)"
-        },
-        {
-          id: "Sports",
-          label: "Sports",
-          value: 2346,
-          //   "color": "hsl(222, 70%, 50%)"
-        },
-        {
-          id: "Misc",
-          label: "Misc",
-          value: 1739,
-          //   "color": "hsl(120, 70%, 50%)"
-        },
-        {
-          id: "Role_Playing",
-          label: "Role_Playing",
-          value: 1488,
-          //   "color": "hsl(223, 70%, 50%)"
-        },
-      ]);
+      fetch(
+        "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+          piePlatform +
+          "&year=" +
+          pieYear
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("data", data);
+          console.log("data.data", data.data);
+          if (data.state === 200) {
+            setBarData(data.data);
+          }
+        })
+        .catch((e) => {
+          console.log("Error:", e);
+          alert(e);
+        });
     }
-  });
-  //   React.useEffect(() => {
-  //     if (preferenceComplete) {
-  //       fetch(
-  //         "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-  //           piePlatform +
-  //           "&year=" +
-  //           pieYear
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log("data", data);
-  //           console.log("data.data", data.data);
-  //           if (data.state === 200) {
-  //             setBarData(data.data);
-  //           }
-  //         })
-  //         .catch((e) => {
-  //           console.log("Error:", e);
-  //           alert(e);
-  //         });
-  //     }
-  //   }, []);
+  }, []);
 
   const handlePieChartYearChange = (event) => {
     setPieYear(event.target.value);
-    // fetch(
-    //   "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-    //     piePlatform +
-    //     "&year=" +
-    //     event.target.value
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     console.log("data.data", data.data);
-    //     if (data.state === 200) {
-    //       setBarData(data.data);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+        piePlatform +
+        "&year=" +
+        event.target.value
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.state === 200) {
+          setBarData(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
   };
 
   const handlePieChartPlatformChange = (event) => {
     setPiePlatform(event.target.value);
-    // fetch(
-    //   "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
-    //     event.target.value +
-    //     "&year=" +
-    //     pieYear
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     console.log("data.data", data.data);
-    //     if (data.state === 200) {
-    //       setBarData(data.data);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+      "http://localhost:8080/game/showPlatformGenreProportion?platform=" +
+        event.target.value +
+        "&year=" +
+        pieYear
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.state === 200) {
+          setBarData(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
   };
 
   const handleTableYearChange = (event) => {
     setTableYear(event.target.value);
-    console.log(
-      "http://localhost:8080/game/showTop10?genre=" +
-        tableGenre +
-        "&platform=" +
-        tablePlatform +
-        "&year" +
-        event.target.value
-    );
-    // fetch(
-    // "http://localhost:8080/game/showTop10?genre=" +
-    // tableGenre +
-    // "&platform=" +
-    // tablePlatform +
-    // "&year" +
-    // event.target.value
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     console.log("data.data", data.data);
-    //     if (data.status === 200) {
-    //       setTopVgSales(data.data);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+    "http://localhost:8080/game/showTop10?genre=" +
+    tableGenre +
+    "&platform=" +
+    tablePlatform +
+    "&year" +
+    event.target.value
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.status === 200) {
+          setTopVgSales(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
   };
 
   const handleTableGenreChange = (event) => {
     setTableGenre(event.target.value);
-    console.log(
-      "http://localhost:8080/game/showTop10?genre=" +
-        event.target.value +
-        "&platform=" +
-        tablePlatform +
-        "&year" +
-        tableYear
-    );
-    // fetch(
-    // "http://localhost:8080/game/showTop10?genre=" +
-    // event.target.value +
-    // "&platform=" +
-    // tablePlatform +
-    // "&year" +
-    // tableYear
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     console.log("data.data", data.data);
-    //     if (data.status === 200) {
-    //       setTopVgSales(data.data);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+    "http://localhost:8080/game/showTop10?genre=" +
+    event.target.value +
+    "&platform=" +
+    tablePlatform +
+    "&year" +
+    tableYear
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.status === 200) {
+          setTopVgSales(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
   };
 
   const handleTablePlatformChange = (event) => {
     setTablePlatform(event.target.value);
-    console.log(
-      "http://localhost:8080/game/showTop10?genre=" +
-        tableGenre +
-        "&platform=" +
-        event.target.value +
-        "&year" +
-        tableYear
-    );
-    // fetch(
-    // "http://localhost:8080/game/showTop10?genre=" +
-    // tableGenre +
-    // "&platform=" +
-    // event.target.value +
-    // "&year" +
-    // tableYear
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log("data", data);
-    //     console.log("data.data", data.data);
-    //     if (data.status === 200) {
-    //       setTopVgSales(data.data);
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+    "http://localhost:8080/game/showTop10?genre=" +
+    tableGenre +
+    "&platform=" +
+    event.target.value +
+    "&year" +
+    tableYear
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data);
+        console.log("data.data", data.data);
+        if (data.status === 200) {
+          setTopVgSales(data.data);
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
   };
   if (preferenceComplete) {
     return (
@@ -459,7 +364,7 @@ const CustomizedHome = ({ isCollapsed }) => {
               justifyContent: "space-evenly",
             }}
           >
-            {genreCount.map((data,i) => (
+            {genreCount.map((data, i) => (
               <Box
                 key={i}
                 width="30%"
@@ -473,7 +378,7 @@ const CustomizedHome = ({ isCollapsed }) => {
               >
                 <StatBox
                   title={data.genre}
-                  subtitle={data.genre+ " games in total"}
+                  subtitle={data.genre + " games in total"}
                   progress={data.count / 10973.0}
                   icon={icon[data.genre]}
                 />
@@ -616,10 +521,10 @@ const CustomizedHome = ({ isCollapsed }) => {
             }}
           >
             <Box width="50%" height="250px" mt="20px">
-              <HomeLineChart isDashboard={false} data={lineChartData1}/>
+              <HomeLineChart isDashboard={false} data={lineChartData1} />
             </Box>
             <Box width="50%" height="250px" mt="20px">
-              <HomeLineChart isDashboard={false}  data={lineChartData2}/>
+              <HomeLineChart isDashboard={false} data={lineChartData2} />
             </Box>
           </div>
           <div

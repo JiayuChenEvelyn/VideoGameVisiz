@@ -27,16 +27,15 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-
 const Profile = ({ isCollapsed }) => {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = React.useState("firstName");
   const [lastName, setLastName] = React.useState("lastName");
   const [email, setEmail] = React.useState("email@gmail.com");
   const [password, setPassword] = React.useState("password");
   const [tags, setTags] = React.useState(["action", "puzzle"]);
   const [showPassword, setShowPassword] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
+  const userName = localStorage.getItem("username") || "";
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleFormSubmit = (values) => {
@@ -62,12 +61,12 @@ const Profile = ({ isCollapsed }) => {
   const colors = tokens(theme.palette.mode);
 
   const checkoutSchema = yup.object().shape({
-    firstName: yup.string().required("required"),
+    userName: yup.string().required("required"),
     lastName: yup.string().required("required"),
     email: yup.string().email("invalid email").required("required"),
   });
   const initialValues = {
-    firstName: firstName,
+    userName: userName,
     lastName: lastName,
     email: email,
     password: password,
@@ -101,21 +100,22 @@ const Profile = ({ isCollapsed }) => {
               >
                 <TextField
                   fullWidth
+                  disabled
                   variant="filled"
                   type="text"
-                  label="First Name"
+                  label="User Name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.firstName}
-                  name="firstName"
-                  error={!!touched.firstName && !!errors.firstName}
-                  helperText={touched.firstName && errors.firstName}
+                  value={values.userName}
+                  name="userName"
+                  error={!!touched.userName && !!errors.userName}
+                  helperText={touched.userName && errors.userName}
                   sx={{
                     gridColumn: "span 2",
                     input: { color: colors.grey[100] },
                   }}
                 />
-                <TextField
+                {/* <TextField
                   fullWidth
                   variant="filled"
                   type="text"
@@ -130,8 +130,8 @@ const Profile = ({ isCollapsed }) => {
                     gridColumn: "span 2",
                     input: { color: colors.grey[100] },
                   }}
-                />
-                <TextField
+                /> */}
+                {/* <TextField
                   fullWidth
                   variant="filled"
                   type="text"
@@ -146,8 +146,8 @@ const Profile = ({ isCollapsed }) => {
                     gridColumn: "span 4",
                     input: { color: colors.grey[100] },
                   }}
-                />
-                <TextField
+                /> */}
+                {/* <TextField
                   fullWidth
                   variant="filled"
                   label="Password"
@@ -175,36 +175,41 @@ const Profile = ({ isCollapsed }) => {
                       </InputAdornment>
                     ),
                   }}
-                />
+                /> */}
+
                 <Box
                   sx={{
                     gridColumn: "span 4",
                   }}
                 >
+                  <Typography style={{ color: colors.grey[100] }}>
+                    Self Interested Tags
+                  </Typography>
                   <TagsInput tags={tags} setTags={setTags} />
                 </Box>
               </Box>
-              <Box display="flex" justifyContent="end" mt="20px">
+              {/* <Box display="flex" justifyContent="end" mt="20px">
                 <Button type="submit" color="secondary" variant="contained">
                   Save
                 </Button>
-              </Box>
+              </Box> */}
             </form>
           )}
         </Formik>
         <Button
           onClick={clearLocalStorage}
-          variant="text"
+          color="secondary"
+          variant="contained"
           sx={{
             marginTop: "30px",
             color: colors.grey[100],
-            backgroundColor: colors.grey[500],
+            backgroundColor: colors.blueAccent[500],
           }}
         >
           Log out
         </Button>
       </Box>
-      <Dialog
+      {/* <Dialog
         open={openDialog}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -233,7 +238,7 @@ const Profile = ({ isCollapsed }) => {
             OK
           </Button>
         </DialogActions>
-      </Dialog>
+      </Dialog> */}
     </div>
   );
 };

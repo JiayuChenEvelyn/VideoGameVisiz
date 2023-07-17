@@ -9,9 +9,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SportsEsportsOutlinedIcon from "@mui/icons-material/SportsEsportsOutlined";
 import GamesOutlinedIcon from "@mui/icons-material/GamesOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
+import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import "./index.css";
 import { Outlet } from "react-router-dom";
+
 
 const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
   const theme = useTheme();
@@ -19,7 +21,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
   // const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState("Dashboard");
   const tagValue = JSON.parse(localStorage.getItem("tag")) || [];
-  const username = JSON.parse(localStorage.getItem("username")) || [];
+  const username = localStorage.getItem("username") || '';
 
   return (
     <>
@@ -90,7 +92,6 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
                     sx={{
                       padding: "3px",
                       borderRadius: "5px",
-                      width: "30%",
                       textAlign: "center",
                       height: "100%",
                       margin: "3px",
@@ -136,6 +137,14 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
             component={<Link to="/dashboard" />}
           >
             Dashboard
+          </MenuItem>
+          <MenuItem
+            icon={<RecommendOutlinedIcon />}
+            active={selected === "predict"}
+            onClick={() => setSelected("predict")}
+            component={<Link to="/predict" />}
+          >
+            Prediction
           </MenuItem>
           <SubMenu
             active={
@@ -263,7 +272,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
               {" "}
               Puzzle
             </MenuItem>
-            <MenuItem
+            {/* <MenuItem
               active={selected === "Racing"}
               onClick={() => setSelected("Racing")}
               component={<Link to="/genre?g=Racing" />}
@@ -286,7 +295,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
             >
               {" "}
               Role_Playing
-            </MenuItem>
+            </MenuItem> */}
           </SubMenu>
         </Menu>
       </Sidebar>

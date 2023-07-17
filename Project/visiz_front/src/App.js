@@ -28,7 +28,8 @@ function App() {
   let pathName = window.location.pathname;
   let arr = pathName.toString().split("/");
   let currentPath = arr[arr.length - 1];
-
+  const auth = localStorage.getItem("auth") === 'true';
+  console.log(auth);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -36,7 +37,29 @@ function App() {
         <div className="app">
           <main id="content" className="content">
             <Routes>
-              <Route path="/" element={<Login />} />
+              {auth ? (
+                <Route
+                element={
+                  <ProtectedRoute>
+                    <CusSidebar
+                      isCollapsed={isCollapsed}
+                      setIsCollapsed={setIsCollapsed}
+                    />
+                  </ProtectedRoute>
+                }
+              >
+                <Route
+                  path="/"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                </Route>
+              ) : (
+                <Route path="/" element={<Login />} />
+              )}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/changepassword" element={<Changepassword />} />
@@ -142,7 +165,7 @@ function App() {
                   path="/predict"
                   element={
                     <ProtectedRoute>
-                      <Recommend />
+                      <Recommend isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />

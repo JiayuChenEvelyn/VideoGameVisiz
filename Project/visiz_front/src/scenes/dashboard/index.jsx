@@ -15,7 +15,6 @@ import { data as vgsales } from "../../data/vgsales";
 import PieChart from "../../components/PieChart";
 import Topbar from "../global/topbar";
 import InterestsPopOver from "../../components/InterestsPopOver";
-import "./index.css";
 
 const Dashboard = ({ isCollapsed }) => {
   const theme = useTheme();

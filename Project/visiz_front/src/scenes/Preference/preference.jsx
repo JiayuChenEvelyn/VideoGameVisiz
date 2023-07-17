@@ -10,21 +10,31 @@ const Preference = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const genres = [
-    "Action",
-    "Sports",
-    "Misc",
-    "Role_Playing",
-    "Shooter",
-    "Adventure",
-    "Racing",
-    "Platform",
-    "Simulation",
-    "Fighting",
-    "Strategy",
-    "Puzzle",
+    'Action', 'Adventure', 'Fighting', 'Misc', 'Platform', 'Puzzle',
+    'Racing', 'Role-Playing', 'Shooter', 'Simulation', 'Sports',
+    'Strategy'
   ];
 
   const years = [
+    "1980",
+    "1981",
+    "1982",
+    "1983",
+    "1984",
+    "1985",
+    "1986",
+    "1987",
+    "1988",
+    "1989",
+    "1990",
+    "1991",
+    "1992",
+    "1993",
+    "1994",
+    "1995",
+    "1996",
+    "1997",
+    "1998",
     "1999",
     "2000",
     "2001",
@@ -44,13 +54,42 @@ const Preference = ({ isCollapsed }) => {
     "2015",
     "2016",
     "2017",
-    "2018",
-    "2019",
     "2020",
-    "2021",
   ];
 
-  const platforms = ["Wii", "NES", "GB", "Steam", "NES", "DS", "PS2"];
+  const platforms = [
+    "2600",
+    "3DO",
+    "3DS",
+    "DC",
+    "DS",
+    "GB",
+    "GBA",
+    "GC",
+    "GEN",
+    "GG",
+    "N64",
+    "NES",
+    "NG",
+    "PC",
+    "PCFX",
+    "PS",
+    "PS2",
+    "PS3",
+    "PS4",
+    "PSP",
+    "PSV",
+    "SAT",
+    "SCD",
+    "SNES",
+    "TG16",
+    "WS",
+    "Wii",
+    "WiiU",
+    "X360",
+    "XB",
+    "XOne",
+  ];
 
   const setGenre = (newValue) => {
     localStorage.setItem("genre", JSON.stringify(newValue));
@@ -130,7 +169,7 @@ const Preference = ({ isCollapsed }) => {
           color={colors.grey[100]}
           fontWeight="600"
         >
-          Select your interest video game platforms
+          Enter your interested tags
         </Typography>
         <TagSelector />
       </Box>

@@ -60,11 +60,6 @@ const Changepassword = () => {
         alert(e);
       });
 
-    // var result = 200;
-    // if (result === 200) {
-    //   handleClickOpen();
-    // }
-    // navigate("/login");
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();

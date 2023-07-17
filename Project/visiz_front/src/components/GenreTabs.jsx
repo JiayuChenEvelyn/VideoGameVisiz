@@ -12,7 +12,7 @@ export default function GenreTabs({
   setTableData,
   wholeTableData,
   setGeoData,
-  wholeGeoData
+  wholeGeoData,
 }) {
   const handleChange = (event, newValue) => {
     setTab(newValue);
@@ -46,7 +46,9 @@ export default function GenreTabs({
       setTableData(wholeTableData.filter((obj) => obj.Genre === "Racing"));
       setGeoData(wholeGeoData.filter((obj) => obj.genre === "Racing"));
     } else if (newValue === "Role-Playing") {
-      setTableData(wholeTableData.filter((obj) => obj.Genre === "Role-Playing"));
+      setTableData(
+        wholeTableData.filter((obj) => obj.Genre === "Role-Playing")
+      );
       setGeoData(wholeGeoData.filter((obj) => obj.genre === "Role-Playing"));
     } else if (newValue === "Shooter") {
       setTableData(wholeTableData.filter((obj) => obj.Genre === "Shooter"));

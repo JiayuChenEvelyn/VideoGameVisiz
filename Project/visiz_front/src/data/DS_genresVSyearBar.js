@@ -8,7 +8,7 @@ export const mockData = [
     Platform: "0",
     Puzzle: "0",
     Racing: "0",
-    Role_Playing: "0",
+    'Role-Playing': "0",
     Shooter: "0",
     Simulation: "0",
     Sports: "0",
@@ -23,7 +23,7 @@ export const mockData = [
     Platform: "1",
     Puzzle: "7",
     Racing: "4",
-    Role_Playing: "0",
+    'Role-Playing': "0",
     Shooter: "0",
     Simulation: "3",
     Sports: "3",
@@ -38,7 +38,7 @@ export const mockData = [
     Platform: "15",
     Puzzle: "15",
     Racing: "7",
-    Role_Playing: "9",
+    'Role-Playing': "9",
     Shooter: "4",
     Simulation: "10",
     Sports: "9",
@@ -53,7 +53,7 @@ export const mockData = [
     Platform: "16",
     Puzzle: "18",
     Racing: "3",
-    Role_Playing: "27",
+    'Role-Playing': "27",
     Shooter: "7",
     Simulation: "14",
     Sports: "11",
@@ -68,7 +68,7 @@ export const mockData = [
     Platform: "18",
     Puzzle: "45",
     Racing: "12",
-    Role_Playing: "34",
+    'Role-Playing': "34",
     Shooter: "8",
     Simulation: "46",
     Sports: "28",
@@ -83,7 +83,7 @@ export const mockData = [
     Platform: "15",
     Puzzle: "36",
     Racing: "14",
-    Role_Playing: "54",
+    'Role-Playing': "54",
     Shooter: "9",
     Simulation: "77",
     Sports: "41",
@@ -98,7 +98,7 @@ export const mockData = [
     Platform: "6",
     Puzzle: "54",
     Racing: "15",
-    Role_Playing: "33",
+    'Role-Playing': "33",
     Shooter: "7",
     Simulation: "72",
     Sports: "25",
@@ -113,7 +113,7 @@ export const mockData = [
     Platform: "7",
     Puzzle: "33",
     Racing: "8",
-    Role_Playing: "28",
+    'Role-Playing': "28",
     Shooter: "4",
     Simulation: "45",
     Sports: "21",
@@ -128,7 +128,7 @@ export const mockData = [
     Platform: "9",
     Puzzle: "24",
     Racing: "3",
-    Role_Playing: "9",
+    'Role-Playing': "9",
     Shooter: "3",
     Simulation: "11",
     Sports: "6",
@@ -143,7 +143,7 @@ export const mockData = [
     Platform: "0",
     Puzzle: "4",
     Racing: "0",
-    Role_Playing: "2",
+    'Role-Playing': "2",
     Shooter: "0",
     Simulation: "0",
     Sports: "1",
@@ -158,7 +158,7 @@ export const mockData = [
     Platform: "2",
     Puzzle: "0",
     Racing: "0",
-    Role_Playing: "0",
+    'Role-Playing': "0",
     Shooter: "0",
     Simulation: "1",
     Sports: "1",
@@ -173,7 +173,7 @@ export const mockData = [
     Platform: "0",
     Puzzle: "0",
     Racing: "0",
-    Role_Playing: "0",
+    'Role-Playing': "0",
     Shooter: "0",
     Simulation: "0",
     Sports: "0",
@@ -188,7 +188,7 @@ export const mockData = [
     Platform: "0",
     Puzzle: "0",
     Racing: "0",
-    Role_Playing: "0",
+    'Role-Playing': "0",
     Shooter: "0",
     Simulation: "1",
     Sports: "0",
@@ -504,35 +504,35 @@ export const racingVSyearsBar = [
 export const roleVSyearsBar = [
   {
     Year: "2005",
-    Role_Playing: "9"
+    'Role-Playing': "9"
   },
   {
     Year: "2006",
-    Role_Playing: "27"
+    'Role-Playing': "27"
   },
   {
     Year: "2007",
-    Role_Playing: "34"
+    'Role-Playing': "34"
   },
   {
     Year: "2008",
-    Role_Playing: "54"
+    'Role-Playing': "54"
   },
   {
     Year: "2009",
-    Role_Playing: "33"
+    'Role-Playing': "33"
   },
   {
     Year: "2010",
-    Role_Playing: "28"
+    'Role-Playing': "28"
   },
   {
     Year: "2011",
-    Role_Playing: "9"
+    'Role-Playing': "9"
   },
   {
     Year: "2012",
-    Role_Playing: "2"
+    'Role-Playing': "2"
   },
   {
     Year: ""

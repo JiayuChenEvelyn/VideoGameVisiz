@@ -218,7 +218,7 @@ const Platform = ({ isCollapsed }) => {
                       "Simulation",
                       "Adventure",
                       "Puzzle",
-                      "Role_Playing",
+                      "Role-Playing",
                       "Sports",
                       "Platform",
                       "Strategy",

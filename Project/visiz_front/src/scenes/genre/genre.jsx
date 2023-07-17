@@ -132,8 +132,8 @@ const Genre = ({ isCollapsed }) => {
       style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
     >
       <Topbar
-        title={genreName + " Platform"}
-        subtitle={"Video games at " + genreName + " platform"}
+        title={genreName + " Genre"}
+        subtitle={"Video games at " + genreName + " Genre"}
       />
       <PlatformTabs
         tab={tab}

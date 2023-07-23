@@ -14,7 +14,7 @@ import axios from "axios";
 import Topbar from "../global/topbar";
 import { Box, useTheme } from "@mui/material";
 
-export default function Recommend({ isCollapsed }) {
+export default function Predict({ isCollapsed }) {
   const [gameName, setGameName] = useState("");
   const [gameFeatures, setGameFeatures] = useState({});
   const [recommendedGames, setRecommendedGames] = useState([]);
@@ -74,9 +74,6 @@ export default function Recommend({ isCollapsed }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const handleRecommendChange = (text) => {
-    setGameName(text);
-  };
 
   const handlePredictChange = (text, feature) => {
     setGameFeatures({
@@ -91,16 +88,7 @@ export default function Recommend({ isCollapsed }) {
       [feature]: value ? 1 : 0,
     });
   };
-  const handleRecommendSubmit = () => {
-    axios
-      .post("http://127.0.0.1:5000/recommend", { gameName: gameName })
-      .then((res) => {
-        setRecommendedGames(res.data.recommended_games);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
+
 
   const handlePredictSubmit = () => {
     axios
@@ -113,22 +101,6 @@ export default function Recommend({ isCollapsed }) {
       });
   };
 
-  const handleUserRecommendSubmit = () => {
-    axios
-      .post("http://127.0.0.1:5000/recommend_for_user", {
-        userId,
-        gameList,
-        playTimeList,
-        gameScoreList,
-        topK,
-      })
-      .then((res) => {
-        setUserRecommendedGames(res.data.recommended_games);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
   const chunk = (arr, size) =>
     Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -164,8 +136,8 @@ export default function Recommend({ isCollapsed }) {
       style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
     >
       <Topbar
-        title="Recommendations"
-        subtitle="Game recommendations"
+        title="Prediction"
+        subtitle="Game predictions"
       />
 
       <Box
@@ -176,64 +148,59 @@ export default function Recommend({ isCollapsed }) {
       >
         <ScrollView style={styles.container}>
           <View style={styles.card}>
-            <Text style={title_color}>Find Similar Game</Text>
+            <Text style={title_color}>Predict the Game Score</Text>
             <TextInput
               style={input_color}
-              onChangeText={handleRecommendChange}
-              value={gameName}
-              placeholder="Enter game name"
+              onChangeText={(text) => handlePredictChange(text, "developers")}
+              value={gameFeatures["developers"]}
+              placeholder="Enter developers"
             />
-            <Button
-              title="Get recommendations"
-              onPress={handleRecommendSubmit}
-            />
-            {recommendedGames.map((game, index) => (
-              <Text style={{color: colors.grey[100]}} key={index}>{game}</Text>
-            ))}
-            <br/>
-            <Text style={title_color}>Recommend for You</Text>
+
             <TextInput
               style={input_color}
-              onChangeText={setUserId}
-              value={userId}
-              placeholder="Enter user ID"
-            />
-            <TextInput
-              style={input_color}
-              onChangeText={(text) => setGameList(text.split(","))}
-              value={gameList.join(",")}
-              placeholder="Enter game list"
+              onChangeText={(text) => handlePredictChange(text, "publishers")}
+              value={gameFeatures["publishers"]}
+              placeholder="Enter publishers"
             />
             <TextInput
               style={input_color}
               onChangeText={(text) =>
-                setPlayTimeList(text.split(",").map(Number))
+                handlePredictChange(text, "supported_languages")
               }
-              value={playTimeList.join(",")}
-              placeholder="Enter play time list"
+              value={gameFeatures["supported_languages"]}
+              placeholder="Enter supported languages"
+            />
+            <TextInput
+              style={input_color}
+              onChangeText={(text) => handlePredictChange(text, "price")}
+              value={gameFeatures["price"]}
+              placeholder="Enter price"
+            />
+            <TextInput
+              style={input_color}
+              onChangeText={(text) => handlePredictChange(text, "all_reviews")}
+              value={gameFeatures["all_reviews"]}
+              placeholder="Enter all reviews"
             />
             <TextInput
               style={input_color}
               onChangeText={(text) =>
-                setGameScoreList(text.split(",").map(Number))
+                handlePredictChange(text, "positice_reviews")
               }
-              value={gameScoreList.join(",")}
-              placeholder="Enter game score list"
+              value={gameFeatures["positice_reviews"]}
+              placeholder="Enter positive reviews"
             />
-            <Text style={{color: colors.grey[100]}}>Enter top K number: </Text>
             <TextInput
               style={input_color}
-              onChangeText={(text) => setTopK(Number(text))}
-              placeholder="Enter top K"
-              value={String(topK)}
+              onChangeText={(text) =>
+                handlePredictChange(text, "released_year")
+              }
+              value={gameFeatures["released_year"]}
+              placeholder="Enter released year"
             />
-            <Button
-              title="Get recommendations for user"
-              onPress={handleUserRecommendSubmit}
-            />
-            {userRecommendedGames.map((game, index) => (
-              <Text style={{color: colors.grey[100]}} key={index}>{game}</Text>
-            ))}
+            {chunk(featureLabels, 8).map(renderSwitchRow)}
+            <Button title="Predict Score" onPress={handlePredictSubmit} />
+            <Text style={{color: colors.greenAccent[400], fontSize: 20, fontWeight: "bold"}}>Predicted Score: {predictedScore}</Text>
           </View>
         </ScrollView>
       </Box>

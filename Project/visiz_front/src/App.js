@@ -20,6 +20,7 @@ import Preference from "./scenes/Preference/preference";
 import CustomizedHome from "./scenes/CustomizedHome/CustomizedHome";
 import Recommend from "./scenes/Recommend/recommend";
 import Genre from "./scenes/genre/genre";
+import Predict from './scenes/predict/predict';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -162,10 +163,18 @@ function App() {
                   }
                 />
                 <Route
-                  path="/predict"
+                  path="/recommend"
                   element={
                     <ProtectedRoute>
                       <Recommend isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/predict"
+                  element={
+                    <ProtectedRoute>
+                      <Predict isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />

@@ -11,6 +11,7 @@ import GamesOutlinedIcon from "@mui/icons-material/GamesOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
+import BatchPredictionOutlinedIcon from '@mui/icons-material/BatchPredictionOutlined';
 import "./index.css";
 import { Outlet } from "react-router-dom";
 
@@ -140,6 +141,14 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
           </MenuItem>
           <MenuItem
             icon={<RecommendOutlinedIcon />}
+            active={selected === "recommend"}
+            onClick={() => setSelected("recommend")}
+            component={<Link to="/recommend" />}
+          >
+            Recommendation
+          </MenuItem>
+          <MenuItem
+            icon={<BatchPredictionOutlinedIcon />}
             active={selected === "predict"}
             onClick={() => setSelected("predict")}
             component={<Link to="/predict" />}

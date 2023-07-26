@@ -1,3 +1,4 @@
+// Chart template reference on the offical Nivo Chart website https://nivo.rocks/
 import { useTheme } from "@mui/material";
 import { ResponsiveLine } from "@nivo/line";
 import { tokens } from "../theme";
@@ -10,6 +11,22 @@ const HomeLineChart = ({ isDashboard = false, data }) => {
     <ResponsiveLine
       style={{"className":"tttt"}}
       data={data}
+      tooltip={({ point }) => {
+        return (
+            <div
+                style={{
+                    background: 'white',
+                    padding: '9px 12px',
+                    border: '1px solid #ccc',
+                }}
+            >
+                <div>Platform: {point.serieId}</div>
+                <div>Year: {point.data.x}</div>
+                <div>Sales: {point.data.y} million dollars</div>
+            </div>
+        )
+    }} 
+      
       enablePoints={false}
       theme={{
         axis: {

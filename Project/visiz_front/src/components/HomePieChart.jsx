@@ -1,3 +1,4 @@
+// Chart template reference on the offical Nivo Chart website https://nivo.rocks/
 import { ResponsivePie } from "@nivo/pie";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";

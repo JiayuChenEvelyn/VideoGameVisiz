@@ -1,3 +1,4 @@
+// Chart template reference on the offical Nivo Chart website https://nivo.rocks/
 import { useTheme } from "@mui/material";
 import { ResponsiveBar } from "@nivo/bar";
 import { tokens } from "../theme";

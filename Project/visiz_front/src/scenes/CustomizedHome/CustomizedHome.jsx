@@ -56,7 +56,7 @@ const CustomizedHome = ({ isCollapsed }) => {
   const [tablePlatform, setTablePlatform] = React.useState(platformValue[0]);
   const [tableGenre, setTableGenre] = React.useState(genreValue[0]);
   const [lineChartData1, setLineChart1] = React.useState(lineData);
-  const [lineChartData2, setLineChart2] = React.useState(lineData);
+  const [lineChartData2, setLineChart2] = React.useState(lineData2);
 
   const handleSlideChange = (event, newValue) => {
     setSlideValue(newValue);

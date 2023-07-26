@@ -1,3 +1,5 @@
+// Chart template reference on the offical Nivo Chart website https://nivo.rocks/
+
 import { ResponsiveChoropleth } from "@nivo/geo";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";

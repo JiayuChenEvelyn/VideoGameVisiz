@@ -26,6 +26,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Changepassword from '../changepassowrd/changepassword';
 
 const Profile = ({ isCollapsed }) => {
   const navigate = useNavigate();
@@ -56,6 +57,12 @@ const Profile = ({ isCollapsed }) => {
     localStorage.clear();
     navigate("/login");
   };
+
+
+  const Changepassword = () => {
+    navigate("/changePassword");
+  };
+
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -196,6 +203,19 @@ const Profile = ({ isCollapsed }) => {
             </form>
           )}
         </Formik>
+        <Button
+          onClick={Changepassword}
+          color="secondary"
+          variant="contained"
+          sx={{
+            marginTop: "30px",
+            color: colors.grey[100],
+            backgroundColor: colors.blueAccent[500],
+          }}
+        >
+          Change Password
+        </Button>
+        <br />
         <Button
           onClick={clearLocalStorage}
           color="secondary"

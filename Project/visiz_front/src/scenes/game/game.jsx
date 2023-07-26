@@ -120,7 +120,7 @@ const Game = ({ isCollapsed }) => {
           fontWeight="400"
           color={colors.grey[100]}
         >
-          <span style={{ paddingRight: "10px" }}>Relased Data:</span>
+          <span style={{ paddingRight: "10px" }}>Relased Year:</span>
           {gameInfo.year}
         </Typography>
         <Typography

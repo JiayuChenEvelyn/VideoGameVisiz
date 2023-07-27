@@ -11,25 +11,28 @@ import { mockData as Wii_genresVSyearBar } from "../../data/Wii_genresVSyearBar"
 import { mockData as X360_genresVSyearBar } from "../../data/X360_genresVSyearBar";
 import { mockData as PSP_genresVSyearBar } from "../../data/PSP_genresVSyearBar";
 import { mockData as PS_genresVSyearBar } from "../../data/PS_genresVSyearBar";
+import { mockData as PC_genresVSyearBar } from "../../data/PC_genresVSyearBar";
 import { mockData as DS_pie } from "../../data/DS_pie";
 import { mockData as PS2_pie } from "../../data/PS2_pie";
 import { mockData as PS3_pie } from "../../data/PS3_pie";
 import { mockData as PSP_pie } from "../../data/PSP_pie";
 import { mockData as Wii_pie } from "../../data/Wii_pie";
 import { mockData as X360_pie } from "../../data/X360_pie";
+import { mockData as PC_pie } from "../../data/PC_pie";
 import { data as DS_continent_sales } from "../../data/DS_continent_sales";
 import { data as PS2_continent_sales } from "../../data/PS2_continent_sales";
 import { data as PSP_continent_sales } from "../../data/PSP_continent_sales.js";
 import { data as PS3_continent_sales } from "../../data/PS3_continent_sales";
 import { data as Wii_continent_sales } from "../../data/Wii_continent_sales";
 import { data as X360_continent_sales } from "../../data/X360_continent_sales";
+import { data as PC_continent_sales } from "../../data/PC_continent_sales";
 import { mockData as DS_data } from "../../data/DS_data";
 import { mockData as PS2_data } from "../../data/PS2_data";
 import { mockData as PS3_data } from "../../data/PS3_data";
 import { mockData as X360_data } from "../../data/X360_data";
 import { mockData as PSP_data } from "../../data/PSP_data";
 import { mockData as Wii_data } from "../../data/Wii_data";
-
+import { mockData as PC_data } from "../../data/PC_data";
 import GameTable from "../../components/GameTable";
 import GenreTabs from "../../components/GenreTabs";
 import { useSearchParams } from "react-router-dom";
@@ -99,6 +102,13 @@ const Platform = ({ isCollapsed }) => {
       setWholeGeoData(PSP_continent_sales);
       setTableData(PSP_data);
       setWholeTableData(PSP_data);
+    } else if (query === "PC") {
+      barData = PC_genresVSyearBar;
+      pieData = PC_pie;
+      setGeoData(PC_continent_sales.filter((obj) => obj.genre === "all"));
+      setWholeGeoData(PC_continent_sales);
+      setTableData(PC_data);
+      setWholeTableData(PC_data);
     }
   }, [searchParams]);
   // const [barData, setBarData] = React.useState();
@@ -128,6 +138,10 @@ const Platform = ({ isCollapsed }) => {
   } else if (platformName === "PS") {
     barData = PS_genresVSyearBar;
     pieData = PS2_pie;
+    // geoData = PS2_continent_sales;
+  } else if (platformName === "PC") {
+    barData = PC_genresVSyearBar;
+    pieData = PC_pie;
     // geoData = PS2_continent_sales;
   }
 

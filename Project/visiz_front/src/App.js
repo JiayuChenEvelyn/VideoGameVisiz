@@ -21,6 +21,7 @@ import CustomizedHome from "./scenes/CustomizedHome/CustomizedHome";
 import Recommend from "./scenes/Recommend/recommend";
 import Genre from "./scenes/genre/genre";
 import Predict from './scenes/predict/predict';
+import Steam from './scenes/steam/steam';
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -175,6 +176,14 @@ function App() {
                   element={
                     <ProtectedRoute>
                       <Predict isCollapsed={isCollapsed} />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="/steam"
+                  element={
+                    <ProtectedRoute>
+                      <Steam isCollapsed={isCollapsed} />
                     </ProtectedRoute>
                   }
                 />

@@ -12,6 +12,7 @@ import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlin
 import RecommendOutlinedIcon from '@mui/icons-material/RecommendOutlined';
 import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import BatchPredictionOutlinedIcon from '@mui/icons-material/BatchPredictionOutlined';
+import KeyboardOutlinedIcon from '@mui/icons-material/KeyboardOutlined';
 import "./index.css";
 import { Outlet } from "react-router-dom";
 
@@ -163,7 +164,8 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
               selected === "Wii" ||
               selected === "X360" ||
               selected === "PSP" ||
-              selected === "PS"
+              selected === "PS" ||
+              selected === "PC"
             }
             icon={<SportsEsportsOutlinedIcon />}
             label="Platform"
@@ -215,6 +217,14 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
             >
               {" "}
               PSP
+            </MenuItem>
+            <MenuItem
+              active={selected === "PC"}
+              onClick={() => setSelected("PC")}
+              component={<Link to="/platform?p=PC" />}
+            >
+              {" "}
+              PC
             </MenuItem>
           </SubMenu>
           <SubMenu
@@ -281,31 +291,15 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
               {" "}
               Puzzle
             </MenuItem>
-            {/* <MenuItem
-              active={selected === "Racing"}
-              onClick={() => setSelected("Racing")}
-              component={<Link to="/genre?g=Racing" />}
-            >
-              {" "}
-              Racing
-            </MenuItem>
-            <MenuItem
-              active={selected === "Shooter"}
-              onClick={() => setSelected("Shooter")}
-              component={<Link to="/genre?g=Shooter" />}
-            >
-              {" "}
-              Shooter
-            </MenuItem>
-            <MenuItem
-              active={selected === "Role_Playing"}
-              onClick={() => setSelected("Role_Playing")}
-              component={<Link to="/genre?g=Role_Playing" />}
-            >
-              {" "}
-              Role_Playing
-            </MenuItem> */}
           </SubMenu>
+          <MenuItem
+            icon={<KeyboardOutlinedIcon />}
+            active={selected === "steam"}
+            onClick={() => setSelected("steam")}
+            component={<Link to="/steam" />}
+          >
+            Steam
+          </MenuItem>
         </Menu>
       </Sidebar>
       <Outlet />

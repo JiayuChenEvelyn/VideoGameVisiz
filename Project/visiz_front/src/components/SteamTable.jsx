@@ -112,7 +112,7 @@ export default function SteamTable({ data, click = true}) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   console.log("data",data);
-  const rows = data.sort((a, b) => (a.Rating < b.Rating ? 1 : -1));
+  const rows = data.sort((a, b) => (a.review_score < b.review_score ? 1 : -1));
 
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -161,7 +161,7 @@ export default function SteamTable({ data, click = true}) {
           ).map((row) => (
             <TableRow
               hover={true}
-              key={row.name}
+              key={row.url}
               onClick={()=>{}}
               style={{ cursor: "pointer" }}
             >

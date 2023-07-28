@@ -275,11 +275,8 @@ const CustomizedHome = ({ isCollapsed }) => {
           setBarData(data.data);
           if (data.data === []){
             document.getElementById("empty_message").style.display = "block";
-            document.getElementById("empty_message").style.color = colors.greyp[100];
-
           }else{
             document.getElementById("empty_message").style.display = "hidden";
-            document.getElementById("empty_message").style.color = colors.greyp[100];
 
           }
         }

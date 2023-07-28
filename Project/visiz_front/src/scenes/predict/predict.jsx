@@ -14,16 +14,8 @@ import Topbar from "../global/topbar";
 import { Box, useTheme } from "@mui/material";
 
 export default function Predict({ isCollapsed }) {
-  const [gameName, setGameName] = useState("");
   const [gameFeatures, setGameFeatures] = useState({});
-  const [recommendedGames, setRecommendedGames] = useState([]);
   const [predictedScore, setPredictedScore] = useState("");
-  const [userId, setUserId] = useState("");
-  const [gameList, setGameList] = useState([]);
-  const [playTimeList, setPlayTimeList] = useState([]);
-  const [gameScoreList, setGameScoreList] = useState([]);
-  const [topK, setTopK] = useState(5);
-  const [userRecommendedGames, setUserRecommendedGames] = useState([]);
 
   const featureLabels = [
     "Action",

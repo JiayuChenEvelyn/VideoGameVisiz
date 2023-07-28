@@ -6,7 +6,6 @@ import {
   View,
   TextInput,
   ScrollView,
-  Switch,
   Button,
 } from "react-native";
 import axios from "axios";
@@ -15,7 +14,6 @@ import { Box, useTheme } from "@mui/material";
 
 export default function Recommend({ isCollapsed }) {
   const [gameName, setGameName] = useState("");
-  const [gameFeatures, setGameFeatures] = useState({});
   const [recommendedGames, setRecommendedGames] = useState([]);
   const [userId, setUserId] = useState("");
   const [gameList, setGameList] = useState([]);
@@ -33,12 +31,6 @@ export default function Recommend({ isCollapsed }) {
   };
 
 
-  const handleSwitchChange = (value, feature) => {
-    setGameFeatures({
-      ...gameFeatures,
-      [feature]: value ? 1 : 0,
-    });
-  };
   const handleRecommendSubmit = () => {
     axios
       .post("http://127.0.0.1:5000/recommend", { gameName: gameName })
@@ -76,15 +68,6 @@ export default function Recommend({ isCollapsed }) {
     color: colors.grey[100],
   });
 
-  const renderSwitch = (label) => (
-    <View style={styles.switchContainer} key={label}>
-      <Text style={{color: colors.grey[100]}}>{label}</Text>
-      <Switch
-        onValueChange={(value) => handleSwitchChange(value, label)}
-        value={!!gameFeatures[label]}
-      />
-    </View>
-  );
 
 
   return (

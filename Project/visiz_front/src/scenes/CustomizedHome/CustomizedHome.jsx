@@ -277,7 +277,6 @@ const CustomizedHome = ({ isCollapsed }) => {
             document.getElementById("empty_message").style.display = "block";
           }else{
             document.getElementById("empty_message").style.display = "hidden";
-
           }
         }
       })

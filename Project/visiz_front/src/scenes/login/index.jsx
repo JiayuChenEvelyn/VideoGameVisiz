@@ -77,7 +77,7 @@ const Login = ({setAuth}) => {
           backgroundColor: "transparent",
         }}
       >
-        <Header title="Login" subtitle="Welcome to Visiz" />
+        <Header title="Login" subtitle="Welcome to GameViz" />
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}

@@ -1,7 +1,6 @@
 import * as React from "react";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import Topbar from "./scenes/global/topbar";
 import { Routes, Route } from "react-router-dom";
 import CusSidebar from "./scenes/global/sidebar";
 import Dashboard from "./scenes/dashboard";
@@ -27,11 +26,7 @@ function App() {
   const [theme, colorMode] = useMode();
   const [isCollapsed, setIsCollapsed] = React.useState(false);
 
-  let pathName = window.location.pathname;
-  let arr = pathName.toString().split("/");
-  let currentPath = arr[arr.length - 1];
   const auth = localStorage.getItem("auth") === 'true';
-  console.log(auth);
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>

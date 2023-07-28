@@ -28,7 +28,7 @@ const Dashboard = ({ isCollapsed }) => {
       id="rightContent"
       style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
     >
-      <Topbar title="DASHBOARD" subtitle="Welcome to visiz" />
+      <Topbar title="DASHBOARD" subtitle="Welcome to GameViz" />
       <Box m="20px">
         {/* HEADER */}
         <Box

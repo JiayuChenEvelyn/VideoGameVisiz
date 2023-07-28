@@ -3,7 +3,6 @@ import {
   Button,
   TextField,
   Card,
-  Typography,
   useTheme,
 } from "@mui/material";
 import * as React from "react";
@@ -13,10 +12,8 @@ import { Formik } from "formik";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import Link from "@mui/material/Link";
-import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
 import Dialog from "@mui/material/Dialog";
@@ -24,7 +21,6 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { useState, useEffect } from "react";
 
 const Register = () => {
 
@@ -103,7 +99,7 @@ const Register = () => {
           backgroundColor: "transparent",
         }}
       >
-        <Header title="Register" subtitle="Welcome to Visiz" />
+        <Header title="Register" subtitle="Welcome to GameViz" />
         <Formik
           onSubmit={handleFormSubmit}
           initialValues={initialValues}

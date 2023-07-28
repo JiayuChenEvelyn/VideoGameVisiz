@@ -16,7 +16,6 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 import { tokens } from "../theme";
-import { useNavigate } from "react-router-dom";
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -81,10 +80,6 @@ function TablePaginationActions(props) {
   );
 }
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
-
 
 const columns = [
   { id: "name", label: "Name", minWidth: 120 },
@@ -130,7 +125,6 @@ export default function SteamTable({ data, click = true}) {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const navigate = useNavigate();
   return (
     <TableContainer component={Paper}>
       <Table

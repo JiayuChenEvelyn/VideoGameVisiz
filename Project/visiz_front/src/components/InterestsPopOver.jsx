@@ -7,11 +7,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import Typography from "@mui/material/Typography";
 import { tokens } from "../theme";
 import { useTheme } from "@mui/material";
 import TagsInput from "./TagSelector";
-import MultiSelector from "./MultiSelector";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -53,9 +51,6 @@ export default function InterestsPopOver({ open, setOpen }) {
   const theme = useTheme();
   const color = tokens(theme.palette.mode);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
   const handleClose = () => {
     setOpen(false);
   };

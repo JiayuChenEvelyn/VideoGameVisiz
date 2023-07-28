@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   TextField,
-  Card,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -45,13 +44,7 @@ const Profile = ({ isCollapsed }) => {
     setOpenDialog(true);
     // navigate("/login");
   };
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
-  };
 
-  const handleClose = () => {
-    setOpenDialog(false);
-  };
 
   const clearLocalStorage = () => {
     localStorage.clear();
@@ -122,68 +115,6 @@ const Profile = ({ isCollapsed }) => {
                     input: { color: colors.grey[100] },
                   }}
                 />
-                {/* <TextField
-                  fullWidth
-                  variant="filled"
-                  type="text"
-                  label="Last Name"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
-                  name="lastName"
-                  error={!!touched.lastName && !!errors.lastName}
-                  helperText={touched.lastName && errors.lastName}
-                  sx={{
-                    gridColumn: "span 2",
-                    input: { color: colors.grey[100] },
-                  }}
-                /> */}
-                {/* <TextField
-                  fullWidth
-                  variant="filled"
-                  type="text"
-                  label="Email"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.email}
-                  name="email"
-                  error={!!touched.email && !!errors.email}
-                  helperText={touched.email && errors.email}
-                  sx={{
-                    gridColumn: "span 4",
-                    input: { color: colors.grey[100] },
-                  }}
-                /> */}
-                {/* <TextField
-                  fullWidth
-                  variant="filled"
-                  label="Password"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.password}
-                  name="password"
-                  error={!!touched.password && !!errors.password}
-                  helperText={touched.password && errors.password}
-                  sx={{
-                    gridColumn: "span 4",
-                    input: { color: colors.grey[100] },
-                  }}
-                  type={showPassword ? "text" : "password"}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={handleClickShowPassword}
-                          onMouseDown={handleMouseDownPassword}
-                        >
-                          {showPassword ? <VisibilityOff /> : <Visibility />}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
-                /> */}
-
                 <Box
                   sx={{
                     gridColumn: "span 4",
@@ -195,11 +126,6 @@ const Profile = ({ isCollapsed }) => {
                   <TagsInput tags={tags} setTags={setTags} />
                 </Box>
               </Box>
-              {/* <Box display="flex" justifyContent="end" mt="20px">
-                <Button type="submit" color="secondary" variant="contained">
-                  Save
-                </Button>
-              </Box> */}
             </form>
           )}
         </Formik>
@@ -229,36 +155,6 @@ const Profile = ({ isCollapsed }) => {
           Log out
         </Button>
       </Box>
-      {/* <Dialog
-        open={openDialog}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle
-          id="alert-dialog-title"
-          sx={{ fontSize: "20px", color: colors.grey[100] }}
-        >
-          {"Successfully updated!"}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText
-            id="alert-dialog-description"
-            sx={{ color: colors.grey[100] }}
-          >
-            You have updated your profile data.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleClose}
-            autoFocus
-            sx={{ color: colors.grey[100] }}
-          >
-            OK
-          </Button>
-        </DialogActions>
-      </Dialog> */}
     </div>
   );
 };

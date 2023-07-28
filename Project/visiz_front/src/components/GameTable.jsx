@@ -81,10 +81,6 @@ function TablePaginationActions(props) {
   );
 }
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
-
 
 const columns = [
   { id: "name", label: "Name", minWidth: 80 },
@@ -109,7 +105,6 @@ const columns = [
 export default function GameTable({ data }) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  console.log("data",data);
   const rows = data.sort((a, b) => (a.Rating < b.Rating ? 1 : -1));
 
 

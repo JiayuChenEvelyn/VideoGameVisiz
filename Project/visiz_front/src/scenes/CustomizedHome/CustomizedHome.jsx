@@ -1,23 +1,15 @@
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
-import { data } from "../../data/genre";
 import VideogameAssetOutlinedIcon from "@mui/icons-material/VideogameAssetOutlined";
 import SportsMmaOutlinedIcon from "@mui/icons-material/SportsMmaOutlined";
 import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import Header from "../../components/Header";
 import HomeLineChart from "../../components/HomeLineChart";
-import GeoChart from "../../components/GeoChart";
-import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import * as React from "react";
-import PieChart from "../../components/PieChart";
 import Topbar from "../global/topbar";
 import HomeTable from "../../components/HomeTable";
-import HomeBarChart from "../../components/HomeBarChart";
-import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Stack from "@mui/material/Stack";
 import Slider from "@mui/material/Slider";
 import Radio from "@mui/material/Radio";
@@ -33,15 +25,14 @@ import { data as lineData2 } from "../../data/genreSalesLineData";
 const CustomizedHome = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const tagValue = JSON.parse(localStorage.getItem("tag")) || [];
   const yearValue = JSON.parse(localStorage.getItem("year")) || [];
   const genreValue = JSON.parse(localStorage.getItem("genre")) || [];
   const platformValue = JSON.parse(localStorage.getItem("platform")) || [];
   var preferenceComplete = true;
   if (
-    yearValue.length == 0 ||
-    genreValue.length == 0 ||
-    platformValue.length == 0
+    yearValue.length === 0 ||
+    genreValue.length === 0 ||
+    platformValue.length === 0
   ) {
     preferenceComplete = false;
   }
@@ -385,7 +376,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         id="rightContent"
         style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
       >
-        <Topbar title="Home" subtitle="Customized home from Visiz" />
+        <Topbar title="Home" subtitle="Customized home from GameViz" />
         <Box marginLeft="16px">
           <div
             style={{
@@ -650,7 +641,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         id="rightContent"
         style={isCollapsed ? { marginLeft: "80px" } : { marginLeft: "250px" }}
       >
-        <Topbar title="Home" subtitle="Customized home from Visiz" />
+        <Topbar title="Home" subtitle="Customized home from GameViz" />
         <Box marginLeft="16px">
           <Typography
             variant="h5"

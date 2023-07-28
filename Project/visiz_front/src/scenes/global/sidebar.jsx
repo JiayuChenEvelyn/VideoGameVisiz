@@ -63,7 +63,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
           >
             <Box display="flex" color={color.primary[100]}>
               <Typography variant="h4" color={color.primary[100]}>
-                Visiz
+                GameViz
               </Typography>
             </Box>
           </MenuItem>
@@ -104,7 +104,7 @@ const CusSidebar = ({ title, subtitle, isCollapsed, setIsCollapsed }) => {
                       variant="h6"
                       fontWeight="bold"
                       color={
-                        i % 2 == 0
+                        i % 2 === 0
                           ? color.greenAccent[200]
                           : color.redAccent[200]
                       }

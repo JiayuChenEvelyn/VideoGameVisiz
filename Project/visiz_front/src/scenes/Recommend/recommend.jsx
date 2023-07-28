@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { tokens } from "../../theme";
 import {
@@ -18,7 +17,6 @@ export default function Recommend({ isCollapsed }) {
   const [gameName, setGameName] = useState("");
   const [gameFeatures, setGameFeatures] = useState({});
   const [recommendedGames, setRecommendedGames] = useState([]);
-  const [predictedScore, setPredictedScore] = useState("");
   const [userId, setUserId] = useState("");
   const [gameList, setGameList] = useState([]);
   const [playTimeList, setPlayTimeList] = useState([]);
@@ -26,50 +24,6 @@ export default function Recommend({ isCollapsed }) {
   const [topK, setTopK] = useState(5);
   const [userRecommendedGames, setUserRecommendedGames] = useState([]);
 
-  const featureLabels = [
-    "Action",
-    "First-Person",
-    "Third Person",
-    "Adventure",
-    "Strategy",
-    "RPG",
-    "Simulation",
-    "Horror",
-    "Survival",
-    "Puzzle",
-    "Indie",
-    "Retro",
-    "Pixel Graphics",
-    "Rouguelike",
-    "2D Platform",
-    "3D Platform",
-    "Multiplayer",
-    "Casual",
-    "Visual Novel",
-    "Otome",
-    "Arcade",
-    "Racing",
-    "Sports",
-    "Mature Content",
-    "Atmospheric",
-    "Narrative",
-    "Sci-Fi & Fantasy",
-    "Supernatural",
-    "Post-apocalyptic",
-    "Humor",
-    "Music & Sound",
-    "Art & Design",
-    "Role-Playing",
-    "Management & Building",
-    "Stealth & Strategy",
-    "Exploration & Adventure",
-    "Fantasy & Mythology",
-    "Education & Learning",
-    "Platformer",
-    "Historical",
-    "Early Access",
-    "VR",
-  ];
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -78,12 +32,6 @@ export default function Recommend({ isCollapsed }) {
     setGameName(text);
   };
 
-  const handlePredictChange = (text, feature) => {
-    setGameFeatures({
-      ...gameFeatures,
-      [feature]: text,
-    });
-  };
 
   const handleSwitchChange = (value, feature) => {
     setGameFeatures({
@@ -120,10 +68,6 @@ export default function Recommend({ isCollapsed }) {
       });
   };
 
-  const chunk = (arr, size) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
-      arr.slice(i * size, i * size + size)
-    );
 
   const title_color = StyleSheet.compose(styles.title, {
     color: colors.grey[100],

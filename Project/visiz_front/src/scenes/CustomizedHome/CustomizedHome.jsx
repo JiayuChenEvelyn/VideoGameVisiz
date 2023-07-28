@@ -628,7 +628,7 @@ const CustomizedHome = ({ isCollapsed }) => {
             </Box>
           </div>
           <Box height="250px" mt="5px">
-            <div id="empty_message" style={{display: "hidden",color:colors.grey[100]}}>Empty records for current selection</div>
+            <div id="empty_message" style={{ color: colors.grey[100] }}>Empty records for current selection</div>
             <HomePieChart isDashboard={true} data={barData} />
           </Box>
         </Box>

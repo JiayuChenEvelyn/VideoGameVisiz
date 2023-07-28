@@ -3,6 +3,8 @@
 
 > Data visualization is known as a powerful technique for conveying compelling stories of data by transforming abstract data into physical visual elements, which are crucial in interpreting data and aiding decision-making in various fields due to the human tendency to be more visually oriented. Therefore, the project is aiming to build a user-friendly visualization system called GameViz to help users visualize the large amount of complex video game data for data exploration and analysis, recommend customized video games based on each user state information, while displaying and forecasting the overall trend of the game industry.
 
+## Project Website
+https://wp.cs.hku.hk/2022/msp22013/
 
 ## The related environment, tools and libraries required for our system:
 - Operating system: Windows 10

@@ -50,26 +50,26 @@ Before running the platform, you will need to configure the dependencies.
 
 ```json
 "dependencies": {
-   Numpy version 1.21.6
-   Pandas version 1.3.5
-   Implicit version 0.7.0
-   Scipy version 1.4.1
-   Json version 2.0.9
-   Requests version 2.28.2
-   Beautiful soup version 4.11.2
-   Lxml version 4.9.2
-   Sklearn version 1.0.2
-   Matplotlib version 3.5.3
-   Seaborn version 0.10.0
-   category_encoders version 2.6.0
-   pmdarima version 2.0.3
-   xgboost version 1.7.3
-   tensorflow version 2.6.0
+   	Numpy version 1.21.6
+   	Pandas version 1.3.5
+   	Implicit version 0.7.0
+   	Scipy version 1.4.1
+   	Json version 2.0.9
+   	Requests version 2.28.2
+   	Beautiful soup version 4.11.2
+   	Lxml version 4.9.2
+   	Sklearn version 1.0.2
+   	Matplotlib version 3.5.3
+   	Seaborn version 0.10.0
+   	category_encoders version 2.6.0
+   	pmdarima version 2.0.3
+	xgboost version 1.7.3
+   	tensorflow version 2.6.0
   }
 
 "dependencies": {
 	flask version 2.2.2
-  flask-cors version 3.0.10
+  	flask-cors version 3.0.10
   }
 ```
 
@@ -78,7 +78,7 @@ Before running the platform, you will need to configure the dependencies.
 ```json
 "dependencies": {
 	flask version 2.2.2
-  flask-cors version 3.0.10
+	flask-cors version 3.0.10
  	Operating system: Windows 10
 	Java development kit: JDK 8
 	Project management tool: Maven 3.6.3

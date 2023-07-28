@@ -293,7 +293,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     tableGenre +
     "&platform=" +
     tablePlatform +
-    "&year" +
+    "&year=" +
     event.target.value
     )
       .then((res) => res.json())
@@ -302,7 +302,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         tableGenre +
         "&platform=" +
         tablePlatform +
-        "&year" +
+        "&year=" +
         event.target.value, data);
         if (data.state === 200) {
           setTopVgSales(data.data);
@@ -321,7 +321,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     event.target.value +
     "&platform=" +
     tablePlatform +
-    "&year" +
+    "&year=" +
     tableYear
     )
       .then((res) => res.json())
@@ -330,7 +330,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         event.target.value +
         "&platform=" +
         tablePlatform +
-        "&year" +
+        "&year=" +
         tableYear, data);
         if (data.state === 200) {
           setTopVgSales(data.data);
@@ -349,7 +349,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     tableGenre +
     "&platform=" +
     event.target.value +
-    "&year" +
+    "&year=" +
     tableYear
     )
       .then((res) => res.json())
@@ -358,7 +358,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         tableGenre +
         "&platform=" +
         event.target.value +
-        "&year" +
+        "&year=" +
         tableYear, data);
         if (data.state === 200) {
           setTopVgSales(data.data);

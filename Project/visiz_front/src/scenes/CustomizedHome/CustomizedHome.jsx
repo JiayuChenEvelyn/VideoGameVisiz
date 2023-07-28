@@ -164,7 +164,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         .then((res) => res.json())
         .then((data) => {
           console.log("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000", data);
-          if (data.status === 200) {
+          if (data.state === 200) {
             setTopVgSales(data.data);
           }
         })
@@ -285,7 +285,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("http://localhost:8080/game/showTop10?genre=", data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           setTopVgSales(data.data);
         }
       })
@@ -308,7 +308,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("http://localhost:8080/game/showTop10?genre=", data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           setTopVgSales(data.data);
         }
       })

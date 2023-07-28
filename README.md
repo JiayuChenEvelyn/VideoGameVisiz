@@ -9,8 +9,7 @@ With the emergence of various gaming platforms and the ease of access to games, 
 ## Projct Usage
 
 The project is aiming to build a user-friendly visualization system called GameViz to help users visualize the large amount of complex video game data for data exploration and analysis, recommend customized video games based on each user state information, while displaying and forecasting the overall trend of the game industry.
-![Uploading image.png…]()
-
+![image](https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/64573006/2359a51c-6aa7-4c90-b1e3-c0a499942f42)
 
 And this is the HKU CompSc COMP7705  - Group Project 
 

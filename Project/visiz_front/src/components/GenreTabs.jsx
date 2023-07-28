@@ -19,7 +19,6 @@ export default function GenreTabs({
     if (newValue === "Action") {
       setTableData(
         wholeTableData.filter((obj) => {
-          console.log(obj.Genre);
           return obj.Genre === "Action";
         })
       );

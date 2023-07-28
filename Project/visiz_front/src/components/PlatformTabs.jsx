@@ -18,7 +18,7 @@ export default function PlatformTabs({
     setTab(newValue);
     if (newValue === "all") {
       setTableData(wholeTableData);
-      setGeoData(wholeGeoData);
+      setGeoData(wholeGeoData.filter((obj) => obj.platform === "all"));
     } else if (newValue === "DS") {
       setTableData(wholeTableData.filter((obj) => obj.Platform === "DS"));
       setGeoData(wholeGeoData.filter((obj) => obj.platform === "DS"));

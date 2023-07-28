@@ -48,7 +48,7 @@ Before running the platform, you will need to configure the dependencies.
 
 1. Machine Learning  & Algorithm Server Environment:
 
-```json
+```javascript
 "dependencies": {
    	Numpy version 1.21.6
    	Pandas version 1.3.5
@@ -74,8 +74,9 @@ Before running the platform, you will need to configure the dependencies.
 ```
 
 2.  Front and Back End Environment:
+   
 
-```json
+```javascript
 "dependencies": {
 	flask version 2.2.2
 	flask-cors version 3.0.10

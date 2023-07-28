@@ -86,11 +86,6 @@ export default function Recommend({ isCollapsed }) {
     </View>
   );
 
-  const renderSwitchRow = (labels) => (
-    <View style={styles.switchRowContainer} key={labels.join()}>
-      {labels.map(renderSwitch)}
-    </View>
-  );
 
   return (
     <div

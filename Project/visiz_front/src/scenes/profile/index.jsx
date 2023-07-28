@@ -6,17 +6,9 @@ import {
   useTheme,
 } from "@mui/material";
 import * as React from "react";
-import IconButton from "@mui/material/IconButton";
 import { tokens } from "../../theme";
 import { Formik } from "formik";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import * as yup from "yup";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import Header from "../../components/Header";
-import Link from "@mui/material/Link";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
 import { useNavigate } from "react-router-dom";
 import Topbar from "../global/topbar";
 import TagsInput from "../../components/TagSelector";

@@ -12,12 +12,6 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import Topbar from "../global/topbar";
 import TagsInput from "../../components/TagSelector";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Changepassword from '../changepassowrd/changepassword';
 
 const Profile = ({ isCollapsed }) => {
   const navigate = useNavigate();

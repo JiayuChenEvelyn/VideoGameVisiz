@@ -1,9 +1,8 @@
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import Button from "@mui/material/Button";
 import { tokens } from "../../theme";
 import * as React from "react";
 import Topbar from "../global/topbar";
-import { Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,6 @@ import { useNavigate } from "react-router-dom";
 const Game = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [tab, setTab] = React.useState("all");
   const queryParameters = new URLSearchParams(window.location.search);
   const gameName = queryParameters.get("name");
   const [value, setValue] = React.useState(2);

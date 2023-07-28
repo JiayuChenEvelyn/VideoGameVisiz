@@ -1,12 +1,11 @@
 // Layout style reference from mhttps://codesandbox.io/examples/package/@nivo/bar
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { data } from "../../data/genre";
 import VideogameAssetOutlinedIcon from "@mui/icons-material/VideogameAssetOutlined";
 import SportsMmaOutlinedIcon from "@mui/icons-material/SportsMmaOutlined";
 import SportsBasketballOutlinedIcon from "@mui/icons-material/SportsBasketballOutlined";
 import SmartToyOutlinedIcon from "@mui/icons-material/SmartToyOutlined";
-import Header from "../../components/Header";
 import LineChart from "../../components/LineChart";
 import GeoChart from "../../components/GeoChart";
 import BarChart from "../../components/BarChart";
@@ -15,13 +14,10 @@ import * as React from "react";
 import { data as vgsales } from "../../data/vgsales";
 import PieChart from "../../components/PieChart";
 import Topbar from "../global/topbar";
-import InterestsPopOver from "../../components/InterestsPopOver";
 
 const Dashboard = ({ isCollapsed }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const [showInterestPopOver, setShowInterestPopOver] = React.useState(true);
-
 
   return (
     <div

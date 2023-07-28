@@ -265,7 +265,9 @@ const CustomizedHome = ({ isCollapsed }) => {
         if (data.state === 200) {
           setBarData(data.data);
           if (data.data === []){
-            document.getElementById("empty_message").style = "display";
+            document.getElementById("empty_message").style = "block";
+          }else{
+            document.getElementById("empty_message").style = "hidden";
           }
         }
       })
@@ -602,8 +604,8 @@ const CustomizedHome = ({ isCollapsed }) => {
             </Box>
           </div>
           <Box height="250px" mt="5px">
+            <div id="empty_message" style={{display: "hidden",color:colors.grey[100]}}>Empty records for current selection</div>
             <HomePieChart isDashboard={true} data={barData} />
-            <div id="empty_message" style="display: hidden">Empty records for current </div>
           </Box>
         </Box>
       </div>

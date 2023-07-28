@@ -102,16 +102,6 @@ export default function Recommend({ isCollapsed }) {
       });
   };
 
-  const handlePredictSubmit = () => {
-    axios
-      .post("http://127.0.0.1:5000/predict", gameFeatures)
-      .then((res) => {
-        setPredictedScore(res.data.score);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  };
 
   const handleUserRecommendSubmit = () => {
     axios

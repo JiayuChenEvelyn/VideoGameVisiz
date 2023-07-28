@@ -39,31 +39,28 @@ const Register = () => {
     setShowConfirmPassword((showConfirmPassword) => !showConfirmPassword);
 
   const handleFormSubmit = (values) => {
-    // fetch(
-    //   "http://localhost:8080/users/reg?username=" +
-    //     values.username +
-    //     "&password=" +
-    //     values.password
-    // )
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.status === 200) {
-    //       handleClickOpen();
-    //     } else {
-    //       return Promise.reject("Invalid register attempt, state is not 200");
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log("Error:", e);
-    //     alert(e);
-    //   });
+    fetch(
+      "http://localhost:8080/users/reg?username=" +
+        values.username +
+        "&password=" +
+        values.password
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === 200) {
+          handleClickOpen();
+          navigate("/login");
+        } else {
+          return Promise.reject("Invalid register attempt, state is not 200");
+        }
+      })
+      .catch((e) => {
+        console.log("Error:", e);
+        alert(e);
+      });
 
-    var result = 200;
-    if (result === 200){
-      handleClickOpen();
-    }
-    navigate("/login");
+
   };
   const handleMouseDownPassword = (event) => {
     event.preventDefault();

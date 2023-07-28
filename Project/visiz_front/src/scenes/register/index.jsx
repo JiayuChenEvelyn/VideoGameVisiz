@@ -48,7 +48,7 @@ const Register = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           handleClickOpen();
           navigate("/login");
         } else {

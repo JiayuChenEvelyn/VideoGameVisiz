@@ -68,7 +68,7 @@ Before running the platform, you will need to configure the dependencies.
 
 "dependencies": {
 	flask version 2.2.2
-  flask-cors version 3.0.10
+  	flask-cors version 3.0.10
   }
 ```
 
@@ -77,7 +77,7 @@ Before running the platform, you will need to configure the dependencies.
 ```json
 "dependencies": {
 	flask version 2.2.2
-  flask-cors version 3.0.10
+	flask-cors version 3.0.10
  	Operating system: Windows 10
 	Java development kit: JDK 8
 	Project management tool: Maven 3.6.3

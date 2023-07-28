@@ -276,7 +276,7 @@ const CustomizedHome = ({ isCollapsed }) => {
           if (data.data === []){
             document.getElementById("empty_message").style.display = "block";
           }else{
-            document.getElementById("empty_message").style.display = "hidden";
+            document.getElementById("empty_message").style.display = "none";
           }
         }
       })

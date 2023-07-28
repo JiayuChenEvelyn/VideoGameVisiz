@@ -117,8 +117,8 @@ Before running the platform, you will need to configure the dependencies.
 
 • Following on, connect the front-end with the machine model modules.
 1. Navigate to the file app.py. Start model server.
-2. Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:3000/predict
-3. Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:5000/recommend and http://ip:5000/recommend_for_user respectively.
+2. Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:{algorithm_server_port}/predict
+3. Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:{algorithm_server_port}/recommend and http://{algorithm_server_ip}:{algorithm_server_port}/recommend_for_user respectively.
 
 • Finally, run the front-end framework
 5. Navigate to the folder called "visiz_front" in the folder called "Project".

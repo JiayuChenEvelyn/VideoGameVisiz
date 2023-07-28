@@ -224,6 +224,11 @@ const CustomizedHome = ({ isCollapsed }) => {
           pieYear, data);
           if (data.state === 200) {
             setBarData(data.data);
+            if (data.data.length === 0){
+              document.getElementById("empty_message").style.display = "block";
+            }else{
+              document.getElementById("empty_message").style.display = "none";
+            }
           }
         })
         .catch((e) => {
@@ -249,6 +254,11 @@ const CustomizedHome = ({ isCollapsed }) => {
         event.target.value, data);
         if (data.state === 200) {
           setBarData(data.data);
+          if (data.data.length === 0){
+            document.getElementById("empty_message").style.display = "block";
+          }else{
+            document.getElementById("empty_message").style.display = "none";
+          }
         }
       })
       .catch((e) => {

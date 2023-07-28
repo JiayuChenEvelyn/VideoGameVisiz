@@ -25,7 +25,7 @@ The specific configuration of project maven and dependent packages can be found 
 - Firstly, run the back-end framework
     1. Navigate to the file Project/Game_visualization/src/main/java/com/example/game_visualization/GameVisualizationApplication.java
     2. Find the entry class of the project (modified with the @SpringBootApplication annotation), and then run the startup class; if the console outputs Spring graphics during the startup process, it means that the startup is successful.
-  <img width="280" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/d0ce7461-5e11-45f5-947c-4cd85b282659">
+       <img width="380" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/d0ce7461-5e11-45f5-947c-4cd85b282659">
 
     3. To make it easier to query JSON data, hide properties without values, and reduce traffic consumption, the server should not respond to clients with NULL properties. You can add @JsonInclude(value=Include.NON_NULL) before the property or class, or add global configuration in the file called application.properties.
 - Secondly, run the font-end framwork

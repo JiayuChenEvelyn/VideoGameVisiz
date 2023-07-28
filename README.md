@@ -108,6 +108,7 @@ Before running the platform, you will need to configure the dependencies.
 
 • Firstly, import the “multi_platforms_game” dataset into the database using MySQL workbench. For current configuration, the database is set at localhost on Port 3306. 
 1. Create User table according to the configuration showed below.  
+<img width="360" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/3eca23df-c1d7-4ae8-96fd-1513a4c6561f">
 
 • Secondly, run the back-end framework
 4. Navigate to the file Project/Game_visualization/src/main/java/com/example/game_visualization/GameVisualizationApplication.java

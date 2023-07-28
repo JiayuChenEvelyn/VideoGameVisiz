@@ -16,7 +16,7 @@ And this is the HKU CompSc COMP7705  - Group Project
 
 (Group Member: Dai Zeyi / Wang Bowei / Chen Jiayu / Feng Zihao )
 
-## Code Repository Into (要改)
+## Code Repository Into
 
 - Dataset: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/main](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master/Raw%20Data)
 - Code: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master)
@@ -97,7 +97,7 @@ Before running the platform, you will need to configure the dependencies.
   }
 ```
 
-## Installation(要改)
+## Installation
 
 1. Clone the repository: `git clone https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master`
 2. Install  dependencies: According the  Configuration

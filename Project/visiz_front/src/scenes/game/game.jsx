@@ -49,7 +49,10 @@ const Game = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("http://localhost:8080/game/updateRating?gameName=", data);
+        console.log("http://localhost:8080/game/updateRating?gameName=" +
+        gameName +
+        "&rating=" +
+        value, data);
         if (data.state === 200) {
           setValue(data.data/20);
           setScore(data.data);

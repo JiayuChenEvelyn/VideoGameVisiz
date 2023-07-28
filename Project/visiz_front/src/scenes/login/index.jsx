@@ -35,7 +35,7 @@ const Login = ({setAuth}) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("http://localhost:8080/users/login?username=", data);
+        console.log("http://localhost:8080/users/login?username="+values.username+"&password="+values.password, data);
         if (data.state === 200) {
           localStorage.setItem("auth", "true");
           localStorage.setItem("username", data.data.username);

@@ -48,7 +48,12 @@ const Changepassword = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("http://localhost:8080/users/changePassword?username", data);
+        console.log("http://localhost:8080/users/changePassword?username=" +
+        values.username +
+        "&oldPassword=" +
+        values.oldPassword +
+        "&newPassword=" +
+        values.newPassword, data);
         if (data.state === 200) {
           handleClickOpen();
         } else {

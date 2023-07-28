@@ -47,7 +47,10 @@ const Register = () => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("http://localhost:8080/users/reg?username=",data);
+        console.log("http://localhost:8080/users/reg?username=" +
+        values.username +
+        "&password=" +
+        values.password ,data);
         if (data.state === 200) {
           handleClickOpen();
           navigate("/login");

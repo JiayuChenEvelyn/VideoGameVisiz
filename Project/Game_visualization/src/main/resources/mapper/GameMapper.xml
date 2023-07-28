@@ -17,4 +17,16 @@
     <select id="findByThreeTags" resultType="com.example.game_visualization.entity.Game">
         SELECT * FROM game WHERE genre=#{genre} AND platform=#{platform} AND year>=#{year};
     </select>
+    <select id="findByYearAndPlatform" resultType="com.example.game_visualization.entity.Game">
+        SELECT * FROM game WHERE platform=#{platform} AND year=#{year};
+    </select>
+    <update id="updateRatingByGameName">
+        UPDATE game SET rating=#{rating} where gameName = #{gameName}
+    </update>
+    <update id="updateRateCountByGameName">
+        UPDATE game SET rateCount=#{rateCount} where gameName = #{gameName}
+    </update>
+    <select id="findGameCountByGenre" resultType="Integer">
+        SELECT COUNT(*) FROM game WHERE genre = #{genre} group by genre;
+    </select>
 </mapper>

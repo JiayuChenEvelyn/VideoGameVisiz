@@ -2,6 +2,7 @@ package com.example.game_visualization.service;
 
 import com.example.game_visualization.Mapper.GameMapper;
 import com.example.game_visualization.entity.Game;
+import com.example.game_visualization.entity.Genre;
 import com.example.game_visualization.entity.User;
 import com.example.game_visualization.service.ex.ServiceException;
 import com.example.game_visualization.service.impl.GameServiceImpl;
@@ -36,6 +37,18 @@ public class GameServiceTests {
         System.out.println(result);
         System.out.println(result.size());
     }
-
-
+    @Test
+    public void getPAndY(){
+        ArrayList<Game> data=gameMapper.findByYearAndPlatform("2001","Wii");
+        ArrayList<Genre> result=gameService.showPlatformGenreProportion(data);
+        System.out.println(result);
+        System.out.println(result.size());
+    }
+    @Test
+    public void RateGame(){
+        Float rating=70.43F;
+        Game game=gameMapper.findByGameName("Wii Fit");
+        gameService.RateGame(game,rating);
+        System.out.println("OK");
+    }
 }

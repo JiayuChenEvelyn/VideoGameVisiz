@@ -3,6 +3,7 @@ package com.example.game_visualization.Mapper;
 import com.example.game_visualization.entity.Game;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface GameMapper {
     /**
@@ -19,4 +20,9 @@ public interface GameMapper {
     Game findByGameId(Integer id);
     ArrayList<Game> findByGameGenre(String genre);
     ArrayList<Game> findByThreeTags(String genre,String platform,String year);
+    ArrayList<Game> findByYearAndPlatform(String year,String platform);
+    Integer updateRatingByGameName(String gameName,Float rating);
+    Integer updateRateCountByGameName(String gameName,Integer rateCount);
+    ArrayList<Game> findByYearRange(String startYear, String endYear);
+    Integer findGameCountByGenre(String genre);
 }

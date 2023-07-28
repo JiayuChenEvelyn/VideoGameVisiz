@@ -14,6 +14,8 @@ public class Game implements Serializable {
     private Float jpSales;
     private Float otherSales;
     private Float globalSales;
+    private Float rating;
+    private Integer rateCount;
 
     public Integer getId() {
         return id;
@@ -103,6 +105,22 @@ public class Game implements Serializable {
         this.globalSales = globalSales;
     }
 
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public Integer getRateCount() {
+        return rateCount;
+    }
+
+    public void setRateCount(Integer rateCount) {
+        this.rateCount = rateCount;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -124,7 +142,10 @@ public class Game implements Serializable {
         if (getJpSales() != null ? !getJpSales().equals(game.getJpSales()) : game.getJpSales() != null) return false;
         if (getOtherSales() != null ? !getOtherSales().equals(game.getOtherSales()) : game.getOtherSales() != null)
             return false;
-        return getGlobalSales() != null ? getGlobalSales().equals(game.getGlobalSales()) : game.getGlobalSales() == null;
+        if (getGlobalSales() != null ? !getGlobalSales().equals(game.getGlobalSales()) : game.getGlobalSales() != null)
+            return false;
+        if (getRating() != null ? !getRating().equals(game.getRating()) : game.getRating() != null) return false;
+        return getRateCount() != null ? getRateCount().equals(game.getRateCount()) : game.getRateCount() == null;
     }
 
     @Override
@@ -140,6 +161,8 @@ public class Game implements Serializable {
         result = 31 * result + (getJpSales() != null ? getJpSales().hashCode() : 0);
         result = 31 * result + (getOtherSales() != null ? getOtherSales().hashCode() : 0);
         result = 31 * result + (getGlobalSales() != null ? getGlobalSales().hashCode() : 0);
+        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
+        result = 31 * result + (getRateCount() != null ? getRateCount().hashCode() : 0);
         return result;
     }
 
@@ -157,6 +180,8 @@ public class Game implements Serializable {
                 ", jpSales=" + jpSales +
                 ", otherSales=" + otherSales +
                 ", globalSales=" + globalSales +
+                ", rating=" + rating +
+                ", rateCount=" + rateCount +
                 '}';
     }
 }

@@ -84,6 +84,7 @@ const Changepassword = () => {
   };
   const handleCloseNav = () => {
     setSuccess(false);
+    localStorage.clear();
     navigate("/login");
   };
 

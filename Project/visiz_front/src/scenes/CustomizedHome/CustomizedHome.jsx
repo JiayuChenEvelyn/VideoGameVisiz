@@ -159,11 +159,11 @@ const CustomizedHome = ({ isCollapsed }) => {
   React.useEffect(() => {
     if (preferenceComplete) {
       fetch(
-        "http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000"
+        "http://localhost:8080/game/showTop10?genre="+genreValue[0]+"&platform="+platformValue[0]+"&year="+yearValue[0]
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000", data);
+          console.log("http://localhost:8080/game/showTop10?genre="+genreValue[0]+"&platform="+platformValue[0]+"&year="+yearValue[0], data);
           if (data.state === 200) {
             setTopVgSales(data.data);
           }
@@ -264,6 +264,9 @@ const CustomizedHome = ({ isCollapsed }) => {
         console.log("http://localhost:8080/game/showPlatformGenreProportion?platform=", data);
         if (data.state === 200) {
           setBarData(data.data);
+          if (data.data === []){
+            document.getElementById("empty_message").style = "display";
+          }
         }
       })
       .catch((e) => {
@@ -331,7 +334,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       .then((res) => res.json())
       .then((data) => {
         console.log("http://localhost:8080/game/showTop10?genre=", data);
-        if (data.status === 200) {
+        if (data.state === 200) {
           setTopVgSales(data.data);
         }
       })
@@ -600,6 +603,7 @@ const CustomizedHome = ({ isCollapsed }) => {
           </div>
           <Box height="250px" mt="5px">
             <HomePieChart isDashboard={true} data={barData} />
+            <div id="empty_message" style="display: hidden">Empty records for current </div>
           </Box>
         </Box>
       </div>

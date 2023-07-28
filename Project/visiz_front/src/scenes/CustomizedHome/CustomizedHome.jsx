@@ -163,8 +163,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log("data", data);
-          console.log("data.data", data.data);
+          console.log("http://localhost:8080/game/showTop10?genre=Sports&platform=Wii&year=2000", data);
           if (data.status === 200) {
             setTopVgSales(data.data);
           }
@@ -185,6 +184,7 @@ const CustomizedHome = ({ isCollapsed }) => {
         fetch("http://localhost:8080/game/showGenreCount?genre=" + genre)
           .then((res) => res.json())
           .then((data) => {
+            console.log("http://localhost:8080/game/showGenreCount?genre=", data);
             if (data.state === 200) {
               var flag = 0;
               for (let i = 0; i < temp.length; i++) {
@@ -193,9 +193,6 @@ const CustomizedHome = ({ isCollapsed }) => {
                 }
               }
               if (flag === 0) {
-                console.log("genre", genre);
-                console.log("data", data);
-                console.log("genreCount", genreCount);
                 temp.push({ genre: genre, count: data.data });
                 setGenreCount(temp);
                 // setGenreCount(prevState => [...prevState, {genre: genre, count: data.data}])
@@ -221,8 +218,7 @@ const CustomizedHome = ({ isCollapsed }) => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log("data", data);
-          console.log("data.data", data.data);
+          console.log("http://localhost:8080/game/showPlatformGenreProportion?platform=", data);
           if (data.state === 200) {
             setBarData(data.data);
           }
@@ -244,8 +240,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
+        console.log("http://localhost:8080/game/showPlatformGenreProportion?platform=", data);
         if (data.state === 200) {
           setBarData(data.data);
         }
@@ -266,8 +261,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
+        console.log("http://localhost:8080/game/showPlatformGenreProportion?platform=", data);
         if (data.state === 200) {
           setBarData(data.data);
         }
@@ -290,8 +284,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
+        console.log("http://localhost:8080/game/showTop10?genre=", data);
         if (data.status === 200) {
           setTopVgSales(data.data);
         }
@@ -314,8 +307,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
+        console.log("http://localhost:8080/game/showTop10?genre=", data);
         if (data.status === 200) {
           setTopVgSales(data.data);
         }
@@ -338,8 +330,7 @@ const CustomizedHome = ({ isCollapsed }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log("data", data);
-        console.log("data.data", data.data);
+        console.log("http://localhost:8080/game/showTop10?genre=", data);
         if (data.status === 200) {
           setTopVgSales(data.data);
         }

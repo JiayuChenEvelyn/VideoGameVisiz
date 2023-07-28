@@ -67,8 +67,9 @@ Before running the platform, you will need to configure the dependencies.
   }
 
 "dependencies": {
-	flask version 2.2.2
-  	flask-cors version 3.0.10
+   tensorflow version 2.6.0
+   flask version 2.2.2
+   flask-cors version 3.0.10
   }
 ```
 

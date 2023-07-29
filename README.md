@@ -9,7 +9,7 @@ With the emergence of various gaming platforms and the ease of access to games, 
 ## Projct Usage
 
 The project is aiming to build a user-friendly visualization system called GameViz to help users visualize the large amount of complex video game data for data exploration and analysis, recommend customized video games based on each user state information, while displaying and forecasting the overall trend of the game industry.
-![image](https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/64573006/2316bac3-ebf9-4a7d-a691-28d69ff9bbc7)
+![image](https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/64573006/4ae69704-f5ad-4876-ac8b-21118d3b90cc)
 
 
 And this is the HKU CompSc COMP7705  - Group Project 
@@ -18,8 +18,8 @@ And this is the HKU CompSc COMP7705  - Group Project
 
 ## Code Repository Into
 
-- Dataset: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/main](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master/Raw%20Data)
-- Code: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master)
+- Dataset: https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/main
+- Code: https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master
 
 The dataset, data pre-processing and analysis is put in the folder called “Dataset”.
 
@@ -48,7 +48,7 @@ Before running the platform, you will need to configure the dependencies.
 
 1. Machine Learning  & Algorithm Server Environment:
 
-```javascript
+```js
 "dependencies": {
    	Numpy version 1.21.6
    	Pandas version 1.3.5
@@ -60,10 +60,10 @@ Before running the platform, you will need to configure the dependencies.
    	Lxml version 4.9.2
    	Sklearn version 1.0.2
    	Matplotlib version 3.5.3
-   	Seaborn version 0.10.0
+	Seaborn version 0.10.0
    	category_encoders version 2.6.0
    	pmdarima version 2.0.3
-	xgboost version 1.7.3
+   	xgboost version 1.7.3
    	tensorflow version 2.6.0
   }
 
@@ -74,12 +74,11 @@ Before running the platform, you will need to configure the dependencies.
 ```
 
 2.  Front and Back End Environment:
-   
 
-```javascript
+```js
 "dependencies": {
 	flask version 2.2.2
-	flask-cors version 3.0.10
+  	flask-cors version 3.0.10
  	Operating system: Windows 10
 	Java development kit: JDK 8
 	Project management tool: Maven 3.6.3
@@ -107,24 +106,30 @@ Before running the platform, you will need to configure the dependencies.
 ## Run the Code
 
 • Firstly, import the “multi_platforms_game” dataset into the database using MySQL workbench. For current configuration, the database is set at localhost on Port 3306. 
+
 1. Create User table according to the configuration showed below.  
-<img width="480" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/3eca23df-c1d7-4ae8-96fd-1513a4c6561f">
 
 • Secondly, run the back-end framework
+
 4. Navigate to the file Project/Game_visualization/src/main/java/com/example/game_visualization/GameVisualizationApplication.java
 5. Find the entry class of the project (modified with the @SpringBootApplication annotation), and then run the start up class; if the console outputs Spring graphics during the start up process, it means that the start up is successful.
 6. To make it easier to query JSON data, hide properties without values, and reduce traffic consumption, the server should not respond to clients with NULL properties. You can add @JsonInclude(value=Include.NON_NULL) before the property or class or add global configuration in the file called application.properties.
 
 • Following on, connect the front-end with the machine model modules.
+
 1. Navigate to the file app.py. Start model server.
-2. Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:{algorithm_server_port}/predict
-3. Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:{algorithm_server_port}/recommend and http://{algorithm_server_ip}:{algorithm_server_port}/recommend_for_user respectively.
+2. Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:3000/predict
+3. Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:5000/recommend and http://ip:5000/recommend_for_user respectively.
 
 • Finally, run the front-end framework
-5. Navigate to the folder called "visiz_front" in the folder called "Project".
-6. Update all dependencies and packages used in the project using the commend "npm install".
-7. Run the front-end code using the commend "npm start".
-8. The default port for react app is 3000 so the GameViz application website would run on localhost:3000.
+
+1. Navigate to the folder called "visiz_front" in the folder called "Project".
+
+2. Update all dependencies and packages used in the project using the commend "npm install".
+
+3. Run the front-end code using the commend "npm start".
+
+4. The default port for react app is 3000 so the GameViz application website would run on localhost:3000.
 
 ## License
 

@@ -18,8 +18,8 @@ And this is the HKU CompSc COMP7705  - Group Project
 
 ## Code Repository Into
 
-- Dataset: https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/main
-- Code: https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master
+- Dataset: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/main](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master/Raw%20Data)
+- Code: [https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master](https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master)
 
 The dataset, data pre-processing and analysis is put in the folder called “Dataset”.
 

@@ -107,29 +107,29 @@ Before running the platform, you will need to configure the dependencies.
 
 • Firstly, import the “multi_platforms_game” dataset into the database using MySQL workbench. For current configuration, the database is set at localhost on Port 3306. 
 
-1. Create User table according to the configuration showed below.  
+- Create User table according to the configuration showed below.  
 
 • Secondly, run the back-end framework
 
-4. Navigate to the file Project/Game_visualization/src/main/java/com/example/game_visualization/GameVisualizationApplication.java
-5. Find the entry class of the project (modified with the @SpringBootApplication annotation), and then run the start up class; if the console outputs Spring graphics during the start up process, it means that the start up is successful.
-6. To make it easier to query JSON data, hide properties without values, and reduce traffic consumption, the server should not respond to clients with NULL properties. You can add @JsonInclude(value=Include.NON_NULL) before the property or class or add global configuration in the file called application.properties.
+- Navigate to the file Project/Game_visualization/src/main/java/com/example/game_visualization/GameVisualizationApplication.java
+- Find the entry class of the project (modified with the @SpringBootApplication annotation), and then run the start up class; if the console outputs Spring graphics during the start up process, it means that the start up is successful.
+- To make it easier to query JSON data, hide properties without values, and reduce traffic consumption, the server should not respond to clients with NULL properties. You can add @JsonInclude(value=Include.NON_NULL) before the property or class or add global configuration in the file called application.properties.
 
 • Following on, connect the front-end with the machine model modules.
 
-1. Navigate to the file app.py. Start model server.
-2. Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:3000/predict
-3. Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:5000/recommend and http://ip:5000/recommend_for_user respectively.
+- Navigate to the file app.py. Start model server.
+- Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:3000/predict
+- Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:5000/recommend and http://ip:5000/recommend_for_user respectively.
 
 • Finally, run the front-end framework
 
-1. Navigate to the folder called "visiz_front" in the folder called "Project".
+- Navigate to the folder called "visiz_front" in the folder called "Project".
 
-2. Update all dependencies and packages used in the project using the commend "npm install".
+- Update all dependencies and packages used in the project using the commend "npm install".
 
-3. Run the front-end code using the commend "npm start".
+- Run the front-end code using the commend "npm start".
 
-4. The default port for react app is 3000 so the GameViz application website would run on localhost:3000.
+- The default port for react app is 3000 so the GameViz application website would run on localhost:3000.
 
 ## License
 

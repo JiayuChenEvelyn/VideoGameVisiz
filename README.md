@@ -33,7 +33,7 @@ The back-end is put in the folder called “Game_visualization” in the folder 
 
 - Platform construction: 
 
-  Front-End: Reat Native Framework
+  Front-End: React JS Framework
 
   Back-End: JAVA Web
 

@@ -9,6 +9,7 @@ With the emergence of various gaming platforms and the ease of access to games, 
 ## Projct Usage
 
 The project is aiming to build a user-friendly visualization system called GameViz to help users visualize the large amount of complex video game data for data exploration and analysis, recommend customized video games based on each user state information, while displaying and forecasting the overall trend of the game industry.
+
 ![image](https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/64573006/4ae69704-f5ad-4876-ac8b-21118d3b90cc)
 
 

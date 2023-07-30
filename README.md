@@ -110,7 +110,8 @@ Before running the platform, you will need to configure the dependencies.
 • Firstly, import the “multi_platforms_game” dataset into the database using MySQL workbench. For current configuration, the database is set at localhost on Port 3306. 
 
 - Create User table according to the configuration showed below.
-  <img width="480" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/66cbfdfa-ca74-443c-9a33-b92fefd2c3c2">
+
+<img width="480" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/66cbfdfa-ca74-443c-9a33-b92fefd2c3c2">
 
 
 • Secondly, run the back-end framework

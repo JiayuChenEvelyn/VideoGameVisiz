@@ -100,14 +100,16 @@ Before running the platform, you will need to configure the dependencies.
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/JiayuChenEvelyn/VideoGameVisiz/tree/master`
-2. Install  dependencies: According the  Configuration
+2. Install  dependencies: According the configuration
 3. Run the project
 
 ## Run the Code
 
 • Firstly, import the “multi_platforms_game” dataset into the database using MySQL workbench. For current configuration, the database is set at localhost on Port 3306. 
 
-- Create User table according to the configuration showed below.  
+- Create User table according to the configuration showed below.
+  <img width="480" alt="image" src="https://github.com/JiayuChenEvelyn/VideoGameVisiz/assets/101421504/66cbfdfa-ca74-443c-9a33-b92fefd2c3c2">
+
 
 • Secondly, run the back-end framework
 
@@ -118,8 +120,8 @@ Before running the platform, you will need to configure the dependencies.
 • Following on, connect the front-end with the machine model modules.
 
 - Navigate to the file app.py. Start model server.
-- Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to http://{algorithm_server_ip}:3000/predict
-- Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to http://{algorithm_server_ip}:5000/recommend and http://ip:5000/recommend_for_user respectively.
+- Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to "http://{algorithm_server_ip}:{algorithm_server_port}/predict"
+- Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to "http://{algorithm_server_ip}:{algorithm_server_port}/recommend" and "http://{algorithm_server_ip}:{algorithm_server_port}/recommend_for_user " respectively.
 
 • Finally, run the front-end framework
 
@@ -133,7 +135,7 @@ Before running the platform, you will need to configure the dependencies.
 
 ## License
 
-This software is for learning and communication about COMP7705 Group Projecr only.
+This software is for learning and communication about COMP7705 Group Project only.
 
 ## Contact Us
 

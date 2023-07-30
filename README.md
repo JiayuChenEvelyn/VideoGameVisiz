@@ -124,7 +124,7 @@ Before running the platform, you will need to configure the dependencies.
 
 - Navigate to the file app.py. Start model server.
 - Change url in the handlePredictSubmit function in the Project/visiz_front/src/scenes/predict.predict.jsx to "http://{algorithm_server_ip}:{algorithm_server_port}/predict"
-- Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to "http://{algorithm_server_ip}:{algorithm_server_port}/recommend" and "http://{algorithm_server_ip}:{algorithm_server_port}/recommend_for_user " respectively.
+- Change url in the handleRecommendSubmit and handleUserRecommendSubmition function in the Project/visiz_front/src/scenes/recommend/recommend.jsx to "http://{algorithm_server_ip}:{algorithm_server_port}/recommend" and "http://{algorithm_server_ip}:{algorithm_server_port}/recommend_for_user" respectively.
 
 • Finally, run the front-end framework
 

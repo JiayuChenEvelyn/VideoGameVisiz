@@ -6,7 +6,7 @@ With the emergence of various gaming platforms and the ease of access to games, 
 
  Data visualization is known as a powerful technique for conveying compelling stories of data by transforming abstract data into physical visual elements, which are crucial in interpreting data and aiding decision-making in various fields due to the human tendency to be more visually oriented.
 
-## Projct Usage
+## Project Usage
 
 The project is aiming to build a user-friendly visualization system called GameViz to help users visualize the large amount of complex video game data for data exploration and analysis, recommend customized video games based on each user state information, while displaying and forecasting the overall trend of the game industry.
 
